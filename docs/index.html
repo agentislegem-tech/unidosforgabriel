@@ -116,7 +116,7 @@
       <div class="section-label" data-es="Mensajes de apoyo" data-en="Messages of Support">Mensajes de apoyo</div>
       <h2 class="section-title" data-es="Deja tu mensaje para Gabriel" data-en="Leave a Message for Gabriel">Deja tu mensaje para Gabriel</h2>
       <p class="section-desc" data-es="Gabriel puede leer tu mensaje desde su recuperación. Hazle saber que no está solo." data-en="Gabriel can read your message during his recovery. Let him know he is not alone.">Gabriel puede leer tu mensaje desde su recuperación. Hazle saber que no está solo.</p>
-      <form class="muro-form" id="muroForm">
+      <form class="muro-form" id="muroForm" data-endpoint="https://okfngn48kc.execute-api.us-east-1.amazonaws.com/prod/mensaje">
         <div class="form-row">
           <input type="text" id="muroNombre" placeholder="Tu nombre / Your name" maxlength="60" required />
           <input type="text" id="muroLugar" placeholder="Ciudad, Estado / City, State" maxlength="60" />
@@ -133,7 +133,7 @@
       <div class="section-label" data-es="Únete" data-en="Join Us">Únete</div>
       <h2 class="section-title" data-es="Sé parte del movimiento" data-en="Be Part of the Movement">Sé parte del movimiento</h2>
       <p class="section-desc" data-es="Regístrate para recibir actualizaciones sobre Gabriel y cómo puedes ayudar." data-en="Register to receive updates about Gabriel and how you can help.">Regístrate para recibir actualizaciones sobre Gabriel y cómo puedes ayudar.</p>
-      <form class="registro-form" id="registroForm">
+      <form class="registro-form" id="registroForm" data-endpoint="https://okfngn48kc.execute-api.us-east-1.amazonaws.com/prod/registro">
         <div class="form-row">
           <input type="text" name="nombre" placeholder="Tu nombre completo / Full name" required />
           <input type="email" name="email" placeholder="Tu correo / Your email" required />
