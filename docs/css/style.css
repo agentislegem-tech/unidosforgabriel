@@ -76,7 +76,7 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
-  background: url('../assets/images/hero_image.png') center center / cover no-repeat;
+  background: url('../assets/images/hero_image.png') center top / cover no-repeat;
   text-align: center;
   padding: 120px 24px 80px;
 }
