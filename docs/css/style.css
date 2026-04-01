@@ -483,9 +483,41 @@ a { text-decoration: none; color: inherit; }
   .btn-donate, .btn-secondary { font-size: 0.95rem; padding: 14px 24px; }
 }
 
-/* ===== SMALL MOBILE ===== */
+/* ===== MEDIUM SMALL MOBILE (480px) ===== */
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
+  .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.12em; }
+  .hero-sub { font-size: 0.88rem; line-height: 1.65; }
+  .section-title { font-size: clamp(1.4rem, 6vw, 1.9rem); }
+  .stat-num { font-size: 2rem; }
+  .stat-label { font-size: 0.72rem; }
+  .logos-grid { gap: 16px; }
+  .logo-partner img { height: 42px; max-width: 100px; }
+  .muro-form input, .muro-form textarea, .registro-form input { font-size: 16px; }
+  .btn-donate, .btn-secondary { width: 100%; max-width: 340px; text-align: center; }
+  .slogan-float { font-size: clamp(1.1rem, 5.5vw, 1.6rem); }
+}
+
+/* ===== SMALL MOBILE (375px) ===== */
 @media (max-width: 375px) {
   .historia-stats { grid-template-columns: 1fr 1fr; }
   .stat-num { font-size: 1.6rem; }
   .nav-logo { height: 32px; }
+  .hero-title { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+}
+
+/* ===== iOS / TOUCH OPTIMIZATIONS ===== */
+@media (hover: none) and (pointer: coarse) {
+  input, textarea, select {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    border-radius: 8px;
+  }
+  .btn-donate, .btn-secondary, .nav-donate, .lang-toggle {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .hero-actions a { min-height: 52px; display: flex; align-items: center; justify-content: center; }
+  .logo-partner, .stat-card, .video-card, .prensa-card { -webkit-tap-highlight-color: transparent; }
+  * { -webkit-overflow-scrolling: touch; }
 }
