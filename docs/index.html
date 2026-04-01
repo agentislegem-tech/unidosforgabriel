@@ -2,241 +2,186 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#002868" />
   <title>Unidos por Gabriel — Campaña de Apoyo</title>
-  <meta name="description" content="Apoya a Gabriel Hernández Ramos, oficial retirado de la Policía de Puerto Rico y fundador de APUL. Unidos por Gabriel es Unidos por un Puerto Rico mejor." />
+  <meta name="description" content="Apoya a Gabriel Hernández Ramos, oficial retirado de la Policía de Puerto Rico y fundador de APUL." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="nav">
     <img src="assets/images/logo_campaign.png" alt="Unidos por Gabriel" class="nav-logo" />
-    <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate nav-donate">Donar Ahora</a>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+      <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate nav-donate" data-es="Donar Ahora" data-en="Donate Now">Donar Ahora</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="hero">
+    <div class="split-top" id="splitTop"></div>
+    <div class="split-bot" id="splitBot"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Campaña de Solidaridad Boricua</p>
-      <h1 class="hero-title">Unidos por Gabriel</h1>
-      <p class="hero-sub">Unidos por Gabriel es Unidos por un Puerto Rico mejor —<br>sin seguridad no hay educación, sin educación no hay salud.</p>
+    <img src="assets/images/hero_image.png" alt="Gabriel Hernández Ramos" class="hero-img" />
+    <div class="hero-content" id="heroContent">
+      <p class="hero-eyebrow" data-es="La hermandad no conoce distancias" data-en="Brotherhood knows no distances">La hermandad no conoce distancias</p>
+      <h1 class="hero-title" data-es="Unidos por Gabriel" data-en="United for Gabriel">Unidos por Gabriel</h1>
+      <p class="hero-sub" data-es="Unidos por Gabriel es Unidos por un Puerto Rico mejor —<br>sin seguridad no hay educación, sin educación no hay salud." data-en="United for Gabriel is United for a Better Puerto Rico —<br>without security there is no education, without education there is no health.">Unidos por Gabriel es Unidos por un Puerto Rico mejor —<br>sin seguridad no hay educación, sin educación no hay salud.</p>
       <div class="hero-actions">
-        <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate">Apoya a Gabriel</a>
-        <a href="#historia" class="btn-secondary">Conoce su historia</a>
+        <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate" data-es="Apoya a Gabriel" data-en="Support Gabriel">Apoya a Gabriel</a>
+        <a href="#historia" class="btn-secondary" data-es="Conoce su historia" data-en="His Story">Conoce su historia</a>
       </div>
     </div>
   </section>
 
-  <!-- HISTORIA -->
   <section class="section historia" id="historia">
     <div class="container">
-      <div class="section-label">Su historia</div>
-      <h2 class="section-title">Quién es Gabriel Hernández Ramos</h2>
+      <div class="section-label" data-es="Su historia" data-en="His Story">Su historia</div>
+      <h2 class="section-title" data-es="Quién es Gabriel Hernández Ramos" data-en="Who is Gabriel Hernández Ramos">Quién es Gabriel Hernández Ramos</h2>
       <div class="historia-grid">
         <div class="historia-text">
-          <p>Gabriel Hernández Ramos nació en <strong>Cabo Rojo, Puerto Rico</strong>. En 1999 entró al Negociado de la Policía de Puerto Rico. Veinte años después, se retiró.</p>
-          <p>Como tantos puertorriqueños, emigró a Estados Unidos buscando un mejor futuro para su familia. No era político. No era abogado. Era un exagente, padre de familia, con una cuenta de Facebook y una convicción.</p>
-          <p>El <strong>19 de octubre de 2021</strong>, comenzó a hablar. Sin gremio. Sin organización. Desde su teléfono, denunció en vivo lo que le estaba pasando a los policías de Puerto Rico — hombres y mujeres que habían entregado su vida al servicio y se enfrentaban a un retiro que no alcanzaba para vivir. Miles lo escucharon.</p>
-          <p>Cinco meses después nació formalmente <strong>APUL — Asociación Policías Unidos Luchando</strong>. Y en <strong>117 días</strong>, Gabriel negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico <strong>$1,550 millones en beneficios</strong> para los policías: $850 millones para el fondo de retiro y $700 millones para el Plan Vital.</p>
-          <p>Testificó ante la Cámara de Representantes de Puerto Rico. Viajó a Washington y se reunió con la entonces Comisionada Residente ante el Congreso de los Estados Unidos. Hizo todo lo que se supone que se debe hacer.</p>
-          <p>Hoy Gabriel tiene 47 años. Su pensión — el resultado de dos décadas sirviendo al pueblo de Puerto Rico — es de <strong>$487.81 al mes</strong>. No puede tocarla hasta los 65. Mientras tanto, sigue trabajando. Semanas antes de su cirugía, todavía estaba en los medios alertando sobre el agotamiento de los policías activos.</p>
+          <p data-es="Gabriel Hernández Ramos nació en <strong>Cabo Rojo, Puerto Rico</strong>. En 1999 entró al Negociado de la Policía de Puerto Rico. Veinte años después, se retiró." data-en="Gabriel Hernández Ramos was born in <strong>Cabo Rojo, Puerto Rico</strong>. In 1999 he joined the Puerto Rico Police Bureau. Twenty years later, he retired.">Gabriel Hernández Ramos nació en <strong>Cabo Rojo, Puerto Rico</strong>. En 1999 entró al Negociado de la Policía de Puerto Rico. Veinte años después, se retiró.</p>
+          <p data-es="Como tantos puertorriqueños, emigró a Estados Unidos buscando un mejor futuro para su familia. No era político. No era abogado. Era un exagente, padre de familia, con una cuenta de Facebook y una convicción." data-en="Like so many Puerto Ricans, he emigrated to the United States seeking a better future for his family. He was not a politician. Not a lawyer. He was a retired officer, a family man, with a Facebook account and a conviction.">Como tantos puertorriqueños, emigró a Estados Unidos buscando un mejor futuro para su familia. No era político. No era abogado. Era un exagente, padre de familia, con una cuenta de Facebook y una convicción.</p>
+          <p data-es="El <strong>19 de octubre de 2021</strong>, comenzó a hablar. Sin gremio. Sin organización. Desde su teléfono, denunció en vivo lo que le estaba pasando a los policías de Puerto Rico — hombres y mujeres que habían entregado su vida al servicio y se enfrentaban a un retiro que no alcanzaba para vivir. Miles lo escucharon." data-en="On <strong>October 19, 2021</strong>, he began to speak. No union. No organization. From his phone, he went live to denounce what was happening to Puerto Rico's officers — men and women who had given their lives to service and faced a retirement that was not enough to live on. Thousands listened.">El <strong>19 de octubre de 2021</strong>, comenzó a hablar. Sin gremio. Sin organización. Desde su teléfono, denunció en vivo lo que le estaba pasando a los policías de Puerto Rico — hombres y mujeres que habían entregado su vida al servicio y se enfrentaban a un retiro que no alcanzaba para vivir. Miles lo escucharon.</p>
+          <p data-es="Cinco meses después nació formalmente <strong>APUL — Asociación Policías Unidos Luchando</strong>. Y en <strong>117 días</strong>, Gabriel negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico <strong>$1,550 millones en beneficios</strong> para los policías: $850 millones para el fondo de retiro y $700 millones para el Plan Vital." data-en="Five months later, <strong>APUL — Asociación Policías Unidos Luchando</strong> was formally established. And in <strong>117 days</strong>, Gabriel negotiated with the Fiscal Oversight Board and the Government of Puerto Rico <strong>$1.55 billion in benefits</strong>: $850 million for the retirement fund and $700 million for Plan Vital.">Cinco meses después nació formalmente <strong>APUL — Asociación Policías Unidos Luchando</strong>. Y en <strong>117 días</strong>, Gabriel negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico <strong>$1,550 millones en beneficios</strong> para los policías: $850 millones para el fondo de retiro y $700 millones para el Plan Vital.</p>
+          <p data-es="Testificó ante la Cámara de Representantes de Puerto Rico. Viajó a Washington y se reunió con la entonces Comisionada Residente ante el Congreso de los Estados Unidos. Hizo todo lo que se supone que se debe hacer." data-en="He testified before the Puerto Rico House of Representatives. He traveled to Washington and met with the then-Resident Commissioner to the U.S. Congress. He did everything that was supposed to be done.">Testificó ante la Cámara de Representantes de Puerto Rico. Viajó a Washington y se reunió con la entonces Comisionada Residente ante el Congreso de los Estados Unidos. Hizo todo lo que se supone que se debe hacer.</p>
+          <p data-es="Hoy Gabriel tiene 47 años. Su pensión — el resultado de dos décadas sirviendo al pueblo de Puerto Rico — es de <strong>$487.81 al mes</strong>. No puede tocarla hasta los 65. Mientras tanto, sigue trabajando. Semanas antes de su cirugía, todavía estaba en los medios alertando sobre el agotamiento de los policías activos." data-en="Today Gabriel is 47 years old. His pension — the result of two decades serving Puerto Rico — is <strong>$487.81 per month</strong>. He cannot touch it until age 65. Meanwhile, he keeps working. Weeks before his surgery, he was still in the media alerting about the exhaustion of active officers.">Hoy Gabriel tiene 47 años. Su pensión — el resultado de dos décadas sirviendo al pueblo de Puerto Rico — es de <strong>$487.81 al mes</strong>. No puede tocarla hasta los 65. Mientras tanto, sigue trabajando. Semanas antes de su cirugía, todavía estaba en los medios alertando sobre el agotamiento de los policías activos.</p>
           <blockquote class="quote-inline">
-            "Me tuve que ir de la Policía porque suicidaron mi retiro... Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."
-            <cite>— Gabriel Hernández Ramos, vista pública Cámara de Puerto Rico</cite>
+            <span data-es='"Me tuve que ir de la Policía porque suicidaron mi retiro... Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."' data-en='"I had to leave the Police because they destroyed my retirement... Today I still work because my Puerto Rico Police pension will be $487.00 a month."'>"Me tuve que ir de la Policía porque suicidaron mi retiro... Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."</span>
+            <cite data-es="— Gabriel Hernández Ramos, vista pública Cámara de Puerto Rico" data-en="— Gabriel Hernández Ramos, Puerto Rico House of Representatives public hearing">— Gabriel Hernández Ramos, vista pública Cámara de Puerto Rico</cite>
           </blockquote>
         </div>
         <div class="historia-stats">
-          <div class="stat-card">
-            <span class="stat-num">20+</span>
-            <span class="stat-label">Años de servicio</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">$1B+</span>
-            <span class="stat-label">En beneficios negociados</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">117</span>
-            <span class="stat-label">Días que tomó lograrlo</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">$487</span>
-            <span class="stat-label">Su pensión mensual</span>
-          </div>
+          <div class="stat-card"><span class="stat-num">20+</span><span class="stat-label" data-es="Años de servicio" data-en="Years of service">Años de servicio</span></div>
+          <div class="stat-card"><span class="stat-num">$1.5B+</span><span class="stat-label" data-es="En beneficios negociados" data-en="In benefits negotiated">En beneficios negociados</span></div>
+          <div class="stat-card"><span class="stat-num">117</span><span class="stat-label" data-es="Días que tomó lograrlo" data-en="Days it took to achieve it">Días que tomó lograrlo</span></div>
+          <div class="stat-card"><span class="stat-num">$487</span><span class="stat-label" data-es="Su pensión mensual" data-en="His monthly pension">Su pensión mensual</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ESLOGAN FLOTANTE -->
   <section class="section-slogan">
     <div class="container">
-      <p class="slogan-float">Unidos por Gabriel es Unidos por un Puerto Rico mejor</p>
-      <p class="slogan-sub-float">sin seguridad no hay educación — sin educación no hay salud</p>
+      <p class="slogan-float" data-es="Unidos por Gabriel es Unidos por un Puerto Rico mejor" data-en="United for Gabriel is United for a Better Puerto Rico">Unidos por Gabriel es Unidos por un Puerto Rico mejor</p>
+      <p class="slogan-sub-float" data-es="sin seguridad no hay educación — sin educación no hay salud" data-en="without security there is no education — without education there is no health">sin seguridad no hay educación — sin educación no hay salud</p>
     </div>
   </section>
 
-  <!-- VIDEOS -->
   <section class="section videos" id="videos">
     <div class="container">
-      <div class="section-label">Su voz</div>
-      <h2 class="section-title">Escúchalo directamente</h2>
+      <div class="section-label" data-es="Su voz" data-en="His Voice">Su voz</div>
+      <h2 class="section-title" data-es="Escúchalo directamente" data-en="Hear it directly">Escúchalo directamente</h2>
       <div class="videos-grid">
         <div class="video-card">
           <a href="https://www.youtube.com/channel/UCDKIRncSKV8y4v4HH5fIK5g" target="_blank" class="video-link">
-            <div class="video-thumb youtube">
-              <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
-            </div>
-            <p>Canal YouTube — @gabpyul</p>
+            <div class="video-thumb youtube"><svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></div>
+            <p data-es="Canal YouTube — Gabriel Hernández" data-en="YouTube Channel — Gabriel Hernández">Canal YouTube — Gabriel Hernández</p>
           </a>
         </div>
         <div class="video-card">
           <a href="https://www.youtube.com/@Gaby1978" target="_blank" class="video-link">
-            <div class="video-thumb youtube">
-              <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
-            </div>
-            <p>Canal Institucional — @Gaby1978</p>
+            <div class="video-thumb youtube"><svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></div>
+            <p data-es="Canal Institucional — @Gaby1978" data-en="Institutional Channel — @Gaby1978">Canal Institucional — @Gaby1978</p>
           </a>
         </div>
         <div class="video-card">
           <a href="https://www.apulpr.com" target="_blank" class="video-link">
-            <div class="video-thumb apul">
-              <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-            </div>
-            <p>Sitio oficial APUL</p>
+            <div class="video-thumb apul"><svg viewBox="0 0 24 24" fill="white" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+            <p data-es="Sitio oficial APUL" data-en="Official APUL Website">Sitio oficial APUL</p>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REGISTRO -->
-  <section class="section registro" id="registro">
-    <div class="container">
-      <div class="section-label">Únete</div>
-      <h2 class="section-title">Sé parte del movimiento</h2>
-      <p class="section-desc">Regístrate para recibir actualizaciones sobre Gabriel y cómo puedes ayudar a la comunidad puertorriqueña.</p>
-      <form class="registro-form" id="registroForm">
-        <div class="form-row">
-          <input type="text" name="nombre" placeholder="Tu nombre completo" required />
-          <input type="email" name="email" placeholder="Tu correo electrónico" required />
-        </div>
-        <div class="form-row">
-          <input type="text" name="ciudad" placeholder="Ciudad" />
-          <input type="text" name="estado" placeholder="Estado" />
-        </div>
-        <button type="submit" class="btn-donate btn-full">Registrarme</button>
-        <p class="form-note">Tu información es privada y nunca será compartida.</p>
-      </form>
-      <div class="form-success" id="formSuccess" style="display:none;">
-        <p>¡Gracias! Tu registro fue recibido. Unidos somos más fuertes. 🇵🇷</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIDEOS DE PRENSA -->
   <section class="section prensa" id="prensa">
     <div class="container">
-      <div class="section-label">Cobertura de medios</div>
-      <h2 class="section-title">Gabriel en la prensa de Puerto Rico</h2>
+      <div class="section-label" data-es="Cobertura de medios" data-en="Media Coverage">Cobertura de medios</div>
+      <h2 class="section-title" data-es="Gabriel en la prensa de Puerto Rico" data-en="Gabriel in the Puerto Rico Press">Gabriel en la prensa de Puerto Rico</h2>
       <div class="prensa-grid">
-        <div class="prensa-card">
-          <div class="prensa-embed">
-            <iframe src="https://www.youtube.com/embed/m6n1qhgsWjY" title="Preocupa amenaza de paro de los policías" frameborder="0" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p>Preocupa amenaza de paro de los policías</p>
-        </div>
-        <div class="prensa-card">
-          <div class="prensa-embed">
-            <iframe src="https://www.youtube.com/embed/xuUuhFzE_ho" title="En el 2013 se suicidó a la Policía" frameborder="0" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p>"En el 2013 se suicidó a la Policía": portavoces denuncian abandono de la uniformada</p>
-        </div>
-        <div class="prensa-card">
-          <div class="prensa-embed">
-            <iframe src="https://www.youtube.com/embed/kKfurfNOW5Y" title="Ocho años sin aumento salarial" frameborder="0" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p>Policías llevan ocho años sin aumento salarial</p>
-        </div>
-        <div class="prensa-card">
-          <div class="prensa-embed">
-            <iframe src="https://www.youtube.com/embed/6TicIYM8gXg" title="Policía en punto crítico" frameborder="0" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p>Policía de Puerto Rico en punto crítico: 900 agentes se retiran a finales de año</p>
-        </div>
-        <div class="prensa-card">
-          <div class="prensa-embed">
-            <iframe src="https://www.youtube.com/embed/JHzm5yOZQsQ" title="Problema grave de reclutamiento" frameborder="0" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <p>"Tenemos un problema grave": reclutamiento de policías en Puerto Rico</p>
-        </div>
+        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/m6n1qhgsWjY" title="Paro policias" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es="Preocupa amenaza de paro de los policías" data-en="Police strike threat raises concern">Preocupa amenaza de paro de los policías</p></div>
+        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/xuUuhFzE_ho" title="Suicidaron la policia" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es='"En el 2013 se suicidó a la Policía"' data-en='"In 2013, the Police was destroyed"'>"En el 2013 se suicidó a la Policía"</p></div>
+        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/kKfurfNOW5Y" title="Ocho anos sin aumento" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es="Policías llevan ocho años sin aumento salarial" data-en="Officers go eight years without a salary raise">Policías llevan ocho años sin aumento salarial</p></div>
+        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/6TicIYM8gXg" title="Punto critico" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es="Policía de Puerto Rico en punto crítico" data-en="Puerto Rico Police at a critical point">Policía de Puerto Rico en punto crítico</p></div>
+        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/JHzm5yOZQsQ" title="Reclutamiento" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es='"Tenemos un problema grave": reclutamiento policial en PR' data-en='"We have a serious problem": police recruitment in PR'>"Tenemos un problema grave": reclutamiento policial en PR</p></div>
       </div>
     </div>
   </section>
 
-  <!-- MURO DE MENSAJES -->
   <section class="section muro" id="muro">
     <div class="container">
-      <div class="section-label">Mensajes de apoyo</div>
-      <h2 class="section-title">Deja tu mensaje para Gabriel</h2>
-      <p class="section-desc">Gabriel puede leer tu mensaje desde su recuperación. Hazle saber que no está solo.</p>
+      <div class="section-label" data-es="Mensajes de apoyo" data-en="Messages of Support">Mensajes de apoyo</div>
+      <h2 class="section-title" data-es="Deja tu mensaje para Gabriel" data-en="Leave a Message for Gabriel">Deja tu mensaje para Gabriel</h2>
+      <p class="section-desc" data-es="Gabriel puede leer tu mensaje desde su recuperación. Hazle saber que no está solo." data-en="Gabriel can read your message during his recovery. Let him know he is not alone.">Gabriel puede leer tu mensaje desde su recuperación. Hazle saber que no está solo.</p>
       <form class="muro-form" id="muroForm">
         <div class="form-row">
-          <input type="text" id="muroNombre" placeholder="Tu nombre" maxlength="60" required />
-          <input type="text" id="muroLugar" placeholder="Ciudad, Estado / País" maxlength="60" />
+          <input type="text" id="muroNombre" placeholder="Tu nombre / Your name" maxlength="60" required />
+          <input type="text" id="muroLugar" placeholder="Ciudad, Estado / City, State" maxlength="60" />
         </div>
-        <textarea id="muroMensaje" placeholder="Escribe tu mensaje de apoyo para Gabriel..." maxlength="300" rows="3" required></textarea>
-        <button type="submit" class="btn-donate btn-full">Enviar mensaje 🇵🇷</button>
+        <textarea id="muroMensaje" placeholder="Escribe tu mensaje para Gabriel... / Write your message for Gabriel..." maxlength="300" rows="3" required></textarea>
+        <button type="submit" class="btn-donate btn-full" data-es="Enviar mensaje 🇵🇷" data-en="Send message 🇵🇷">Enviar mensaje 🇵🇷</button>
       </form>
       <div class="muro-wall" id="muroWall"></div>
     </div>
   </section>
+
+  <section class="section registro" id="registro">
+    <div class="container">
+      <div class="section-label" data-es="Únete" data-en="Join Us">Únete</div>
+      <h2 class="section-title" data-es="Sé parte del movimiento" data-en="Be Part of the Movement">Sé parte del movimiento</h2>
+      <p class="section-desc" data-es="Regístrate para recibir actualizaciones sobre Gabriel y cómo puedes ayudar." data-en="Register to receive updates about Gabriel and how you can help.">Regístrate para recibir actualizaciones sobre Gabriel y cómo puedes ayudar.</p>
+      <form class="registro-form" id="registroForm">
+        <div class="form-row">
+          <input type="text" name="nombre" placeholder="Tu nombre completo / Full name" required />
+          <input type="email" name="email" placeholder="Tu correo / Your email" required />
+        </div>
+        <div class="form-row">
+          <input type="text" name="ciudad" placeholder="Ciudad / City" />
+          <input type="text" name="estado" placeholder="Estado / State" />
+        </div>
+        <button type="submit" class="btn-donate btn-full" data-es="Registrarme" data-en="Register">Registrarme</button>
+        <p class="form-note" data-es="Tu información es privada y nunca será compartida." data-en="Your information is private and will never be shared.">Tu información es privada y nunca será compartida.</p>
+      </form>
+      <div class="form-success" id="formSuccess" style="display:none;"><p data-es="¡Gracias! Tu registro fue recibido. Unidos somos más fuertes. 🇵🇷" data-en="Thank you! Your registration was received. Together we are stronger. 🇵🇷">¡Gracias! Tu registro fue recibido. Unidos somos más fuertes. 🇵🇷</p></div>
+    </div>
+  </section>
+
   <section class="section donacion" id="donar">
     <div class="container donacion-inner">
       <div>
-        <div class="section-label light">Apoya la causa</div>
-        <h2 class="section-title light">Cada donación cuenta</h2>
-        <p class="section-desc light">El 100% de las donaciones va directamente a través de JustGiving para el apoyo de Gabriel y su familia.</p>
+        <div class="section-label light" data-es="Apoya la causa" data-en="Support the Cause">Apoya la causa</div>
+        <h2 class="section-title light" data-es="Cada donación cuenta" data-en="Every Donation Counts">Cada donación cuenta</h2>
+        <p class="section-desc light" data-es="El 100% de las donaciones va directamente a través de JustGiving para el apoyo de Gabriel y su familia." data-en="100% of donations go directly through JustGiving to support Gabriel and his family.">El 100% de las donaciones va directamente a través de JustGiving para el apoyo de Gabriel y su familia.</p>
       </div>
-      <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate btn-white">Donar en JustGiving</a>
+      <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate btn-white" data-es="Donar en JustGiving" data-en="Donate on JustGiving">Donar en JustGiving</a>
     </div>
   </section>
 
-  <!-- RESPALDO INSTITUCIONAL -->
   <section class="section respaldo" id="respaldo">
     <div class="container">
-      <div class="section-label">Respaldo institucional</div>
-      <h2 class="section-title">Organizaciones que nos apoyan</h2>
+      <div class="section-label" data-es="Respaldo institucional" data-en="Institutional Support">Respaldo institucional</div>
+      <h2 class="section-title" data-es="Organizaciones que nos apoyan" data-en="Organizations that Support Us">Organizaciones que nos apoyan</h2>
       <div class="logos-grid">
-        <a href="https://www.dallaspa.org" target="_blank" class="logo-partner">
-          <img src="https://cdn.prod.website-files.com/672a674043677eb2de3eec06/673f92da4bcb4eedb55f37d7_Dallas%26FOP-800.png" alt="Dallas Police Association" />
-        </a>
-        <a href="https://atodallas.org" target="_blank" class="logo-partner">
-          <img src="https://atodallas.org/wp-content/uploads/2023/05/ATOF_Logo_Horizontal_Color.svg" alt="Assist the Officer Foundation" />
-        </a>
-        <a href="https://www.theblueguardianfoundation.org" target="_blank" class="logo-partner">
-          <img src="assets/images/logo_blueguardian.png" alt="Blue Guardian Foundation" />
-        </a>
-        <a href="https://www.facebook.com/itdahockley/" target="_blank" class="logo-partner">
-          <img src="assets/images/logo_iglesia.png" alt="Iglesia Taller del Alfarero" />
-        </a>
+        <a href="https://www.dallaspa.org" target="_blank" class="logo-partner"><img src="https://cdn.prod.website-files.com/672a674043677eb2de3eec06/673f92da4bcb4eedb55f37d7_Dallas%26FOP-800.png" alt="Dallas Police Association" /></a>
+        <a href="https://atodallas.org" target="_blank" class="logo-partner"><img src="https://atodallas.org/wp-content/uploads/2023/05/ATOF_Logo_Horizontal_Color.svg" alt="Assist the Officer Foundation" /></a>
+        <a href="https://www.theblueguardianfoundation.org" target="_blank" class="logo-partner"><img src="assets/images/logo_blueguardian.png" alt="Blue Guardian Foundation" /></a>
+        <a href="https://www.facebook.com/itdahockley/" target="_blank" class="logo-partner"><img src="assets/images/logo_iglesia.png" alt="Iglesia Taller del Alfarero" /></a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
       <img src="assets/images/logo_campaign.png" alt="Unidos por Gabriel" class="footer-logo" />
       <div class="footer-links">
         <a href="https://www.youtube.com/channel/UCDKIRncSKV8y4v4HH5fIK5g" target="_blank">YouTube</a>
         <a href="https://www.apulpr.com" target="_blank">APUL</a>
-        <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank">Donar</a>
+        <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" data-es="Donar" data-en="Donate">Donar</a>
       </div>
-      <p class="footer-copy">© 2026 Unidos por Gabriel. Campaña humanitaria de solidaridad boricua.</p>
+      <p class="footer-copy" data-es="© 2026 Unidos por Gabriel. Campaña humanitaria de solidaridad boricua." data-en="© 2026 United for Gabriel. Humanitarian campaign of Puerto Rican solidarity.">© 2026 Unidos por Gabriel. Campaña humanitaria de solidaridad boricua.</p>
     </div>
   </footer>
 
