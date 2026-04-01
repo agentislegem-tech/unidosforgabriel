@@ -1,313 +1,179 @@
 #!/usr/bin/env python3
-# envio_correos.py — Estrategia GH
-# Envío automático de correos a medios via AWS SES
-# Ejecutar: python3 envio_correos.py
-
 import boto3
 from botocore.exceptions import ClientError
 
 REMITENTE = "Eli David <unidosporgabriel2026@gmail.com>"
 REGION = "us-east-1"
 
-# ─── CUERPO EMAIL 1 ─────────────────────────────────────────────────────────
+ASUNTO_1 = "Seguimiento a nuestra conversación — Historia de solidaridad: La comunidad policial de Texas responde por un compañero puertorriqueño"
+ASUNTO_2 = "Como prometí: ¿Quién es Gabriel Hernández Ramos? — Perfil con documentación verificada"
+ASUNTO_GENERAL = "Llamado de apoyo — Gabriel Hernández Ramos | Unidos por Gabriel"
 
-def email1_html(saludo):
-    return f"""
-<html><body style="font-family:Arial,sans-serif;font-size:15px;color:#1a1a1a;max-width:680px;margin:0 auto;padding:20px;">
-<p>{saludo},</p>
+EMAIL_1_TEXT = """Estimada Mar González,
 
-<p>Le escribo en seguimiento a nuestra conversación telefónica. Mi nombre es Eli David, soy oficial de policía en Texas.</p>
+Le escribo en seguimiento a nuestra conversación telefónica. Gracias por tomarse el tiempo.
 
-<p>Hace poco me enteré de la situación del oficial Gabriel Hernández Ramos — un servidor público puertorriqueño con 20 años de servicio, que enfrenta una cirugía crítica en New Jersey sin los recursos económicos para costear su recuperación.</p>
+Mi nombre es Eli David. Soy oficial de policía en Texas. Como puertorriqueño — y como alguien que también sirvió en la uniformada de la isla — hay historias que uno no puede ignorar. La de Gabriel Hernández Ramos es una de ellas.
 
-<p>Cuando supe de su situación, hice lo que cualquier compañero de ley haría: activé los recursos que tengo a mi alcance aquí en Texas. La <strong>Dallas Police Association (DPA)</strong> y la <strong>Assist the Officer Foundation (ATO)</strong> respondieron de inmediato. La <strong>Blue Guardian Foundation</strong> y la <strong>Iglesia Taller del Alfarero</strong> en Texas también se sumaron. Juntos establecimos una campaña oficial de recaudación de fondos:</p>
+Gabriel sirvió 20 años en el Negociado de la Policía de Puerto Rico. Hoy, retirado, enfrenta una cirugía de alto riesgo el próximo 1 de abril en New Jersey. Su pensión oficial es de $487.81 al mes — y el dinero acumulado durante esos 20 años de servicio no estará disponible para él hasta que cumpla 65 años. Tiene 47.
 
-<p style="text-align:center;margin:24px 0;">
-  🔗 <a href="https://justgiving.com/campaign/unidosforgabriel" style="color:#002868;font-weight:bold;">justgiving.com/campaign/unidosforgabriel</a>
-</p>
+Cuando me enteré de su situación, reaccioné como cualquier compañero de ley haría. Sé lo que es servir en esa institución. Sé lo que le cuesta a un hombre de familia salir adelante con esas condiciones. Gabriel además tiene una hija con necesidades especiales. Y tiene una cirugía en tres días.
 
-<p>Para nosotros en la hermandad policial, la frontera no cambia el compromiso. Un compañero en apuros es un compañero en apuros — sin importar el estado o el territorio.</p>
+Busqué cómo ayudar. La respuesta aquí en Texas fue inmediata.
 
-<p>Un pequeño grupo de puertorriqueños en la diáspora se unió también, porque cuando uno de los nuestros necesita ayuda, respondemos. Así somos.</p>
-
-<p>Le adjunto en el próximo correo el perfil completo de Gabriel Hernández Ramos. Creo que su historia merece ser contada — no solo como una historia de solidaridad humana, sino como un espejo de una realidad que muchos puertorriqueños en los 50 estados conocen muy bien.</p>
-
-<p>Quedo disponible para una llamada o entrevista cuando lo estimen conveniente.</p>
-
-<p>Respetuosamente,</p>
-
-<p><strong>Eli David</strong><br>
-Oficial de Policía — Texas<br>
-📞 281-839-4231<br>
-📧 <a href="mailto:eli_david@live.com">eli_david@live.com</a></p>
-</body></html>
-"""
-
-def email1_text(saludo):
-    return f"""{saludo},
-
-Le escribo en seguimiento a nuestra conversación telefónica. Mi nombre es Eli David, soy oficial de policía en Texas.
-
-Hace poco me enteré de la situación del oficial Gabriel Hernández Ramos — un servidor público puertorriqueño con 20 años de servicio, que enfrenta una cirugía crítica en New Jersey sin los recursos económicos para costear su recuperación.
-
-Cuando supe de su situación, hice lo que cualquier compañero de ley haría: activé los recursos que tengo a mi alcance aquí en Texas. La Dallas Police Association (DPA) y la Assist the Officer Foundation (ATO) respondieron de inmediato. La Blue Guardian Foundation y la Iglesia Taller del Alfarero en Texas también se sumaron. Juntos establecimos una campaña oficial de recaudación de fondos:
-
+La campaña está activa hoy:
 justgiving.com/campaign/unidosforgabriel
 
-Para nosotros en la hermandad policial, la frontera no cambia el compromiso. Un compañero en apuros es un compañero en apuros — sin importar el estado o el territorio.
+Para nosotros en la hermandad policial, la geografía no cambia el compromiso. Un compañero en apuros es un compañero en apuros — sin importar si está en Texas, en San Juan, o en cualquier punto entre los dos.
 
-Un pequeño grupo de puertorriqueños en la diáspora se unió también, porque cuando uno de los nuestros necesita ayuda, respondemos.
+En el próximo correo le envío el perfil completo de Gabriel Hernández Ramos — su trayectoria, sus logros documentados, y su pasión y dedicación por el prójimo con compromiso leal.
 
-Le adjunto en el próximo correo el perfil completo de Gabriel Hernández Ramos.
+Quedo a su disposición.
 
 Respetuosamente,
+
 Eli David
 Oficial de Policía — Texas
 281-839-4231
-eli_david@live.com
-"""
+eli_david@live.com"""
 
-# ─── CUERPO EMAIL 2 ─────────────────────────────────────────────────────────
+EMAIL_2_TEXT = """Estimada Mar González,
 
-def email2_html(saludo):
-    return f"""
-<html><body style="font-family:Arial,sans-serif;font-size:15px;color:#1a1a1a;max-width:680px;margin:0 auto;padding:20px;">
-<p>{saludo},</p>
+Como le prometí, aquí está el perfil completo de Gabriel Hernández Ramos. Todo lo que encontrará es verificable — con fuentes directas al final.
 
-<p>Como prometí, les presento el perfil completo de Gabriel Hernández Ramos — con documentación verificable — para que evalúen el alcance real de esta historia.</p>
+UN HOMBRE QUE NO NECESITA PRESENTACIÓN — PERO QUE MERECE UNA
 
-<hr style="border:1px solid #002868;margin:20px 0;">
+Gabriel Hernández Ramos sirvió 20 años en el Negociado de la Policía de Puerto Rico. Se retiró en 2019. Como tantos puertorriqueños, emigró a Estados Unidos en busca de un mejor porvenir para su familia. No se fue en silencio.
 
-<h2 style="color:#002868;">GABRIEL HERNÁNDEZ RAMOS — QUIÉN ES</h2>
+$1,550,000,000 — EN 117 DÍAS
 
-<p>Gabriel Hernández Ramos sirvió durante <strong>20 años</strong> en la Policía de Puerto Rico (PPR). Retirado en 2019, no desapareció en silencio.</p>
+El 19 de octubre de 2021, desde Estados Unidos, comenzó a levantar su voz a través de las redes sociales. Sin gremio. Sin estructura. Sin recursos. Solo con la credibilidad de quien lo había vivido en carne propia.
 
-<p>Fundó la <strong>Asociación de Policías Unidos Luchando (APUL)</strong> y negoció, en <strong>117 días</strong>, más de <strong>$1,550 millones en beneficios</strong> para los policías de la isla — $850 millones para el fondo de retiro y $700 millones para el Plan Vital de salud — en plena quiebra fiscal de Puerto Rico.</p>
+En 117 días, logró que el gobierno de Puerto Rico y la Junta de Supervisión Fiscal asignaran $1,550 millones de dólares para los policías de la isla:
+• $850 millones para el fondo de retiro
+• $700 millones para el Plan Vital
 
-<p>📎 <a href="https://www.primerahora.com/noticias/policia-tribunales/notas/nace-un-nuevo-gremio-de-policias/" style="color:#002868;">Primera Hora — "Nace un nuevo gremio de policías"</a></p>
+Ninguna organización policial había logrado algo de esta magnitud en la historia reciente de Puerto Rico.
 
-<hr style="border:0.5px solid #ccc;margin:20px 0;">
+Primera Hora — Nace un nuevo gremio de policías:
+https://www.primerahora.com/noticias/policia-tribunales/notas/nace-un-nuevo-gremio-de-policias/
 
-<h2 style="color:#002868;">FUE A WASHINGTON. DEPUSO ANTE LA CÁMARA.</h2>
+FUE AL CONGRESO DE LOS ESTADOS UNIDOS
 
-<p>En mayo de 2022, Gabriel compareció en vista pública ante la Cámara de Representantes de Puerto Rico. Sus palabras ante los legisladores quedaron en el registro oficial:</p>
+En marzo de 2023, viajó a Washington D.C. y fue citado oficialmente al Congreso. Se reunió con la entonces Comisionada Residente de Puerto Rico — quien hoy ocupa la Gobernación de la isla.
 
-<blockquote style="border-left:4px solid #D4A017;padding:12px 20px;margin:20px 0;background:#fffdf0;font-style:italic;color:#333;">
-"Yo no estoy aquí porque esto me lo inventé, estoy aquí porque lo viví en carne propia. Mi credibilidad es mi propia persona que se encuentra aquí ante ustedes. Me tuve que ir de la Policía porque suicidaron mi retiro... Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."
-</blockquote>
+Sus palabras al salir de esa reunión:
+"Venimos aquí para que escuchen la queja, el dolor, todo lo que nos ha estado pasando desde el 2013. Gracias a Dios fuimos citados oficialmente al Congreso. Fue una reunión muy exitosa donde gracias a Dios nos escucharon en terreno de Estados Unidos, donde jamás una organización de policías ha llegado."
 
-<p>Fue también al Congreso de los Estados Unidos. Se reunió oficialmente con la entonces Comisionada Residente en Washington:</p>
+Primera Hora — APUL eleva reclamo ante Comisionada Residente en Washington:
+https://www.primerahora.com/noticias/policia-tribunales/notas/apul-eleva-reclamo-para-un-retiro-justo-ante-la-comisionada-residente-en-washington/
 
-<blockquote style="border-left:4px solid #D4A017;padding:12px 20px;margin:20px 0;background:#fffdf0;font-style:italic;color:#333;">
-"Gracias a Dios fuimos citados oficialmente al Congreso. Fue una reunión muy exitosa donde gracias a Dios nos escucharon en terreno de Estados Unidos, donde jamás una organización de policías ha llegado."
-</blockquote>
+DEPUSO ANTE LA CÁMARA. LLEGÓ AL SENADO.
 
-<p>📎 <a href="https://www.primerahora.com/noticias/policia-tribunales/notas/apul-eleva-reclamo-para-un-retiro-justo-ante-la-comisionada-residente-en-washington/" style="color:#002868;">Primera Hora — "APUL eleva reclamo ante Comisionada Residente en Washington"</a></p>
+En mayo de 2022, Gabriel compareció en vista pública ante la Cámara de Representantes de Puerto Rico. Sus palabras quedaron en el registro oficial:
+"Yo no estoy aquí porque esto me lo inventé, estoy aquí porque lo viví en carne propia. Mi credibilidad es mi propia persona que se encuentra aquí ante ustedes. Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."
 
-<p>También se reunió con el Presidente del Senado <strong>Thomas Rivera Schatz</strong>, con el Presidente del Senado <strong>José Luis Dalmau</strong>, y con el Presidente de la Cámara <strong>José "Tatito" Hernández Montañez</strong>.</p>
+Se reunió también con los expresidentes del Senado Thomas Rivera Schatz y José Luis Dalmau, y con el presidente de la Cámara José "Tatito" Hernández Montañez — en todos los casos, para exigir soluciones concretas.
 
-<p>📎 <a href="https://www.primerahora.com/noticias/policia-tribunales/notas/mas-cerca-el-retiro-digno-para-los-policias-tras-manifestacion-frente-al-capitolio/" style="color:#002868;">Primera Hora — "Más cerca el retiro digno para los policías"</a></p>
-<p>📎 <a href="https://www.primerahora.com/noticias/policia-tribunales/notas/policias-se-tiran-a-la-calle-contra-accion-de-lider-senatorial-que-estanca-su-retiro/" style="color:#002868;">Primera Hora — "Policías se tiran a la calle contra acción de líder senatorial"</a></p>
-<p>📎 <a href="https://www.primerahora.com/noticias/policia-tribunales/notas/rinde-frutos-manifestacion-de-apul-por-proyecto-que-garantiza-fondo-de-retiro/" style="color:#002868;">Primera Hora — "Rinde frutos manifestación de APUL"</a></p>
+Primera Hora — Más cerca el retiro digno:
+https://www.primerahora.com/noticias/policia-tribunales/notas/mas-cerca-el-retiro-digno-para-los-policias-tras-manifestacion-frente-al-capitolio/
 
-<hr style="border:0.5px solid #ccc;margin:20px 0;">
-
-<h2 style="color:#002868;">LO QUE RECIBE HOY.</h2>
-
-<p>Pensión oficial: <strong>$487.81 al mes</strong>.</p>
-
-<p>El capital acumulado durante sus veinte años de servicio permanece retenido en el sistema hasta que cumpla 65 años. Tiene 47.</p>
-
-<p>Los policías de Puerto Rico no cotizaron al Seguro Social federal durante décadas — excluidos hasta la <strong>Ley 71 de 2019</strong>, el mismo año en que Gabriel se retiró. Un oficial retirado en el continente recibe pensión estatal, Seguro Social y acceso inmediato a su fondo acumulado desde el primer día del retiro. Gabriel Hernández Ramos — ciudadano americano, en territorio americano: $487.81 al mes. Su fondo: bloqueado dieciocho años más.</p>
-
-<hr style="border:0.5px solid #ccc;margin:20px 0;">
-
-<h2 style="color:#002868;">LAS PROMESAS.</h2>
-
-<p>Los policías de Puerto Rico no han recibido aumento salarial desde <strong>2018</strong>. Se les adeudan <strong>$132 millones</strong> en horas compensatorias sin pagar desde 2017. La Policía opera con 5,700 efectivos de una matrícula de 10,200.</p>
-
-<p>El <strong>18 de diciembre de 2025</strong>, la gobernadora Jenniffer González Colón prometió que el aumento salarial se concretaría en el primer semestre de 2026.</p>
-
-<p>A la fecha de este correo: el Superintendente de la Policía no tiene fecha, no tiene cifra, no tiene compromiso concreto.</p>
-
-<p>📎 <a href="https://www.primerahora.com/noticias/policia-tribunales/notas/superintendente-se-canta-sin-fecha-para-el-alza-salarial-a-los-policias/" style="color:#002868;">Primera Hora — "Superintendente se canta sin fecha para el alza salarial"</a></p>
-
-<hr style="border:0.5px solid #002868;margin:20px 0;">
-
-<h2 style="color:#002868;">¿QUIÉN RESPONDIÓ?</h2>
-
-<p>La respuesta proviene de Texas.</p>
-
-<p style="text-align:center;margin:24px 0;">
-  🔗 <a href="https://justgiving.com/campaign/unidosforgabriel" style="color:#002868;font-weight:bold;font-size:16px;">justgiving.com/campaign/unidosforgabriel</a>
-</p>
-
-<p>Quedo disponible para cualquier pregunta o coordinación.</p>
-
-<p>Respetuosamente,</p>
-
-<p><strong>Eli David</strong><br>
-Oficial de Policía — Texas<br>
-📞 281-839-4231<br>
-📧 <a href="mailto:eli_david@live.com">eli_david@live.com</a></p>
-</body></html>
-"""
-
-def email2_text(saludo):
-    return f"""{saludo},
-
-Como prometí, les presento el perfil completo de Gabriel Hernández Ramos — con documentación verificable.
-
-GABRIEL HERNÁNDEZ RAMOS — QUIÉN ES
-
-Gabriel Hernández Ramos sirvió 20 años en la Policía de Puerto Rico (PPR). Fundó APUL y negoció en 117 días más de $1,550 millones en beneficios para los policías — $850M fondo de retiro + $700M Plan Vital.
-
-Primera Hora — "Nace un nuevo gremio de policías":
-primerahora.com/noticias/policia-tribunales/notas/nace-un-nuevo-gremio-de-policias/
-
-FUE A WASHINGTON. DEPUSO ANTE LA CÁMARA.
-
-En mayo de 2022, ante la Cámara de Representantes de Puerto Rico, declaró:
-"Yo no estoy aquí porque esto me lo inventé, estoy aquí porque lo viví en carne propia. Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."
-
-Se reunió en Washington con la entonces Comisionada Residente. Se reunió con el Presidente del Senado Thomas Rivera Schatz, con el Presidente del Senado José Luis Dalmau, y con el Presidente de la Cámara José "Tatito" Hernández Montañez.
-
-Primera Hora — APUL en Washington:
-primerahora.com/noticias/policia-tribunales/notas/apul-eleva-reclamo-para-un-retiro-justo-ante-la-comisionada-residente-en-washington/
-
-LO QUE RECIBE HOY.
-
-Pensión oficial: $487.81 al mes. No puede acceder a su fondo acumulado hasta los 65. Tiene 47.
-
-Los policías de Puerto Rico no cotizaron al Seguro Social federal durante décadas — excluidos hasta la Ley 71 de 2019, el mismo año en que Gabriel se retiró.
+Primera Hora — Policías se tiran a la calle:
+https://www.primerahora.com/noticias/policia-tribunales/notas/policias-se-tiran-a-la-calle-contra-accion-de-lider-senatorial-que-estanca-su-retiro/
 
 LAS PROMESAS.
 
-Los policías no han recibido aumento salarial desde 2018. Se les adeudan $132 millones en horas compensatorias. La Policía opera con 5,700 de 10,200 efectivos.
+El 18 de diciembre de 2025, la gobernadora prometió a los gremios que el aumento salarial para los policías se concretaría en el primer semestre de 2026.
 
-El 18 de diciembre de 2025, la gobernadora prometió el aumento para el primer semestre de 2026. A la fecha: sin fecha, sin cifra, sin compromiso concreto.
+A 30 de marzo de 2026, el Superintendente de la Policía no tiene fecha. No tiene cantidad. No tiene compromiso concreto.
 
-Primera Hora — Sin fecha para el aumento:
-primerahora.com/noticias/policia-tribunales/notas/superintendente-se-canta-sin-fecha-para-el-alza-salarial-a-los-policias/
+Los policías de Puerto Rico no han recibido aumento desde 2018. Se les adeudan $132 millones en horas compensatorias sin pagar desde 2017. La Policía, con matrícula de 10,200 efectivos, opera con 5,700 en calle.
 
-¿QUIÉN RESPONDIÓ?
+Primera Hora — Superintendente sin fecha para el alza salarial:
+https://www.primerahora.com/noticias/policia-tribunales/notas/superintendente-se-canta-sin-fecha-para-el-alza-salarial-a-los-policias/
 
-La respuesta proviene de Texas.
+HOY.
+
+Gabriel Hernández Ramos — el hombre que negoció $1,550 millones para los policías de Puerto Rico en 117 días — tiene una pensión de $487.81 al mes.
+
+Ese dinero es además todo lo que recibe. El capital acumulado durante sus 20 años de servicio permanece retenido en el sistema hasta que cumpla 65 años. Tiene 47. El 1 de abril se somete a una cirugía de alto riesgo en New Jersey.
+
+Como puertorriqueño, esto me pesa. Esta es mi gente. Y cuando uno ve que nadie mueve un dedo, uno mueve el suyo.
+
+Nosotros, los que estamos aquí queriendo volver, debemos responder por Gabriel — porque él es el único que ha peleado sin descanso por la seguridad de los nuestros. Y sin seguridad no hay educación. Y sin educación no hay salud.
 
 justgiving.com/campaign/unidosforgabriel
+
+Respetuosamente,
 
 Eli David
 Oficial de Policía — Texas
 281-839-4231
-eli_david@live.com
-"""
+eli_david@live.com"""
 
-# ─── LISTA DE DESTINATARIOS ──────────────────────────────────────────────────
+def email_general_text(saludo):
+    return f"""{saludo},
+
+Mi nombre es Eli David. Soy oficial de policía en Texas.
+
+Me dirijo a usted en nombre de la campaña Unidos por Gabriel, una iniciativa humanitaria de solidaridad que hoy necesita su apoyo.
+
+Gabriel Hernández Ramos es un oficial retirado de la Policía de Puerto Rico con 20 años de servicio. El pasado 1 de abril fue sometido a una cirugía de alto riesgo en New Jersey. Su recuperación requerirá cuidados continuos que representarán miles de dólares en gastos médicos y de subsistencia — recursos que en este momento su familia no tiene.
+
+Gabriel no devenga salario. Su pensión de retiro es de $487.81 al mes y, por ley, no puede acceder a ella hasta los 65 años. Tiene 47. Su esposa se dedica al cuidado de su hija, quien tiene necesidades especiales y requiere tratamiento continuo.
+
+La Dallas Police Association (DPA), la Assist the Officer Foundation (ATO), la Blue Guardian Foundation y la Iglesia Taller del Alfarero de Texas han formalizado su respaldo institucional a esta campaña. Otras organizaciones continúan sumándose.
+
+Donación oficial: justgiving.com/campaign/unidosforgabriel
+Página oficial: unidosporgabriel.org
+
+Cada donación cuenta. Cada mensaje importa.
+
+Eli David
+Oficial de Policía — Texas
+unidosporgabriel2026@gmail.com"""
 
 DESTINATARIOS = [
-    {
-        "email": "MarGonzalez@univision.net",
-        "saludo": "Estimada Mar González",
-        "medio": "Univisión Dallas",
-        "enviar_email2": True,
-    },
-    {
-        "email": "23@univision.net",
-        "saludo": "Estimado Calixto González",
-        "medio": "Univisión Dallas (Director)",
-        "enviar_email2": True,
-    },
-    {
-        "email": "noticierodallas@telemundo.com",
-        "saludo": "Estimado equipo de noticias",
-        "medio": "Telemundo Dallas",
-        "enviar_email2": True,
-    },
-    {
-        "email": "wnjucontent@nbcuni.com",
-        "saludo": "Estimado equipo de noticias",
-        "medio": "Telemundo NY/NJ (WNJU 47)",
-        "enviar_email2": True,
-    },
-    {
-        "email": "WXTV-Assignmentdesk@televisaunivision.com",
-        "saludo": "Estimado equipo de noticias",
-        "medio": "Univisión NY/NJ (WXTV 41)",
-        "enviar_email2": True,
-    },
-    {
-        "email": "noticias41ny@televisaunivision.com",
-        "saludo": "Estimado equipo de noticias",
-        "medio": "Univisión NY Noticias",
-        "enviar_email2": True,
-    },
-    {
-        "email": "Kevin.Gray@nbcuni.com",
-        "saludo": "Estimado Kevin Gray",
-        "medio": "Telemundo Nacional",
-        "enviar_email2": True,
-    },
+    {"email": "MarGonzalez@univision.net",                       "saludo": "Estimada Mar González",      "tipo": "mar"},
+    {"email": "23@univision.net",                                 "saludo": "Estimado Calixto González",  "tipo": "general"},
+    {"email": "noticierodallas@telemundo.com",                    "saludo": "Estimado equipo de noticias","tipo": "general"},
+    {"email": "wnjucontent@nbcuni.com",                           "saludo": "Estimado equipo de noticias","tipo": "general"},
+    {"email": "WXTV-Assignmentdesk@televisaunivision.com",        "saludo": "Estimado equipo de noticias","tipo": "general"},
+    {"email": "noticias41ny@televisaunivision.com",               "saludo": "Estimado equipo de noticias","tipo": "general"},
+    {"email": "Kevin.Gray@nbcuni.com",                            "saludo": "Estimado Kevin Gray",        "tipo": "general"},
 ]
 
-# ─── FUNCIÓN DE ENVÍO ────────────────────────────────────────────────────────
-
-def enviar_correo(ses_client, destinatario, asunto, html_body, text_body):
+def enviar(ses, destino, asunto, texto):
     try:
-        response = ses_client.send_email(
+        r = ses.send_email(
             Source=REMITENTE,
-            Destination={"ToAddresses": [destinatario]},
+            Destination={"ToAddresses": [destino]},
             Message={
                 "Subject": {"Data": asunto, "Charset": "UTF-8"},
-                "Body": {
-                    "Text": {"Data": text_body, "Charset": "UTF-8"},
-                    "Html": {"Data": html_body, "Charset": "UTF-8"},
-                },
+                "Body": {"Text": {"Data": texto, "Charset": "UTF-8"}},
             },
         )
-        return response["MessageId"]
+        return r["MessageId"]
     except ClientError as e:
         return f"ERROR: {e.response['Error']['Message']}"
 
-
-# ─── EJECUCIÓN ───────────────────────────────────────────────────────────────
-
 def main():
     ses = boto3.client("sesv2", region_name=REGION)
-
     print("=" * 60)
-    print("ENVÍO DE CORREOS — UNIDOS POR GABRIEL")
+    print("ENVÍO — UNIDOS POR GABRIEL")
     print("=" * 60)
 
     for d in DESTINATARIOS:
-        print(f"\n→ {d['medio']} ({d['email']})")
-
-        # Email 1
-        asunto1 = "Historia urgente: Comunidad policial de Texas apoya a oficial puertorriqueño"
-        mid1 = enviar_correo(
-            ses,
-            d["email"],
-            asunto1,
-            email1_html(d["saludo"]),
-            email1_text(d["saludo"]),
-        )
-        print(f"  Email 1 enviado — ID: {mid1}")
-
-        # Email 2
-        if d["enviar_email2"]:
-            asunto2 = "¿Quién es Gabriel Hernández Ramos? — Perfil completo con documentación"
-            mid2 = enviar_correo(
-                ses,
-                d["email"],
-                asunto2,
-                email2_html(d["saludo"]),
-                email2_text(d["saludo"]),
-            )
-            print(f"  Email 2 enviado — ID: {mid2}")
+        print(f"\n→ {d['email']}")
+        if d["tipo"] == "mar":
+            print(f"  Email 1: {enviar(ses, d['email'], ASUNTO_1, EMAIL_1_TEXT)}")
+            print(f"  Email 2: {enviar(ses, d['email'], ASUNTO_2, EMAIL_2_TEXT)}")
+        else:
+            print(f"  General: {enviar(ses, d['email'], ASUNTO_GENERAL, email_general_text(d['saludo']))}")
 
     print("\n" + "=" * 60)
-    print("ENVÍO COMPLETADO")
+    print("COMPLETADO")
     print("=" * 60)
-
 
 if __name__ == "__main__":
     main()
