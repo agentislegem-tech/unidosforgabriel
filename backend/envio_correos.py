@@ -134,7 +134,6 @@ Oficial de Policía — Texas
 unidosporgabriel2026@gmail.com"""
 
 DESTINATARIOS = [
-    {"email": "MarGonzalez@univision.net",                       "saludo": "Estimada Mar González",      "tipo": "mar"},
     {"email": "23@univision.net",                                 "saludo": "Estimado Calixto González",  "tipo": "general"},
     {"email": "noticierodallas@telemundo.com",                    "saludo": "Estimado equipo de noticias","tipo": "general"},
     {"email": "wnjucontent@nbcuni.com",                           "saludo": "Estimado equipo de noticias","tipo": "general"},
