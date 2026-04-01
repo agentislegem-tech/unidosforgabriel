@@ -1,4 +1,53 @@
-// ===== FORM SUBMISSION =====
+// ===== MURO DE MENSAJES =====
+const muroForm = document.getElementById('muroForm');
+const muroWall = document.getElementById('muroWall');
+
+function renderMensajes() {
+  const mensajes = JSON.parse(localStorage.getItem('muroMensajes') || '[]');
+  muroWall.innerHTML = '';
+  mensajes.slice().reverse().forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'muro-msg';
+    card.innerHTML = `
+      <p class="muro-msg-texto">"${m.mensaje}"</p>
+      <p class="muro-msg-autor">— ${m.nombre}</p>
+      ${m.lugar ? `<p class="muro-msg-lugar">📍 ${m.lugar}</p>` : ''}
+    `;
+    muroWall.appendChild(card);
+  });
+}
+
+if (muroForm) {
+  renderMensajes();
+  muroForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const nuevo = {
+      nombre: document.getElementById('muroNombre').value.trim(),
+      lugar: document.getElementById('muroLugar').value.trim(),
+      mensaje: document.getElementById('muroMensaje').value.trim(),
+      fecha: new Date().toISOString()
+    };
+    const mensajes = JSON.parse(localStorage.getItem('muroMensajes') || '[]');
+    mensajes.push(nuevo);
+    localStorage.setItem('muroMensajes', JSON.stringify(mensajes));
+
+    try {
+      const endpoint = muroForm.dataset.endpoint || '';
+      if (endpoint) {
+        await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...nuevo, tipo: 'mensaje' })
+        });
+      }
+    } catch(err) { console.log('Endpoint no configurado'); }
+
+    muroForm.reset();
+    renderMensajes();
+  });
+}
+
+
 const form = document.getElementById('registroForm');
 const success = document.getElementById('formSuccess');
 
