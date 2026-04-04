@@ -1450,3 +1450,173 @@ button.explora-tile {
   .notif-flotante { display: none !important; }
   .muro-filtros { display: none; }
 }
+
+/* ══════════════════════════════════════════════════════
+   FIX MÓVIL — iOS + Android
+   Corrige overflow, grids, touch, y paneles
+   ══════════════════════════════════════════════════════ */
+
+/* Prevenir overflow horizontal global */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Todos los contenedores respetan el ancho */
+.container,
+.explora-section,
+.narrativa-container,
+.muro-compositor,
+.timeline-section,
+.sabiasque-section,
+.sq-carousel-wrap,
+.firma-form,
+.respaldo-grid,
+.contadores-grid,
+.logros-grid,
+.impacto-grid,
+.frases-grid,
+.narrativa-stats,
+.tl-tabs-nav {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── MOBILE PRINCIPAL (≤768px) ─────────────────────── */
+@media (max-width: 768px) {
+
+  /* Grids — forzar 2 columnas o 1 columna */
+  .explora-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+  .logros-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+  .impacto-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+  .frases-grid { grid-template-columns: 1fr !important; }
+  .narrativa-stats { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+  .contadores-grid { grid-template-columns: 1fr !important; gap: 12px; }
+  .respaldo-grid { grid-template-columns: 1fr !important; }
+  .emocional-grid { grid-template-columns: 1fr !important; }
+  .muro-compositor { grid-template-columns: 1fr !important; gap: 24px; }
+
+  /* Timeline tabs — scroll horizontal */
+  .tl-tabs-nav {
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .tl-tabs-nav::-webkit-scrollbar { display: none; }
+  .tl-tab { flex-shrink: 0; white-space: nowrap; }
+
+  /* Carrusel sabías que — 1 tarjeta */
+  .sq-card { flex: 0 0 100% !important; }
+  .sq-carousel-wrap { gap: 8px; }
+
+  /* Paneles — ancho completo */
+  .content-panel { width: 100%; overflow-x: hidden; }
+
+  /* Volver btn */
+  .volver-btn { font-size: 0.9rem; padding: 12px 20px; }
+
+  /* Narrativa */
+  .narrativa-container { padding: 48px 16px 40px; }
+  .narrativa-body p { font-size: 1rem; line-height: 1.8; }
+  .narrativa-cita span { font-size: 1rem; }
+
+  /* Compartir */
+  .share-btns { flex-direction: column; align-items: stretch; }
+  .share-btn { width: 100%; text-align: center; }
+
+  /* Respaldo */
+  .respaldo-card { flex-direction: column; gap: 10px; }
+  .respaldo-logo { width: 60px; }
+
+  /* Firma */
+  .firma-form { flex-direction: column; }
+  .firma-form input,
+  .firma-form button { width: 100%; }
+
+  /* Modales — pantalla completa en móvil */
+  .prensa-modal-inner,
+  .card-modal-inner { max-width: 100%; border-radius: 12px 12px 0 0; }
+  .prensa-modal-overlay,
+  .frase-modal-overlay { align-items: flex-end; padding: 0; }
+  .frase-modal-inner { border-radius: 16px 16px 0 0; }
+
+  /* Tiles exploración — texto más pequeño */
+  .explora-icon { font-size: 1.4rem; }
+  .explora-title { font-size: 0.88rem; }
+  .explora-desc { font-size: 0.75rem; }
+  .explora-tile { padding: 16px 10px; }
+
+  /* Urgencia botones */
+  .urgencia-btns { flex-direction: column; align-items: center; }
+  .urgencia-btns a,
+  .urgencia-btns button { width: 100%; max-width: 320px; text-align: center; }
+
+  /* Muro oscuro inputs */
+  .muro-oscuro input,
+  .muro-oscuro textarea,
+  .muro-oscuro select { font-size: 16px !important; }
+
+  /* Preview card — ancho completo */
+  .wall-card-preview { max-width: 100%; }
+
+  /* Frases */
+  .frase-texto { font-size: 1rem; }
+  .frase-modal-inner { padding: 28px 20px; }
+  .frase-modal-cita { font-size: 1.2rem; }
+}
+
+/* ── MOBILE PEQUEÑO (≤480px) ───────────────────────── */
+@media (max-width: 480px) {
+  .explora-grid { grid-template-columns: 1fr 1fr !important; }
+  .narrativa-titulo { font-size: 1.6rem; }
+  .tl-panel-title { font-size: 1.2rem; }
+  .sq-num { font-size: 2.2rem; }
+  .muro-cards-grid { grid-template-columns: 1fr !important; }
+  .logro-num { font-size: 1.8rem; }
+  .llamado-title { font-size: 1.4rem; }
+  .firma-num { font-size: 2.2rem; }
+
+  /* Paneles en móvil pequeño */
+  .content-panel { padding: 0; }
+}
+
+/* ── iOS ESPECÍFICO ────────────────────────────────── */
+@supports (-webkit-touch-callout: none) {
+  /* Evitar zoom en inputs en iOS */
+  input, select, textarea { font-size: 16px !important; }
+
+  /* Safe area para notch */
+  .nav { padding-top: max(10px, env(safe-area-inset-top)); }
+  .notif-flotante { display: none !important; }
+
+  /* Smooth scroll nativo */
+  html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+
+  /* Fix botones iOS */
+  button, .btn-donate, .btn-secondary, .explora-tile {
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+}
+
+/* ── TOUCH — TODOS LOS DISPOSITIVOS ────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  /* Hacer frase-ver-mas siempre visible en touch */
+  .frase-ver-mas { opacity: 1 !important; }
+
+  /* Área de toque mínima en todos los botones */
+  button, .btn-donate, .btn-secondary, .muro-tab,
+  .explora-tile, .tl-tab, .frase-card, .prensa-card,
+  .respaldo-card, .wall-card {
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Hover effects off en touch */
+  .explora-tile:hover { transform: none; }
+  .respaldo-card:hover { transform: none; }
+  .wall-card:hover { transform: none; }
+}
