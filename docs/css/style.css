@@ -1012,3 +1012,180 @@ button.explora-tile {
   .hero-sub.show     { animation-duration: 0.6s; animation-delay: 4.4s; }
   .hero-actions.show { animation-duration: 0.6s; animation-delay: 4.8s; }
 }
+/* ── NARRATIVA EDITORIAL ────────────────────────────── */
+.historia { background: #FAF9F6; }
+
+.narrativa-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px 60px;
+}
+
+.narrativa-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.narrativa-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--negro);
+  margin-top: 12px;
+  line-height: 1.2;
+}
+
+.narrativa-body {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.narrativa-body p {
+  font-size: 1.13rem;
+  line-height: 1.95;
+  color: #2a2a2a;
+  margin-bottom: 28px;
+  font-family: var(--font-body);
+}
+
+.palabra-clave {
+  color: var(--azul-pr);
+  font-weight: 700;
+}
+
+.narrativa-divider {
+  border: none;
+  border-top: 1px solid var(--dorado);
+  margin: 40px auto;
+  width: 120px;
+  opacity: 0.6;
+}
+
+.narrativa-cita {
+  border-left: 4px solid var(--rojo-pr);
+  padding: 16px 24px;
+  margin: 36px 0;
+  background: rgba(191,10,48,0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.narrativa-cita span {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--negro);
+  line-height: 1.65;
+  display: block;
+}
+
+.narrativa-cita-larga span {
+  font-size: 1.05rem;
+}
+
+.narrativa-cita cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--gris-texto);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.narrativa-cierre {
+  font-size: 1.1rem !important;
+  font-style: italic;
+  color: var(--negro) !important;
+  border-top: 1px solid var(--gris-borde);
+  padding-top: 32px;
+}
+
+.narrativa-cta {
+  text-align: center;
+  margin: 48px 0 0;
+}
+
+.narrativa-stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 16px;
+  max-width: 800px;
+  margin: 60px auto 0;
+}
+
+/* ── FRASES CLICABLES ──────────────────────────────── */
+.frase-card {
+  cursor: pointer;
+  position: relative;
+}
+.frase-card:hover { border-color: var(--azul-pr); }
+.frase-ver-mas {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--azul-pr);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.frase-card:hover .frase-ver-mas { opacity: 1; }
+
+/* Modal frases */
+.frase-modal-overlay {
+  position: fixed; inset: 0; z-index: 1001;
+  background: rgba(0,0,0,0.85);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.frase-modal-inner {
+  background: #FAF9F6;
+  border-radius: 16px;
+  max-width: 580px; width: 100%;
+  padding: 40px;
+  position: relative;
+}
+.frase-modal-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none;
+  font-size: 1.2rem; cursor: pointer;
+  color: var(--gris-texto);
+  transition: color 0.2s;
+}
+.frase-modal-close:hover { color: var(--rojo-pr); }
+.frase-modal-cita {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--rojo-pr);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+.frase-modal-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--azul-pr);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.frase-modal-contexto {
+  font-size: 0.975rem;
+  line-height: 1.8;
+  color: #2a2a2a;
+  margin-bottom: 16px;
+}
+.frase-modal-fuente {
+  font-size: 0.78rem;
+  color: var(--gris-texto);
+  font-style: italic;
+  border-top: 1px solid var(--gris-borde);
+  padding-top: 12px;
+}
+
+@media (max-width: 768px) {
+  .narrativa-stats { grid-template-columns: 1fr 1fr; }
+  .narrativa-body p { font-size: 1.05rem; }
+  .frase-ver-mas { opacity: 1; }
+}

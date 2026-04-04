@@ -107,6 +107,70 @@ function applyLang() {
   });
 }
 
+// ── FRASES CLICABLES ─────────────────────────────────
+const FRASES_DATA = [
+  {
+    cita_es: '&ldquo;Suicidaron mi retiro.&rdquo;',
+    cita_en: '&ldquo;They destroyed my retirement.&rdquo;',
+    titulo_es: 'El costo de 20 años de servicio',
+    titulo_en: 'The cost of 20 years of service',
+    contexto_es: 'Gabriel dijo esto ante la Cámara de Representantes de Puerto Rico en mayo de 2022. Había servido 20 años en la Policía de Puerto Rico. Al retirarse en 2019, descubrió que la Ley 3 de 2013 había recortado más del 35% de sus beneficios, y que el sistema de retiro había sido declarado insolvente en 2017. Su pensión: $487.81 al mes — que por ley no puede recibir hasta los 65 años. Tiene 48.',
+    contexto_en: 'Gabriel said this before the Puerto Rico House of Representatives in May 2022. He had served 20 years on the Puerto Rico Police. Upon retiring in 2019, he discovered that Law 3 of 2013 had cut over 35% of his benefits, and that the retirement system had been declared insolvent in 2017. His pension: $487.81 per month — which by law he cannot receive until age 65. He is 48.',
+    fuente_es: 'Fuente: Vista pública, Cámara de Representantes de Puerto Rico, mayo 2022',
+    fuente_en: 'Source: Public hearing, Puerto Rico House of Representatives, May 2022'
+  },
+  {
+    cita_es: '&ldquo;Mi credibilidad es mi propia vida.&rdquo;',
+    cita_en: '&ldquo;My credibility is my own life.&rdquo;',
+    titulo_es: 'Un hombre que fue solo ante los legisladores',
+    titulo_en: 'A man who stood alone before legislators',
+    contexto_es: 'Cuando compareció ante la Cámara de Representantes de Puerto Rico, Gabriel Hernández no llevó abogados ni asesores. No representaba a ningún gremio oficial. Era un oficial retirado que había comenzado a hablar en redes sociales desde su casa en los Estados Unidos. Su argumento era simple: lo que decía era verdad porque lo había vivido en carne propia. Esa fue su única credencial — y fue suficiente.',
+    contexto_en: 'When he appeared before the Puerto Rico House of Representatives, Gabriel Hernández brought no lawyers or advisors. He represented no official union. He was a retired officer who had begun speaking on social media from his home in the United States. His argument was simple: what he said was true because he had lived it firsthand. That was his only credential — and it was enough.',
+    fuente_es: 'Fuente: Vista pública, Cámara de Representantes de Puerto Rico, mayo 2022',
+    fuente_en: 'Source: Public hearing, Puerto Rico House of Representatives, May 2022'
+  },
+  {
+    cita_es: '&ldquo;No cobré un centavo.&rdquo;',
+    cita_en: '&ldquo;I didn\'t collect a cent.&rdquo;',
+    titulo_es: '$1,550 millones para otros — $0 para él',
+    titulo_en: '$1.55 billion for others — $0 for himself',
+    contexto_es: 'En 117 días, Gabriel Hernández negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico la asignación de $1,550 millones de dólares para los policías de la isla: $850 millones para el fondo de retiro y $700 millones para el Plan Vital. Este acuerdo está documentado en registros oficiales de la AAFAF. Gabriel no cobró honorarios, no recibió contrato, no tuvo beneficio económico personal. Volvió a casa y siguió trabajando porque su propia pensión seguía siendo $487.81 al mes.',
+    contexto_en: 'In 117 days, Gabriel Hernández negotiated with the Fiscal Oversight Board and the Government of Puerto Rico the allocation of $1.55 billion for the island\'s police officers: $850 million for the retirement fund and $700 million for Plan Vital. This agreement is documented in official AAFAF records. Gabriel received no fees, no contract, no personal financial benefit. He went home and kept working because his own pension was still $487.81 per month.',
+    fuente_es: 'Fuente: AAFAF — Memorando DSP/Junta de Retiro, 29 de junio de 2022',
+    fuente_en: 'Source: AAFAF — DSP/Retirement Board Memorandum, June 29, 2022'
+  },
+  {
+    cita_es: '&ldquo;Sigo aquí.&rdquo;',
+    cita_en: '&ldquo;I\'m still here.&rdquo;',
+    titulo_es: 'En 2026, sigue en la lucha — desde el hospital',
+    titulo_en: 'In 2026, still fighting — from the hospital',
+    contexto_es: 'En 2026, mientras seguía activo en su lucha por los derechos de los policías de Puerto Rico — manifestaciones, declaraciones públicas, presión institucional — su salud requirió intervención quirúrgica de alto riesgo. La recuperación implica tratamientos, medicamentos, seguimiento médico y meses sin poder trabajar plenamente. Su pensión sigue siendo $487.81 al mes, y sigue sin poder recibirla. La campaña Unidos por Gabriel surgió de la diáspora puertorriqueña en los Estados Unidos para responder a esa realidad.',
+    contexto_en: 'In 2026, while still active in his fight for Puerto Rico police rights — protests, public statements, institutional pressure — his health required high-risk surgery. Recovery means treatments, medications, ongoing medical care, and months unable to work fully. His pension is still $487.81 per month, and he still cannot receive it. The Unidos por Gabriel campaign emerged from the Puerto Rican diaspora in the United States to respond to that reality.',
+    fuente_es: 'Fuente: Campaña Unidos por Gabriel — unidosporgabriel.org',
+    fuente_en: 'Source: Unidos por Gabriel Campaign — unidosporgabriel.org'
+  }
+];
+
+function abrirFrase(idx) {
+  const d = FRASES_DATA[idx];
+  const lang = currentLang;
+  const overlay = document.getElementById('fraseModal');
+  if (!overlay) return;
+  document.getElementById('fraseModalCita').innerHTML = lang === 'en' ? d.cita_en : d.cita_es;
+  document.getElementById('fraseModalTitulo').textContent = lang === 'en' ? d.titulo_en : d.titulo_es;
+  document.getElementById('fraseModalContexto').textContent = lang === 'en' ? d.contexto_en : d.contexto_es;
+  document.getElementById('fraseModalFuente').textContent = lang === 'en' ? d.fuente_en : d.fuente_es;
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarFrase(e) {
+  if (e && e.target !== document.getElementById('fraseModal') && !e.target.classList.contains('frase-modal-close')) return;
+  const overlay = document.getElementById('fraseModal');
+  if (overlay) overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
 // ── SISTEMA DE PANELES ────────────────────────────────
 function showPanel(name) {
   const panels = ['historia','timeline','sabiasque','prensa'];
