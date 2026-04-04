@@ -67,6 +67,23 @@ function applyLang() {
   });
 }
 
+// ── SISTEMA DE PANELES ────────────────────────────────
+function showPanel(name) {
+  const panels = ['historia','timeline','sabiasque','prensa'];
+  const explora = document.getElementById('explora');
+  panels.forEach(p => {
+    const el = document.getElementById('panel-'+p);
+    if (el) el.classList.toggle('active', p === name);
+  });
+  if (name) {
+    if (explora) explora.classList.add('panel-open');
+    setTimeout(() => { if (explora) explora.scrollIntoView({behavior:'smooth',block:'start'}); }, 50);
+  } else {
+    if (explora) explora.classList.remove('panel-open');
+    setTimeout(() => { if (explora) explora.scrollIntoView({behavior:'smooth',block:'start'}); }, 50);
+  }
+}
+
 // ── TIMELINE TABS ─────────────────────────────────────
 function setTLTab(btn, panelId) {
   document.querySelectorAll('.tl-tab').forEach(b => b.classList.remove('active'));

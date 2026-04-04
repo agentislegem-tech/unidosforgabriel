@@ -285,30 +285,31 @@
     <div class="container">
       <p class="explora-label" data-es="Explora su historia" data-en="Explore his story">Explora su historia</p>
       <div class="explora-grid">
-        <a href="#historia" class="explora-tile">
+        <button class="explora-tile" onclick="showPanel('historia')">
           <div class="explora-icon">📖</div>
           <div class="explora-title" data-es="Su Historia" data-en="His Story">Su Historia</div>
           <div class="explora-desc" data-es="La narrativa completa de quien es Gabriel" data-en="The complete narrative of who Gabriel is">La narrativa completa de quien es Gabriel</div>
-        </a>
-        <a href="#timeline" class="explora-tile">
+        </button>
+        <button class="explora-tile" onclick="showPanel('timeline')">
           <div class="explora-icon">📅</div>
           <div class="explora-title" data-es="Línea de Tiempo" data-en="Timeline">Línea de Tiempo</div>
           <div class="explora-desc" data-es="1999 hasta hoy — los momentos que definen su lucha" data-en="1999 to today — the moments that define his fight">1999 hasta hoy — los momentos que definen su lucha</div>
-        </a>
-        <a href="#sabiasque" class="explora-tile">
+        </button>
+        <button class="explora-tile" onclick="showPanel('sabiasque')">
           <div class="explora-icon">💡</div>
           <div class="explora-title" data-es="¿Sabías que...?" data-en="Did you know...?">¿Sabías que...?</div>
           <div class="explora-desc" data-es="La crisis policial en Puerto Rico en datos" data-en="The police crisis in Puerto Rico in data">La crisis policial en Puerto Rico en datos</div>
-        </a>
-        <a href="#prensa" class="explora-tile">
+        </button>
+        <button class="explora-tile" onclick="showPanel('prensa')">
           <div class="explora-icon">📺</div>
           <div class="explora-title" data-es="En la Prensa" data-en="In the Press">En la Prensa</div>
           <div class="explora-desc" data-es="Cobertura verificada en medios de Puerto Rico" data-en="Verified coverage in Puerto Rico media">Cobertura verificada en medios de Puerto Rico</div>
-        </a>
+        </button>
       </div>
     </div>
   </section>
 
+  <div class="content-panel" id="panel-historia">
   <section class="section historia" id="historia">
     <div class="container">
       <div class="section-label" data-es="Su historia" data-en="His Story">Su historia</div>
@@ -502,6 +503,16 @@
     </div>
   </section>
 
+  <div class="volver-wrap">
+    <button class="volver-btn" onclick="showPanel(null)">
+      <span>←</span>
+      <span data-es="Volver al menú" data-en="Back to menu">Volver al menú</span>
+    </button>
+  </div>
+
+  </div>
+
+  <div class="content-panel" id="panel-timeline">
   <section class="section timeline-section" id="timeline">
     <div class="container">
       <div class="section-label" data-es="Su trayectoria" data-en="His journey">Su trayectoria</div>
@@ -576,6 +587,16 @@
     </div>
   </section>
 
+  <div class="volver-wrap">
+    <button class="volver-btn" onclick="showPanel(null)">
+      <span>←</span>
+      <span data-es="Volver al menú" data-en="Back to menu">Volver al menú</span>
+    </button>
+  </div>
+
+  </div>
+
+  <div class="content-panel" id="panel-sabiasque">
   <section class="section sabiasque-section" id="sabiasque">
     <div class="container">
       <div class="section-label" data-es="La crisis que pocos ven" data-en="The crisis few see">La crisis que pocos ven</div>
@@ -641,6 +662,16 @@
     </div>
   </section>
 
+  <div class="volver-wrap">
+    <button class="volver-btn" onclick="showPanel(null)">
+      <span>←</span>
+      <span data-es="Volver al menú" data-en="Back to menu">Volver al menú</span>
+    </button>
+  </div>
+
+  </div>
+
+  <div class="content-panel" id="panel-prensa">
   <section class="section videos" id="videos">
     <div class="container">
       <div class="section-label" data-es="Su voz" data-en="His Voice">Su voz</div>
@@ -686,6 +717,15 @@
     </div>
   </section>
 
+
+  <div class="volver-wrap">
+    <button class="volver-btn" onclick="showPanel(null)">
+      <span>←</span>
+      <span data-es="Volver al menú" data-en="Back to menu">Volver al menú</span>
+    </button>
+  </div>
+
+  </div>
 
   <div class="prensa-modal-overlay" id="prensaModal" onclick="closePrensaModal(event)" style="display:none;">
     <div class="prensa-modal-inner">

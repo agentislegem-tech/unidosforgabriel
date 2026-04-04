@@ -905,3 +905,47 @@ a { text-decoration: none; color: inherit; }
   font-style: italic;
   max-width: 520px;
 }
+
+/* ── SISTEMA DE PANELES ────────────────────────────── */
+.content-panel { display: none; }
+.content-panel.active { display: block; }
+
+/* Cuando hay panel activo, ocultar los tiles */
+.explora-section.panel-open .explora-grid { display: none; }
+.explora-section.panel-open .explora-label { display: none; }
+
+/* Botón volver */
+.volver-wrap {
+  padding: 40px 0 60px;
+  text-align: center;
+  background: var(--gris-claro);
+}
+.volver-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: 2px solid var(--azul-pr);
+  color: var(--azul-pr);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.volver-btn:hover {
+  background: var(--azul-pr);
+  color: var(--blanco);
+  transform: translateX(-4px);
+}
+
+/* Tiles como botones */
+button.explora-tile {
+  font-family: var(--font-body);
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+}
