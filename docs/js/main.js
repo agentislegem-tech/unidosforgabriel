@@ -483,3 +483,186 @@ document.querySelectorAll('.stat-card,.video-card,.logo-partner,.prensa-card,.ex
   el.style.transition='opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
 });
+
+// ══════════════════════════════════════════════════════
+// PUSH 2 — MURO OSCURO + FIRMA + NOTIFICACIÓN
+// ══════════════════════════════════════════════════════
+
+// Mapa de clases de animación por lugar
+const SYM_CLASS = {
+  texas:'sym-texas', puertorico:'sym-puertorico', newyork:'sym-newyork',
+  florida:'sym-florida', illinois:'sym-illinois', california:'sym-california'
+};
+
+// ── RENDERIZAR TARJETAS (versión oscura) ──────────────
+function renderTarjetas(mensajes) {
+  const grid  = document.getElementById('muroCardsGrid');
+  const label = document.getElementById('muroCountLabel');
+  if (!grid) return;
+  grid.innerHTML = '';
+  if (label) label.textContent = mensajes.length + (mensajes.length===1?' persona ha dejado su mensaje':' personas han dejado su mensaje');
+  buildFiltros(mensajes);
+  mensajes.forEach(m => renderUnaCard(m, grid, false));
+}
+
+function renderUnaCard(m, grid, isNew) {
+  const p = PLACES[m.lugar_key] || null;
+  const card = document.createElement('div');
+  card.className = 'wall-card' + (isNew ? ' card-new' : '');
+  card.dataset.lugar = m.lugar_key || '';
+  card.onclick = () => abrirCardModal(m, p);
+  const symClass = SYM_CLASS[m.lugar_key] || 'sym-default';
+  if (p) {
+    card.innerHTML = `
+      <div class="card-accent-bar" style="background:${p.color};"></div>
+      <div class="card-header">
+        <div class="card-flag">${p.flag}</div>
+        <div class="card-symbol ${symClass}">${p.symbol}</div>
+        <div><div class="card-place">${p.name}</div></div>
+      </div>
+      <div class="card-body"><div class="card-msg">"${escHtml(m.mensaje)}"</div></div>
+      <div class="card-footer">
+        <span>${escHtml(m.nombre)}</span>
+        <button class="card-heart pulsing" onclick="toggleHeart(event,this)" aria-label="Me gusta">❤</button>
+      </div>`;
+  } else {
+    card.innerHTML = `
+      <div class="card-accent-bar" style="background:#445;"></div>
+      <div class="card-header"><div class="card-flag">💙</div><div><div class="card-place">Apoyo</div></div></div>
+      <div class="card-body"><div class="card-msg">"${escHtml(m.mensaje)}"</div></div>
+      <div class="card-footer">
+        <span>${escHtml(m.nombre)}</span>
+        <button class="card-heart pulsing" onclick="toggleHeart(event,this)" aria-label="Me gusta">❤</button>
+      </div>`;
+  }
+  grid.appendChild(card);
+}
+
+function toggleHeart(e, btn) {
+  e.stopPropagation();
+  btn.classList.toggle('liked');
+  btn.classList.toggle('pulsing', !btn.classList.contains('liked'));
+}
+
+// ── MODAL TARJETA ─────────────────────────────────────
+function abrirCardModal(m, p) {
+  const modal = document.getElementById('cardModal');
+  if (!modal) return;
+  const header = document.getElementById('cardModalHeader');
+  const msg    = document.getElementById('cardModalMsg');
+  const footer = document.getElementById('cardModalFooter');
+  header.innerHTML = p
+    ? `<span style="font-size:1.5rem;">${p.flag}</span><span>${p.name}</span>`
+    : `<span style="font-size:1.5rem;">💙</span><span>Apoyo</span>`;
+  msg.textContent = '"' + m.mensaje + '"';
+  footer.textContent = '— ' + m.nombre;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarCardModal(e) {
+  if (e && e.target !== document.getElementById('cardModal') && !e.target.classList.contains('prensa-modal-close')) return;
+  const modal = document.getElementById('cardModal');
+  if (modal) { modal.style.display = 'none'; document.body.style.overflow = ''; }
+}
+
+// ── FILTROS POR LUGAR ─────────────────────────────────
+let filtroActivo = null;
+function buildFiltros(mensajes) {
+  const wrap = document.getElementById('muroFiltros');
+  if (!wrap) return;
+  const lugares = [...new Set(mensajes.filter(m=>m.lugar_key).map(m=>m.lugar_key))];
+  if (lugares.length < 2) { wrap.innerHTML=''; return; }
+  wrap.innerHTML = '<button class="muro-filtro-btn active" onclick="filtrarMuro(null,this)" data-es="Todos" data-en="All">Todos</button>';
+  lugares.forEach(key => {
+    const p = PLACES[key];
+    if (!p) return;
+    const btn = document.createElement('button');
+    btn.className = 'muro-filtro-btn';
+    btn.textContent = p.flag + ' ' + p.name;
+    btn.onclick = (e) => filtrarMuro(key, e.target);
+    wrap.appendChild(btn);
+  });
+}
+
+function filtrarMuro(key, btn) {
+  filtroActivo = key;
+  document.querySelectorAll('.muro-filtro-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('#muroCardsGrid .wall-card').forEach(card => {
+    card.style.display = (!key || card.dataset.lugar === key) ? '' : 'none';
+  });
+}
+
+// ── NOTIFICACIÓN FLOTANTE ─────────────────────────────
+let notifMensajes = [];
+let notifIdx = 0;
+
+function initNotificaciones(mensajes) {
+  notifMensajes = mensajes.filter(m => m.nombre).slice(0, 10);
+  if (notifMensajes.length === 0) return;
+  setTimeout(mostrarNotif, 5000);
+}
+
+function mostrarNotif() {
+  if (notifMensajes.length === 0) return;
+  const m = notifMensajes[notifIdx % notifMensajes.length];
+  notifIdx++;
+  const notif = document.getElementById('notifFlotante');
+  const texto = document.getElementById('notifTexto');
+  if (!notif || !texto) return;
+  const p = PLACES[m.lugar_key];
+  const lugar = p ? ' desde ' + p.name : '';
+  texto.textContent = m.nombre + lugar + ' dejó un mensaje';
+  notif.style.display = 'flex';
+  setTimeout(() => { notif.style.display = 'none'; setTimeout(mostrarNotif, 8000); }, 4000);
+}
+
+// ── FIRMA COLECTIVA ───────────────────────────────────
+const API_FIRMA = 'https://okfngn48kc.execute-api.us-east-1.amazonaws.com/prod';
+
+async function firmarApoyo() {
+  const input = document.getElementById('firmaNombre');
+  const nombre = input ? input.value.trim() : '';
+  if (!nombre) return;
+  try {
+    const res = await fetch(API_FIRMA + '/registro', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({nombre, email:'', ciudad:'', estado:'firma-colectiva'})
+    });
+    const data = await res.json();
+    if (data.ok) {
+      input.value = '';
+      const msg = document.getElementById('firmaMsg');
+      if (msg) { msg.style.display='block'; setTimeout(()=>msg.style.display='none',3000); }
+      cargarFirmas();
+    }
+  } catch(e) {}
+}
+
+async function cargarFirmas() {
+  try {
+    const res = await fetch(API_FIRMA + '/visitas');
+    const data = await res.json();
+    const num = document.getElementById('firmaNum');
+    if (num && data.visitas) {
+      animateCount('firmaNum', data.visitas);
+    }
+  } catch(e) {}
+}
+
+// Sobreescribir cargarMensajes para incluir notificaciones y firma
+const _cargarMensajesOrig = cargarMensajes;
+async function cargarMensajes() {
+  try {
+    const res = await fetch(API + '/mensajes');
+    const data = await res.json();
+    if (data.ok) {
+      renderTarjetas(data.mensajes || []);
+      initNotificaciones(data.mensajes || []);
+    }
+  } catch(e) {}
+}
+
+cargarFirmas();

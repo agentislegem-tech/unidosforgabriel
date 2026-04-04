@@ -742,6 +742,16 @@
   </div>
 
 
+
+  <div class="prensa-modal-overlay" id="cardModal" onclick="cerrarCardModal(event)" style="display:none;">
+    <div class="card-modal-inner">
+      <button class="prensa-modal-close" onclick="cerrarCardModal()" aria-label="Cerrar">✕</button>
+      <div class="card-modal-header" id="cardModalHeader"></div>
+      <div class="card-modal-msg" id="cardModalMsg"></div>
+      <div class="card-modal-footer" id="cardModalFooter"></div>
+    </div>
+  </div>
+
   <div class="frase-modal-overlay" id="compartirModal" onclick="cerrarCompartir(event)" style="display:none;">
     <div class="frase-modal-inner" style="text-align:center;">
       <button class="frase-modal-close compartir-modal-close" onclick="cerrarCompartir()" aria-label="Cerrar">✕</button>
@@ -779,11 +789,11 @@
     </div>
   </div>
 
-  <section class="section muro" id="muro">
+  <section class="section muro-oscuro" id="muro">
     <div class="container">
-      <div class="section-label" data-es="Muro de apoyo" data-en="Wall of support">Muro de apoyo</div>
-      <h2 class="section-title" data-es="Deja tu tarjeta para Gabriel" data-en="Leave your card for Gabriel">Deja tu tarjeta para Gabriel</h2>
-      <p class="section-desc" data-es="Gabriel puede leer cada mensaje desde su recuperación. Tu tarjeta queda en el muro para que todos la vean." data-en="Gabriel can read every message during his recovery. Your card stays on the wall for everyone to see.">Gabriel puede leer cada mensaje desde su recuperación. Tu tarjeta queda en el muro para que todos la vean.</p>
+      <div class="section-label muro-label" data-es="Muro de apoyo" data-en="Wall of support">Muro de apoyo</div>
+      <h2 class="section-title muro-titulo" data-es="Deja tu tarjeta para Gabriel" data-en="Leave your card for Gabriel">Deja tu tarjeta para Gabriel</h2>
+      <p class="section-desc muro-desc" data-es="Gabriel puede leer cada mensaje desde su recuperación. Tu tarjeta queda en el muro para que todos la vean." data-en="Gabriel can read every message during his recovery. Your card stays on the wall for everyone to see.">Gabriel puede leer cada mensaje desde su recuperación. Tu tarjeta queda en el muro para que todos la vean.</p>
 
       <div class="muro-compositor">
         <div class="muro-form-wrap">
@@ -855,8 +865,8 @@
 
         <div class="muro-preview-wrap">
           <p class="muro-preview-label" data-es="Vista previa de tu tarjeta" data-en="Preview of your card">Vista previa de tu tarjeta</p>
-          <div id="cardPreview" class="wall-card wall-card-preview">
-            <div class="card-accent-bar" id="previewBar" style="background:#ccc;"></div>
+          <div id="cardPreview" class="wall-card wall-card-preview wall-card-dark">
+            <div class="card-accent-bar" id="previewBar" style="background:#555;"></div>
             <div class="card-header">
               <div class="card-flag" id="previewFlag">🌍</div>
               <div class="card-symbol" id="previewSymbol"></div>
@@ -874,13 +884,34 @@
 
       <div class="muro-wall-wrap">
         <div class="muro-wall-header">
-          <span class="muro-count-label" id="muroCountLabel">Cargando mensajes...</span>
+          <span class="muro-count-label" id="muroCountLabel" data-es="Cargando mensajes..." data-en="Loading messages...">Cargando mensajes...</span>
+          <div class="muro-filtros" id="muroFiltros"></div>
         </div>
         <div class="muro-cards-grid" id="muroCardsGrid"></div>
       </div>
 
     </div>
   </section>
+
+  <!-- FIRMA COLECTIVA -->
+  <section class="section firma-section" id="firma">
+    <div class="container">
+      <div class="section-label" data-es="Solidaridad colectiva" data-en="Collective solidarity">Solidaridad colectiva</div>
+      <h2 class="section-title" data-es="Firma tu apoyo" data-en="Sign your support">Firma tu apoyo</h2>
+      <p class="section-desc" data-es="No puedes donar ahora, pero puedes firmar. Tu nombre se suma a los que ya dijeron: estoy aquí." data-en="Can't donate now, but you can sign. Your name joins those who already said: I'm here.">No puedes donar ahora, pero puedes firmar. Tu nombre se suma a los que ya dijeron: estoy aquí.</p>
+      <div class="firma-form">
+        <input type="text" id="firmaNombre" placeholder="Tu nombre / Your name" maxlength="60" />
+        <button class="btn-donate" onclick="firmarApoyo()" data-es="Firmar mi apoyo" data-en="Sign my support">Firmar mi apoyo</button>
+      </div>
+      <p id="firmaMsg" class="firma-msg" style="display:none;" data-es="¡Gracias! Tu nombre ha sido añadido." data-en="Thank you! Your name has been added.">¡Gracias! Tu nombre ha sido añadido.</p>
+      <div class="firma-contador-wrap">
+        <span class="firma-num" id="firmaNum">—</span>
+        <span class="firma-label" data-es="personas han firmado su apoyo" data-en="people have signed their support">personas han firmado su apoyo</span>
+      </div>
+      <div class="firma-nombres" id="firmaNombres"></div>
+    </div>
+  </section>
+
 
   <section class="section registro" id="registro">
     <div class="container">
@@ -1009,5 +1040,11 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+  <div class="notif-flotante" id="notifFlotante" style="display:none;">
+    <span class="notif-icon">💙</span>
+    <span class="notif-texto" id="notifTexto"></span>
+  </div>
+
 </body>
 </html>

@@ -1189,3 +1189,264 @@ button.explora-tile {
   .narrativa-body p { font-size: 1.05rem; }
   .frase-ver-mas { opacity: 1; }
 }
+
+/* ══════════════════════════════════════════════════════
+   PUSH 2 — MURO OSCURO + FIRMA + NOTIFICACIÓN
+   ══════════════════════════════════════════════════════ */
+
+/* ── MURO OSCURO ────────────────────────────────────── */
+.muro-oscuro {
+  background: linear-gradient(160deg, #0a0e1a 0%, #0d1530 50%, #080808 100%);
+}
+.muro-label { color: rgba(255,255,255,0.45) !important; }
+.muro-titulo { color: #ffffff !important; }
+.muro-desc { color: rgba(255,255,255,0.6) !important; }
+.muro-oscuro .muro-tab {
+  border-color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+}
+.muro-oscuro .muro-tab.active {
+  background: var(--rojo-pr);
+  border-color: var(--rojo-pr);
+  color: #fff;
+}
+.muro-oscuro input,
+.muro-oscuro select,
+.muro-oscuro textarea {
+  background: rgba(255,255,255,0.07) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+.muro-oscuro input::placeholder,
+.muro-oscuro textarea::placeholder { color: rgba(255,255,255,0.35) !important; }
+.muro-oscuro select option { background: #1a1f35; color: #fff; }
+.muro-nota { color: rgba(255,255,255,0.3) !important; }
+.muro-preview-label { color: rgba(255,255,255,0.45) !important; }
+.muro-count-label { color: rgba(255,255,255,0.55) !important; }
+
+/* Tarjeta oscura */
+.wall-card-dark {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.wall-card-dark .card-place { color: rgba(255,255,255,0.85) !important; }
+.wall-card-dark .card-msg { color: rgba(255,255,255,0.65) !important; }
+.wall-card-dark .card-footer { color: rgba(255,255,255,0.4) !important; border-color: rgba(255,255,255,0.1) !important; }
+.wall-card-dark .card-header { border-color: rgba(255,255,255,0.08) !important; }
+
+/* Grid del muro sobre fondo oscuro */
+.muro-wall-wrap { margin-top: 40px; }
+.muro-wall-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Filtros */
+.muro-filtros { display: flex; flex-wrap: wrap; gap: 8px; }
+.muro-filtro-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+}
+.muro-filtro-btn:hover,
+.muro-filtro-btn.active {
+  background: var(--rojo-pr);
+  border-color: var(--rojo-pr);
+  color: #fff;
+}
+
+/* Tarjetas del muro en oscuro */
+.muro-cards-grid .wall-card {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.2s;
+}
+.muro-cards-grid .wall-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.3);
+}
+.muro-cards-grid .card-place { color: rgba(255,255,255,0.9); }
+.muro-cards-grid .card-msg { color: rgba(255,255,255,0.65); }
+.muro-cards-grid .card-footer {
+  color: rgba(255,255,255,0.4);
+  border-color: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.muro-cards-grid .card-header { border-color: rgba(255,255,255,0.08); }
+
+/* Corazón palpitante — solo desktop */
+.card-heart {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  transition: transform 0.15s;
+  color: rgba(255,255,255,0.35);
+}
+.card-heart:hover { color: #e05; transform: scale(1.2); }
+.card-heart.liked { color: #e05; }
+
+@media (min-width: 769px) {
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+  }
+  .card-heart.pulsing { animation: heartbeat 2.4s ease-in-out infinite; color: rgba(220,0,80,0.5); }
+}
+
+/* Animaciones de símbolos — solo desktop */
+@media (min-width: 769px) {
+  @keyframes twinkle { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.2)} }
+  @keyframes sway { 0%,100%{transform:rotate(0deg)} 50%{transform:rotate(6deg)} }
+  @keyframes wave { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+  @keyframes glow { 0%,100%{filter:brightness(1)} 50%{filter:brightness(1.5)} }
+  @keyframes spin-slow { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+
+  .sym-texas { animation: twinkle 2.5s ease-in-out infinite; }
+  .sym-puertorico { animation: wave 2s ease-in-out infinite; }
+  .sym-newyork { animation: glow 3s ease-in-out infinite; }
+  .sym-florida { animation: sway 3s ease-in-out infinite; }
+  .sym-illinois { animation: wave 2.8s ease-in-out infinite; }
+  .sym-california { animation: sway 2.5s ease-in-out infinite; }
+  .sym-default { animation: wave 3s ease-in-out infinite; }
+}
+
+/* Animación entrada tarjeta nueva */
+@keyframes cardPop {
+  0% { opacity:0; transform: scale(0.8) translateY(20px); }
+  70% { transform: scale(1.04) translateY(-2px); }
+  100% { opacity:1; transform: scale(1) translateY(0); }
+}
+.card-new { animation: cardPop 0.45s cubic-bezier(0.17,0.67,0.35,1.2) forwards; }
+
+/* Modal tarjeta */
+.card-modal-inner {
+  background: #0d1530;
+  border-radius: 16px;
+  max-width: 480px; width: 100%;
+  padding: 32px;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.card-modal-header {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-modal-msg {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  border-left: 3px solid var(--rojo-pr);
+}
+.card-modal-footer {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── FIRMA COLECTIVA ────────────────────────────────── */
+.firma-section { background: var(--gris-claro); }
+.firma-form {
+  display: flex;
+  gap: 12px;
+  max-width: 500px;
+  margin: 32px 0 20px;
+  flex-wrap: wrap;
+}
+.firma-form input { flex: 1; min-width: 200px; }
+.firma-msg {
+  font-size: 0.9rem;
+  color: var(--azul-pr);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.firma-contador-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 16px 0 24px;
+}
+.firma-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--rojo-pr);
+  line-height: 1;
+}
+.firma-label {
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.firma-nombres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 120px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+.firma-nombre-pill {
+  background: var(--blanco);
+  border: 1px solid var(--gris-borde);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  color: var(--negro);
+}
+
+/* ── NOTIFICACIÓN FLOTANTE ──────────────────────────── */
+.notif-flotante {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 500;
+  background: #0d1530;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 280px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  animation: notifSlide 0.4s ease;
+}
+@keyframes notifSlide {
+  from { opacity:0; transform: translateX(-20px); }
+  to { opacity:1; transform: translateX(0); }
+}
+.notif-icon { font-size: 1.1rem; }
+
+@media (max-width: 768px) {
+  .notif-flotante { display: none !important; }
+  .muro-filtros { display: none; }
+}
