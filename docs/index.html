@@ -280,6 +280,35 @@
     </div>
   </section>
 
+
+  <section class="explora-section" id="explora">
+    <div class="container">
+      <p class="explora-label" data-es="Explora su historia" data-en="Explore his story">Explora su historia</p>
+      <div class="explora-grid">
+        <a href="#historia" class="explora-tile">
+          <div class="explora-icon">📖</div>
+          <div class="explora-title" data-es="Su Historia" data-en="His Story">Su Historia</div>
+          <div class="explora-desc" data-es="La narrativa completa de quien es Gabriel" data-en="The complete narrative of who Gabriel is">La narrativa completa de quien es Gabriel</div>
+        </a>
+        <a href="#timeline" class="explora-tile">
+          <div class="explora-icon">📅</div>
+          <div class="explora-title" data-es="Línea de Tiempo" data-en="Timeline">Línea de Tiempo</div>
+          <div class="explora-desc" data-es="1999 hasta hoy — los momentos que definen su lucha" data-en="1999 to today — the moments that define his fight">1999 hasta hoy — los momentos que definen su lucha</div>
+        </a>
+        <a href="#sabiasque" class="explora-tile">
+          <div class="explora-icon">💡</div>
+          <div class="explora-title" data-es="¿Sabías que...?" data-en="Did you know...?">¿Sabías que...?</div>
+          <div class="explora-desc" data-es="La crisis policial en Puerto Rico en datos" data-en="The police crisis in Puerto Rico in data">La crisis policial en Puerto Rico en datos</div>
+        </a>
+        <a href="#prensa" class="explora-tile">
+          <div class="explora-icon">📺</div>
+          <div class="explora-title" data-es="En la Prensa" data-en="In the Press">En la Prensa</div>
+          <div class="explora-desc" data-es="Cobertura verificada en medios de Puerto Rico" data-en="Verified coverage in Puerto Rico media">Cobertura verificada en medios de Puerto Rico</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="section historia" id="historia">
     <div class="container">
       <div class="section-label" data-es="Su historia" data-en="His Story">Su historia</div>
@@ -477,90 +506,138 @@
     <div class="container">
       <div class="section-label" data-es="Su trayectoria" data-en="His journey">Su trayectoria</div>
       <h2 class="section-title" data-es="Una línea de tiempo que habla sola" data-en="A timeline that speaks for itself">Una línea de tiempo que habla sola</h2>
-      <div class="timeline">
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot"></div>
-          <div class="tl-year">1999</div>
-          <div class="tl-title" data-es="Entra a la Policía de Puerto Rico" data-en="Joins the Puerto Rico Police">Entra a la Policía de Puerto Rico</div>
-          <div class="tl-body">
-            <p data-es="Placa 27365. Cabo Rojo, Puerto Rico. Comienza un servicio de 20 años dedicado a la seguridad pública de la isla." data-en="Badge 27365. Cabo Rojo, Puerto Rico. Begins 20 years of service dedicated to public safety on the island.">Placa 27365. Cabo Rojo, Puerto Rico. Comienza un servicio de 20 años dedicado a la seguridad pública de la isla.</p>
-          </div>
+      <div class="tl-tabs-nav">
+        <button class="tl-tab active" onclick="setTLTab(this,'tl1999')" data-es="1999" data-en="1999">1999</button>
+        <button class="tl-tab" onclick="setTLTab(this,'tl2013')" data-es="2013" data-en="2013">2013</button>
+        <button class="tl-tab" onclick="setTLTab(this,'tl2019')" data-es="2019" data-en="2019">2019</button>
+        <button class="tl-tab" onclick="setTLTab(this,'tl2021')" data-es="Oct 2021" data-en="Oct 2021">Oct 2021</button>
+        <button class="tl-tab" onclick="setTLTab(this,'tl2022')" data-es="2022" data-en="2022">2022</button>
+        <button class="tl-tab" onclick="setTLTab(this,'tl2023')" data-es="2023" data-en="2023">2023</button>
+        <button class="tl-tab" onclick="setTLTab(this,'tl2025')" data-es="2025" data-en="2025">2025</button>
+        <button class="tl-tab" onclick="setTLTab(this,'tl2026')" data-es="2026" data-en="2026">2026 ●</button>
+      </div>
+
+      <div class="tl-panels">
+
+        <div class="tl-panel active" id="tl1999">
+          <div class="tl-panel-year">1999</div>
+          <h3 class="tl-panel-title" data-es="Entra a la Policía de Puerto Rico" data-en="Joins the Puerto Rico Police">Entra a la Policía de Puerto Rico</h3>
+          <p class="tl-panel-body" data-es="Placa 27365. Cabo Rojo, Puerto Rico. Comienza un servicio de 20 años dedicado a la seguridad pública de la isla. Lo que parecía una carrera estable se convertiría en el origen de una lucha que nadie anticipó." data-en="Badge 27365. Cabo Rojo, Puerto Rico. Begins 20 years of service dedicated to public safety on the island. What seemed like a stable career would become the origin of a fight no one anticipated.">Placa 27365. Cabo Rojo, Puerto Rico. Comienza un servicio de 20 años dedicado a la seguridad pública de la isla. Lo que parecía una carrera estable se convertiría en el origen de una lucha que nadie anticipó.</p>
         </div>
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2013</div>
-          <div class="tl-title" data-es="La Ley 3 recorta el retiro" data-en="Law 3 cuts retirement benefits">La Ley 3 recorta el retiro</div>
-          <div class="tl-body">
-            <p data-es="La Ley 3 de 2013 recorta más del 35% de los beneficios de retiro de los servidores públicos. La Ley 106 de 2017 declarará el sistema insolvente. Los policías de PR no cotizaban al Seguro Social federal hasta 2019." data-en="Law 3 of 2013 cuts over 35% of public servant retirement benefits. Law 106 of 2017 will declare the system insolvent. PR officers did not contribute to federal Social Security until 2019.">La Ley 3 de 2013 recorta más del 35% de los beneficios de retiro de los servidores públicos. La Ley 106 de 2017 declarará el sistema insolvente. Los policías de PR no cotizaban al Seguro Social federal hasta 2019.</p>
-          </div>
+        <div class="tl-panel" id="tl2013">
+          <div class="tl-panel-year">2013</div>
+          <h3 class="tl-panel-title" data-es="La Ley 3 recorta el retiro" data-en="Law 3 cuts retirement benefits">La Ley 3 recorta el retiro</h3>
+          <p class="tl-panel-body" data-es="La Ley 3 de 2013 recorta más del 35% de los beneficios de retiro de los servidores públicos. La Ley 106 de 2017 declara el sistema insolvente. Hasta 2019, los policías de Puerto Rico no cotizaban al Seguro Social federal — una combinación que dejaría a una generación entera sin red de seguridad." data-en="Law 3 of 2013 cuts over 35% of public servant retirement benefits. Law 106 of 2017 declares the system insolvent. Until 2019, PR officers did not contribute to federal Social Security — a combination that would leave an entire generation without a safety net.">La Ley 3 de 2013 recorta más del 35% de los beneficios de retiro de los servidores públicos. La Ley 106 de 2017 declara el sistema insolvente. Hasta 2019, los policías de Puerto Rico no cotizaban al Seguro Social federal — una combinación que dejaría a una generación entera sin red de seguridad.</p>
         </div>
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2019</div>
-          <div class="tl-title" data-es="Se retira — pensión: $487.81/mes" data-en="Retires — pension: $487.81/month">Se retira — pensión: $487.81/mes</div>
-          <div class="tl-body">
-            <p data-es="Después de 20 años de servicio, se retira con una pensión de $487.81 al mes — que no puede recibir hasta los 65 años. Emigra a los Estados Unidos. Sigue trabajando por necesidad." data-en="After 20 years of service, retires with a pension of $487.81 per month — which he cannot receive until age 65. Emigrates to the United States. Continues working out of necessity.">Después de 20 años de servicio, se retira con una pensión de $487.81 al mes — que no puede recibir hasta los 65 años. Emigra a los Estados Unidos. Sigue trabajando por necesidad.</p>
-          </div>
+        <div class="tl-panel" id="tl2019">
+          <div class="tl-panel-year">2019</div>
+          <h3 class="tl-panel-title" data-es="Se retira — pensión: $487.81/mes" data-en="Retires — pension: $487.81/month">Se retira — pensión: $487.81/mes</h3>
+          <p class="tl-panel-body" data-es="Después de 20 años de servicio, se retira con una pensión de $487.81 al mes que no puede recibir hasta los 65 años. Emigra a los Estados Unidos. Sigue trabajando por necesidad, no por elección." data-en="After 20 years of service, retires with a pension of $487.81 per month he cannot receive until age 65. Emigrates to the United States. Continues working out of necessity, not by choice.">Después de 20 años de servicio, se retira con una pensión de $487.81 al mes que no puede recibir hasta los 65 años. Emigra a los Estados Unidos. Sigue trabajando por necesidad, no por elección.</p>
+          <blockquote class="tl-quote" data-es="&ldquo;Me tuve que ir de la Policía porque suicidaron mi retiro.&rdquo;" data-en="&ldquo;I had to leave the Police because they destroyed my retirement.&rdquo;">&ldquo;Me tuve que ir de la Policía porque suicidaron mi retiro.&rdquo;</blockquote>
         </div>
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot tl-dot-key"></div>
-          <div class="tl-year">Oct 2021</div>
-          <div class="tl-title" data-es="Comienza a hablar — solo, desde su teléfono" data-en="Begins to speak — alone, from his phone">Comienza a hablar — solo, desde su teléfono</div>
-          <div class="tl-body">
-            <p data-es="El 19 de octubre de 2021, sin organización ni presupuesto, empieza a denunciar en redes sociales la crisis del retiro policial. Miles lo escuchan." data-en="On October 19, 2021, without any organization or budget, he begins denouncing the police retirement crisis on social media. Thousands listen.">El 19 de octubre de 2021, sin organización ni presupuesto, empieza a denunciar en redes sociales la crisis del retiro policial. Miles lo escuchan.</p>
-          </div>
+        <div class="tl-panel" id="tl2021">
+          <div class="tl-panel-year">19 octubre 2021</div>
+          <h3 class="tl-panel-title" data-es="Comienza a hablar — solo, desde su teléfono" data-en="Begins to speak — alone, from his phone">Comienza a hablar — solo, desde su teléfono</h3>
+          <p class="tl-panel-body" data-es="Sin organización, sin presupuesto, sin respaldo — empieza a denunciar en redes sociales la crisis del retiro policial. Miles lo escuchan. Lo que comienza como un grito solitario se convierte en el inicio de algo que nadie había logrado antes." data-en="Without any organization, budget, or backing — he begins denouncing the police retirement crisis on social media. Thousands listen. What begins as a solitary cry becomes the start of something no one had achieved before.">Sin organización, sin presupuesto, sin respaldo — empieza a denunciar en redes sociales la crisis del retiro policial. Miles lo escuchan. Lo que comienza como un grito solitario se convierte en el inicio de algo que nadie había logrado antes.</p>
         </div>
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot tl-dot-key"></div>
-          <div class="tl-year">Mar 2022</div>
-          <div class="tl-title" data-es="Funda APUL — $1,550M en 117 días" data-en="Founds APUL — $1.55B in 117 days">Funda APUL — $1,550M en 117 días</div>
-          <div class="tl-body">
-            <p data-es="Funda la Asociación de Policías Unidos Luchando (APUL). En 117 días negocia con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico $1,550 millones en beneficios: $850M para el fondo de retiro y $700M para el Plan Vital. Documentado en registros oficiales de la AAFAF." data-en="Founds the Asociación de Policías Unidos Luchando (APUL). In 117 days negotiates $1.55 billion with the Fiscal Oversight Board and the Government of Puerto Rico: $850M for the retirement fund and $700M for Plan Vital. Documented in official AAFAF records.">Funda la Asociación de Policías Unidos Luchando (APUL). En 117 días negocia con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico $1,550 millones en beneficios: $850M para el fondo de retiro y $700M para el Plan Vital. Documentado en registros oficiales de la AAFAF.</p>
-          </div>
+        <div class="tl-panel" id="tl2022">
+          <div class="tl-panel-year">2022</div>
+          <h3 class="tl-panel-title" data-es="APUL + $1,550M en 117 días + Cámara de PR" data-en="APUL + $1.55B in 117 days + PR House">APUL + $1,550M en 117 días + Cámara de PR</h3>
+          <p class="tl-panel-body" data-es="Marzo 2022: Funda APUL. En 117 días negocia $1,550 millones con la JSF y el Gobierno de PR — $850M para el fondo de retiro y $700M para el Plan Vital. Mayo 2022: Testifica ante la Cámara de Representantes de Puerto Rico. No llevó abogados. Llevó su verdad." data-en="March 2022: Founds APUL. In 117 days negotiates $1.55 billion with the JSF and Government of PR — $850M for the retirement fund and $700M for Plan Vital. May 2022: Testifies before the Puerto Rico House of Representatives. No lawyers. He brought his truth.">Marzo 2022: Funda APUL. En 117 días negocia $1,550 millones con la JSF y el Gobierno de PR — $850M para el fondo de retiro y $700M para el Plan Vital. Mayo 2022: Testifica ante la Cámara de Representantes de Puerto Rico. No llevó abogados. Llevó su verdad.</p>
+          <blockquote class="tl-quote" data-es="&ldquo;Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes.&rdquo;" data-en="&ldquo;Today I still work because my Puerto Rico Police pension will be $487.00 a month.&rdquo;">&ldquo;Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes.&rdquo;</blockquote>
         </div>
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot"></div>
-          <div class="tl-year">May 2022</div>
-          <div class="tl-title" data-es="Testifica ante la Cámara de PR" data-en="Testifies before the PR House">Testifica ante la Cámara de PR</div>
-          <div class="tl-body">
-            <p data-es='"Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes." — Vista pública, mayo 2022' data-en='"I had to leave the Police because they destroyed my retirement. Today I still work because my Puerto Rico Police pension will be $487.00 a month." — Public hearing, May 2022'>"Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes." — Vista pública, mayo 2022</p>
-          </div>
+        <div class="tl-panel" id="tl2023">
+          <div class="tl-panel-year">Marzo 2023</div>
+          <h3 class="tl-panel-title" data-es="Washington D.C. — Congreso de EE.UU." data-en="Washington D.C. — U.S. Congress">Washington D.C. — Congreso de EE.UU.</h3>
+          <p class="tl-panel-body" data-es="Citado oficialmente al Congreso de los Estados Unidos. Primera organización de policías puertorriqueños en lograrlo. Se reúne con la entonces Comisionada Residente — hoy gobernadora de Puerto Rico. No hubo acción posterior." data-en="Officially summoned to the United States Congress. First Puerto Rican police organization to achieve this. Meets with the then-Resident Commissioner — today Puerto Rico's governor. No subsequent action.">Citado oficialmente al Congreso de los Estados Unidos. Primera organización de policías puertorriqueños en lograrlo. Se reúne con la entonces Comisionada Residente — hoy gobernadora de Puerto Rico. No hubo acción posterior.</p>
+          <blockquote class="tl-quote" data-es="&ldquo;Jamás una organización de policías ha llegado a estos terrenos.&rdquo;" data-en="&ldquo;Never has a police organization reached these grounds.&rdquo;">&ldquo;Jamás una organización de policías ha llegado a estos terrenos.&rdquo;</blockquote>
         </div>
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot"></div>
-          <div class="tl-year">Mar 2023</div>
-          <div class="tl-title" data-es="Washington D.C. — Congreso de EE.UU." data-en="Washington D.C. — U.S. Congress">Washington D.C. — Congreso de EE.UU.</div>
-          <div class="tl-body">
-            <p data-es="Citado oficialmente al Congreso. Primera organización de policías puertorriqueños en lograrlo. Se reúne con la entonces Comisionada Residente. No hubo acción posterior." data-en="Officially summoned to Congress. First Puerto Rican police organization to achieve this. Meets with the then-Resident Commissioner. No subsequent action.">Citado oficialmente al Congreso. Primera organización de policías puertorriqueños en lograrlo. Se reúne con la entonces Comisionada Residente. No hubo acción posterior.</p>
-          </div>
+        <div class="tl-panel" id="tl2025">
+          <div class="tl-panel-year">2025</div>
+          <h3 class="tl-panel-title" data-es="Sigue en la calle — 8 años sin aumento" data-en="Still fighting — 8 years without a raise">Sigue en la calle — 8 años sin aumento</h3>
+          <p class="tl-panel-body" data-es="Manifestaciones frente a la JSF. Documenta $132M en horas compensatorias sin pagar. Solo 5,700 de 10,200 efectivos activos. Alerta sobre agotamiento mental de la fuerza. Diciembre 2025: la gobernadora promete aumento salarial — sin fecha ni cifra oficial." data-en="Protests outside the JSF. Documents $132M in unpaid overtime. Only 5,700 of 10,200 authorized officers active. Alerts about mental exhaustion of the force. December 2025: the governor promises a salary increase — no date, no official figure.">Manifestaciones frente a la JSF. Documenta $132M en horas compensatorias sin pagar. Solo 5,700 de 10,200 efectivos activos. Alerta sobre agotamiento mental de la fuerza. Diciembre 2025: la gobernadora promete aumento salarial — sin fecha ni cifra oficial.</p>
         </div>
 
-        <div class="tl-item" onclick="toggleTL(this)">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2025</div>
-          <div class="tl-title" data-es="Sigue en la calle — 8 años sin aumento" data-en="Still fighting — 8 years without a raise">Sigue en la calle — 8 años sin aumento</div>
-          <div class="tl-body">
-            <p data-es="Manifestaciones frente a la JSF. Documenta $132M en horas compensatorias sin pagar. Solo 5,700 de 10,200 efectivos activos. Alerta sobre agotamiento mental de la fuerza. En diciembre, la gobernadora promete aumento salarial — sin fecha ni cifra oficial." data-en="Protests outside the JSF. Documents $132M in unpaid overtime. Only 5,700 of 10,200 authorized officers active. Alerts about mental exhaustion of the force. In December, the governor promises a salary increase — no date, no official figure.">Manifestaciones frente a la JSF. Documenta $132M en horas compensatorias sin pagar. Solo 5,700 de 10,200 efectivos activos. Alerta sobre agotamiento mental de la fuerza. En diciembre, la gobernadora promete aumento salarial — sin fecha ni cifra oficial.</p>
-          </div>
-        </div>
-
-        <div class="tl-item tl-item-now" onclick="toggleTL(this)">
-          <div class="tl-dot tl-dot-now"></div>
-          <div class="tl-year" data-es="2026 — Ahora" data-en="2026 — Now">2026 — Ahora</div>
-          <div class="tl-title" data-es="Cirugía de alto riesgo. La diáspora responde." data-en="High-risk surgery. The diaspora responds.">Cirugía de alto riesgo. La diáspora responde.</div>
-          <div class="tl-body">
-            <p data-es="Mientras seguía activo en su lucha, su salud requirió intervención quirúrgica de alto riesgo. La recuperación es costosa. Su pensión sigue siendo $487.81 — sin poder recibirla aún. La diáspora puertorriqueña en Estados Unidos responde." data-en="While still active in his fight, his health required high-risk surgery. Recovery is costly. His pension remains $487.81 — still unable to receive it. The Puerto Rican diaspora in the United States responds.">Mientras seguía activo en su lucha, su salud requirió intervención quirúrgica de alto riesgo. La recuperación es costosa. Su pensión sigue siendo $487.81 — sin poder recibirla aún. La diáspora puertorriqueña en Estados Unidos responde.</p>
-          </div>
+        <div class="tl-panel tl-panel-now" id="tl2026">
+          <div class="tl-panel-year" data-es="2026 — Ahora" data-en="2026 — Now">2026 — Ahora</div>
+          <h3 class="tl-panel-title" data-es="Cirugía de alto riesgo. La diáspora responde." data-en="High-risk surgery. The diaspora responds.">Cirugía de alto riesgo. La diáspora responde.</h3>
+          <p class="tl-panel-body" data-es="Mientras seguía activo en su lucha, su salud requirió intervención quirúrgica de alto riesgo. La recuperación es costosa. Su pensión sigue siendo $487.81 — aún sin poder recibirla. La diáspora puertorriqueña en los Estados Unidos, junto a organizaciones policiales de Texas, responde." data-en="While still active in his fight, his health required high-risk surgery. Recovery is costly. His pension remains $487.81 — still unable to receive it. The Puerto Rican diaspora in the United States, together with Texas police organizations, responds.">Mientras seguía activo en su lucha, su salud requirió intervención quirúrgica de alto riesgo. La recuperación es costosa. Su pensión sigue siendo $487.81 — aún sin poder recibirla. La diáspora puertorriqueña en los Estados Unidos, junto a organizaciones policiales de Texas, responde.</p>
+          <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate" data-es="Apoya a Gabriel ahora" data-en="Support Gabriel now">Apoya a Gabriel ahora</a>
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <section class="section sabiasque-section" id="sabiasque">
+    <div class="container">
+      <div class="section-label" data-es="La crisis que pocos ven" data-en="The crisis few see">La crisis que pocos ven</div>
+      <h2 class="section-title" data-es="¿Sabías que...?" data-en="Did you know...?">¿Sabías que...?</h2>
+      <p class="section-desc" data-es="Datos verificados sobre la situación de los policías de Puerto Rico." data-en="Verified data on the situation of Puerto Rico's police officers.">Datos verificados sobre la situación de los policías de Puerto Rico.</p>
+
+      <div class="sq-carousel-wrap">
+        <button class="sq-arrow sq-prev" onclick="moveCarrusel(-1)" aria-label="Anterior">&#8592;</button>
+        <div class="sq-carousel" id="sqCarousel">
+
+          <div class="sq-card">
+            <div class="sq-num">35%+</div>
+            <div class="sq-text" data-es="de recorte en los beneficios de retiro de los policías bajo la Ley 3 de 2013." data-en="cut in police retirement benefits under Law 3 of 2013.">de recorte en los beneficios de retiro de los policías bajo la Ley 3 de 2013.</div>
+            <div class="sq-source">Ley 3-2013, Gobierno de Puerto Rico</div>
+          </div>
+
+          <div class="sq-card">
+            <div class="sq-num">$487</div>
+            <div class="sq-text" data-es="es la pensión mensual de Gabriel Hernández — oficial con 20 años de servicio. No puede recibirla hasta los 65. Tiene 48." data-en="is Gabriel Hernández's monthly pension — an officer with 20 years of service. He cannot receive it until age 65. He is 48.">es la pensión mensual de Gabriel Hernández — oficial con 20 años de servicio. No puede recibirla hasta los 65. Tiene 48.</div>
+            <div class="sq-source">Estado de Cuenta Oficial PPR</div>
+          </div>
+
+          <div class="sq-card">
+            <div class="sq-num">$132M</div>
+            <div class="sq-text" data-es="en horas compensatorias acumuladas sin pagar a los oficiales de la Policía de Puerto Rico." data-en="in unpaid accumulated overtime owed to Puerto Rico Police officers.">en horas compensatorias acumuladas sin pagar a los oficiales de la Policía de Puerto Rico.</div>
+            <div class="sq-source">APUL / TeleOnce, noviembre 2025</div>
+          </div>
+
+          <div class="sq-card">
+            <div class="sq-num">5,700</div>
+            <div class="sq-text" data-es="oficiales activos de los 10,200 autorizados. La Policía de PR opera con el 56% de su fuerza." data-en="active officers out of 10,200 authorized. The PR Police operates at 56% of its force.">oficiales activos de los 10,200 autorizados. La Policía de PR opera con el 56% de su fuerza.</div>
+            <div class="sq-source">APUL, noviembre 2025</div>
+          </div>
+
+          <div class="sq-card">
+            <div class="sq-num">8 años</div>
+            <div class="sq-text" data-es="sin aumento salarial para los policías de Puerto Rico. La promesa de diciembre 2025 sigue sin fecha ni cifra oficial." data-en="without a salary increase for Puerto Rico police. The December 2025 promise still has no date or official figure.">sin aumento salarial para los policías de Puerto Rico. La promesa de diciembre 2025 sigue sin fecha ni cifra oficial.</div>
+            <div class="sq-source">TeleOnce / Primera Hora, 2025</div>
+          </div>
+
+          <div class="sq-card">
+            <div class="sq-num">$1,550M</div>
+            <div class="sq-text" data-es="negociados por Gabriel Hernández en 117 días para el sistema de retiro policial — sin cobrar un centavo." data-en="negotiated by Gabriel Hernández in 117 days for the police retirement system — without charging a cent.">negociados por Gabriel Hernández en 117 días para el sistema de retiro policial — sin cobrar un centavo.</div>
+            <div class="sq-source">AAFAF — Memorando DSP/Junta de Retiro, junio 2022</div>
+          </div>
+
+          <div class="sq-card">
+            <div class="sq-num">2019</div>
+            <div class="sq-text" data-es="fue el primer año en que los policías de Puerto Rico comenzaron a cotizar al Seguro Social federal — décadas después que el resto del país." data-en="was the first year Puerto Rico police officers began contributing to federal Social Security — decades after the rest of the country.">fue el primer año en que los policías de Puerto Rico comenzaron a cotizar al Seguro Social federal — décadas después que el resto del país.</div>
+            <div class="sq-source">Ley 71-2019, Gobierno de Puerto Rico</div>
+          </div>
+
+          <div class="sq-card">
+            <div class="sq-num">117 días</div>
+            <div class="sq-text" data-es="de gestión — desde su casa en los Estados Unidos, sin oficina, sin estructura — para lograr lo que ninguna organización policial había conseguido antes." data-en="of effort — from his home in the United States, without an office or structure — to achieve what no police organization had accomplished before.">de gestión — desde su casa en los Estados Unidos, sin oficina, sin estructura — para lograr lo que ninguna organización policial había conseguido antes.</div>
+            <div class="sq-source">Primera Hora / APUL, 2022</div>
+          </div>
+
+        </div>
+        <button class="sq-arrow sq-next" onclick="moveCarrusel(1)" aria-label="Siguiente">&#8594;</button>
+      </div>
+      <div class="sq-dots" id="sqDots"></div>
     </div>
   </section>
 
@@ -585,15 +662,44 @@
       <div class="section-label" data-es="Cobertura de medios" data-en="Media Coverage">Cobertura de medios</div>
       <h2 class="section-title" data-es="Gabriel en la prensa de Puerto Rico" data-en="Gabriel in the Puerto Rico Press">Gabriel en la prensa de Puerto Rico</h2>
       <div class="prensa-grid">
-        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/m6n1qhgsWjY" title="Paro policias" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es="Preocupa amenaza de paro de los policías" data-en="Police strike threat raises concern">Preocupa amenaza de paro de los policías</p></div>
-        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/xuUuhFzE_ho" title="Suicidaron la policia" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es='"En el 2013 se suicidó a la Policía"' data-en='"In 2013, the Police was destroyed"'>"En el 2013 se suicidó a la Policía"</p></div>
-        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/kKfurfNOW5Y" title="Ocho anos sin aumento" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es="Policías llevan ocho años sin aumento salarial" data-en="Officers go eight years without a salary raise">Policías llevan ocho años sin aumento salarial</p></div>
-        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/6TicIYM8gXg" title="Punto critico" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es="Policía de Puerto Rico en punto crítico" data-en="Puerto Rico Police at a critical point">Policía de Puerto Rico en punto crítico</p></div>
-        <div class="prensa-card"><div class="prensa-embed"><iframe src="https://www.youtube.com/embed/JHzm5yOZQsQ" title="Reclutamiento" frameborder="0" allowfullscreen loading="lazy"></iframe></div><p data-es='"Tenemos un problema grave": reclutamiento policial en PR' data-en='"We have a serious problem": police recruitment in PR'>"Tenemos un problema grave": reclutamiento policial en PR</p></div>
-
+        <div class="prensa-card" onclick="openPrensaModal('m6n1qhgsWjY','Preocupa amenaza de paro de los policías','Police strike threat raises concern','Gabriel Hernández denuncia el riesgo de un paro policial ante la falta de respuesta del gobierno al pago de horas compensatorias acumuladas.','Gabriel Hernández denounces the risk of a police stoppage due to the government's lack of response to unpaid accumulated overtime.')" style="cursor:pointer;">
+          <div class="prensa-embed"><div class="prensa-thumb" style="background:#0a0e1a;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:8px;"><img src="https://img.youtube.com/vi/m6n1qhgsWjY/mqdefault.jpg" alt="Preocupa amenaza de paro de los policías" style="width:100%;height:100%;object-fit:cover;border-radius:8px;opacity:0.85;" /><div class="prensa-play-btn">▶</div></div></div>
+          <p data-es="Preocupa amenaza de paro de los policías" data-en="Police strike threat raises concern">Preocupa amenaza de paro de los policías</p>
+        </div>
+        <div class="prensa-card" onclick="openPrensaModal('xuUuhFzE_ho','"En el 2013 se suicidó a la Policía"','"In 2013, the Police was destroyed"','Gabriel explica cómo la Ley 3 de 2013 destruyó el sistema de retiro de los policías de Puerto Rico y las consecuencias que aún se sienten.','Gabriel explains how Law 3 of 2013 destroyed the Puerto Rico police retirement system and the consequences still felt today.')" style="cursor:pointer;">
+          <div class="prensa-embed"><div class="prensa-thumb" style="background:#0a0e1a;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:8px;"><img src="https://img.youtube.com/vi/xuUuhFzE_ho/mqdefault.jpg" alt=""En el 2013 se suicidó a la Policía"" style="width:100%;height:100%;object-fit:cover;border-radius:8px;opacity:0.85;" /><div class="prensa-play-btn">▶</div></div></div>
+          <p data-es=""En el 2013 se suicidó a la Policía"" data-en=""In 2013, the Police was destroyed"">"En el 2013 se suicidó a la Policía"</p>
+        </div>
+        <div class="prensa-card" onclick="openPrensaModal('kKfurfNOW5Y','Policías llevan ocho años sin aumento salarial','Officers go eight years without a salary raise','APUL documenta que los oficiales de la Policía de Puerto Rico llevan ocho años sin un aumento salarial, con sueldos que no cubren el costo de vida.','APUL documents that Puerto Rico Police officers have gone eight years without a salary increase, with wages that do not cover the cost of living.')" style="cursor:pointer;">
+          <div class="prensa-embed"><div class="prensa-thumb" style="background:#0a0e1a;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:8px;"><img src="https://img.youtube.com/vi/kKfurfNOW5Y/mqdefault.jpg" alt="Policías llevan ocho años sin aumento salarial" style="width:100%;height:100%;object-fit:cover;border-radius:8px;opacity:0.85;" /><div class="prensa-play-btn">▶</div></div></div>
+          <p data-es="Policías llevan ocho años sin aumento salarial" data-en="Officers go eight years without a salary raise">Policías llevan ocho años sin aumento salarial</p>
+        </div>
+        <div class="prensa-card" onclick="openPrensaModal('6TicIYM8gXg','Policía de Puerto Rico en punto crítico','Puerto Rico Police at a critical point','Análisis del estado crítico de la Policía de Puerto Rico: escasez de personal, agotamiento y falta de recursos institucionales.','Analysis of the critical state of the Puerto Rico Police: staff shortages, exhaustion, and lack of institutional resources.')" style="cursor:pointer;">
+          <div class="prensa-embed"><div class="prensa-thumb" style="background:#0a0e1a;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:8px;"><img src="https://img.youtube.com/vi/6TicIYM8gXg/mqdefault.jpg" alt="Policía de Puerto Rico en punto crítico" style="width:100%;height:100%;object-fit:cover;border-radius:8px;opacity:0.85;" /><div class="prensa-play-btn">▶</div></div></div>
+          <p data-es="Policía de Puerto Rico en punto crítico" data-en="Puerto Rico Police at a critical point">Policía de Puerto Rico en punto crítico</p>
+        </div>
+        <div class="prensa-card" onclick="openPrensaModal('JHzm5yOZQsQ','"Tenemos un problema grave": reclutamiento policial en PR','"We have a serious problem": police recruitment in PR','Gabriel alerta sobre la crisis de reclutamiento: la fuerza policial no logra atraer nuevos efectivos ante las condiciones laborales actuales.','Gabriel warns about the recruitment crisis: the police force cannot attract new officers given current working conditions.')" style="cursor:pointer;">
+          <div class="prensa-embed"><div class="prensa-thumb" style="background:#0a0e1a;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;border-radius:8px;"><img src="https://img.youtube.com/vi/JHzm5yOZQsQ/mqdefault.jpg" alt=""Tenemos un problema grave": reclutamiento policial en PR" style="width:100%;height:100%;object-fit:cover;border-radius:8px;opacity:0.85;" /><div class="prensa-play-btn">▶</div></div></div>
+          <p data-es=""Tenemos un problema grave": reclutamiento policial en PR" data-en=""We have a serious problem": police recruitment in PR">"Tenemos un problema grave": reclutamiento policial en PR</p>
+        </div>
       </div>
     </div>
   </section>
+
+
+  <div class="prensa-modal-overlay" id="prensaModal" onclick="closePrensaModal(event)" style="display:none;">
+    <div class="prensa-modal-inner">
+      <button class="prensa-modal-close" onclick="closePrensaModal()" aria-label="Cerrar">✕</button>
+      <div class="prensa-modal-video">
+        <iframe id="prensaModalIframe" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+      <div class="prensa-modal-info">
+        <h3 class="prensa-modal-title" id="prensaModalTitle"></h3>
+        <p class="prensa-modal-desc" id="prensaModalDesc"></p>
+        <a class="prensa-modal-link" id="prensaModalLink" target="_blank" rel="noopener" data-es="Ver en YouTube" data-en="Watch on YouTube">Ver en YouTube ↗</a>
+      </div>
+    </div>
+  </div>
 
   <section class="section muro" id="muro">
     <div class="container">
@@ -719,6 +825,25 @@
     </div>
   </section>
 
+  <section class="section contadores-section" id="contadores">
+    <div class="container">
+      <div class="contadores-grid">
+        <div class="contador-card">
+          <div class="contador-num" id="cntPersonas">—</div>
+          <div class="contador-label" data-es="personas han apoyado" data-en="people have supported">personas han apoyado</div>
+        </div>
+        <div class="contador-card">
+          <div class="contador-num" id="cntMensajes">—</div>
+          <div class="contador-label" data-es="mensajes en el muro" data-en="messages on the wall">mensajes en el muro</div>
+        </div>
+        <div class="contador-card">
+          <div class="contador-num" id="cntEstados">—</div>
+          <div class="contador-label" data-es="estados y países representados" data-en="states and countries represented">estados y países representados</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section donacion" id="donar">
     <div class="container donacion-inner">
       <div>
@@ -731,15 +856,54 @@
     </div>
   </section>
 
+  <section class="share-section" id="compartir">
+    <div class="container">
+      <p class="share-label" data-es="Ayuda a que más personas conozcan su historia" data-en="Help more people know his story">Ayuda a que más personas conozcan su historia</p>
+      <div class="share-btns">
+        <button class="share-btn share-wa" onclick="compartirWA()" data-es="Compartir en WhatsApp" data-en="Share on WhatsApp">📱 WhatsApp</button>
+        <button class="share-btn share-fb" onclick="compartirFB()" data-es="Compartir en Facebook" data-en="Share on Facebook">📘 Facebook</button>
+        <button class="share-btn share-copy" onclick="copiarLink()" id="btnCopy" data-es="Copiar enlace" data-en="Copy link">🔗 Copiar enlace</button>
+      </div>
+    </div>
+  </section>
+
   <section class="section respaldo" id="respaldo">
     <div class="container">
       <div class="section-label" data-es="Respaldo institucional" data-en="Institutional Support">Respaldo institucional</div>
       <h2 class="section-title" data-es="Organizaciones que nos apoyan" data-en="Organizations that Support Us">Organizaciones que nos apoyan</h2>
-      <div class="logos-grid">
-        <a href="https://www.dallaspa.org" target="_blank" class="logo-partner"><img src="https://cdn.prod.website-files.com/672a674043677eb2de3eec06/673f92da4bcb4eedb55f37d7_Dallas%26FOP-800.png" alt="Dallas Police Association" /></a>
-        <a href="https://atodallas.org" target="_blank" class="logo-partner"><img src="https://atodallas.org/wp-content/uploads/2023/05/ATOF_Logo_Horizontal_Color.svg" alt="Assist the Officer Foundation" /></a>
-        <a href="https://www.theblueguardianfoundation.org" target="_blank" class="logo-partner"><img src="assets/images/logo_blueguardian.png" alt="Blue Guardian Foundation" /></a>
-        <a href="https://www.facebook.com/itdahockley/" target="_blank" class="logo-partner"><img src="assets/images/logo_iglesia.png" alt="Iglesia Taller del Alfarero" /></a>
+      <div class="respaldo-grid">
+        <a href="https://www.dallaspa.org" target="_blank" rel="noopener" class="respaldo-card">
+          <div class="respaldo-logo"><img src="https://cdn.prod.website-files.com/672a674043677eb2de3eec06/673f92da4bcb4eedb55f37d7_Dallas%26FOP-800.png" alt="Dallas Police Association" /></div>
+          <div class="respaldo-info">
+            <div class="respaldo-name">Dallas Police Association</div>
+            <div class="respaldo-desc" data-es="La asociación policial más antigua y grande de Dallas, Texas. Fundada en 1959." data-en="The oldest and largest police association in Dallas, Texas. Founded in 1959.">La asociación policial más antigua y grande de Dallas, Texas. Fundada en 1959.</div>
+            <div class="respaldo-link">dallaspa.org ↗</div>
+          </div>
+        </a>
+        <a href="https://atodallas.org" target="_blank" rel="noopener" class="respaldo-card">
+          <div class="respaldo-logo"><img src="https://atodallas.org/wp-content/uploads/2023/05/ATOF_Logo_Horizontal_Color.svg" alt="Assist the Officer Foundation" /></div>
+          <div class="respaldo-info">
+            <div class="respaldo-name">Assist the Officer Foundation</div>
+            <div class="respaldo-desc" data-es="Fundación de apoyo a oficiales y sus familias en momentos de necesidad. Canal oficial de fondos de esta campaña." data-en="Foundation supporting officers and their families in times of need. Official fundraising channel for this campaign.">Fundación de apoyo a oficiales y sus familias en momentos de necesidad. Canal oficial de fondos de esta campaña.</div>
+            <div class="respaldo-link">atodallas.org ↗</div>
+          </div>
+        </a>
+        <a href="https://www.theblueguardianfoundation.org" target="_blank" rel="noopener" class="respaldo-card">
+          <div class="respaldo-logo"><img src="assets/images/logo_blueguardian.png" alt="Blue Guardian Foundation" /></div>
+          <div class="respaldo-info">
+            <div class="respaldo-name">Blue Guardian Foundation</div>
+            <div class="respaldo-desc" data-es="Asistencia financiera a oficiales heridos o afectados por eventos catastróficos. Confirmado por Sgt. René Sánchez." data-en="Financial assistance to officers injured or affected by catastrophic events. Confirmed by Sgt. René Sánchez.">Asistencia financiera a oficiales heridos o afectados por eventos catastróficos. Confirmado por Sgt. René Sánchez.</div>
+            <div class="respaldo-link">theblueguardianfoundation.org ↗</div>
+          </div>
+        </a>
+        <a href="https://www.facebook.com/itdahockley/" target="_blank" rel="noopener" class="respaldo-card">
+          <div class="respaldo-logo"><img src="assets/images/logo_iglesia.png" alt="Iglesia Taller del Alfarero" /></div>
+          <div class="respaldo-info">
+            <div class="respaldo-name">Iglesia Taller del Alfarero</div>
+            <div class="respaldo-desc" data-es="Comunidad de fe en Hockley, Texas. Pilar espiritual y comunitario de esta campaña." data-en="Faith community in Hockley, Texas. Spiritual and community pillar of this campaign.">Comunidad de fe en Hockley, Texas. Pilar espiritual y comunitario de esta campaña.</div>
+            <div class="respaldo-link">Facebook ↗</div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
