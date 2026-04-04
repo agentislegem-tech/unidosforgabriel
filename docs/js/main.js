@@ -38,16 +38,56 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // ── HERO CINEMATIC ────────────────────────────────────
 function initHero() {
+  const hero     = document.querySelector('.hero');
   const splitTop = document.getElementById('splitTop');
   const splitBot = document.getElementById('splitBot');
+  const heroImg  = document.querySelector('.hero-img');
+  const heroOvl  = document.querySelector('.hero-overlay');
   const content  = document.getElementById('heroContent');
-  if (splitTop) setTimeout(() => { splitTop.classList.add('animate'); splitBot.classList.add('animate'); }, 300);
+  if (!hero) return;
+
+  // Fase 1 — Foto y overlay emergen (desktop: 0.8s delay, 2.5s duración)
+  if (heroImg) setTimeout(() => heroImg.classList.add('reveal'), 50);
+  if (heroOvl) setTimeout(() => heroOvl.classList.add('reveal'), 50);
+
+  // Fase 2 — Cortinas se abren (desktop: 2.8s)
+  if (splitTop) setTimeout(() => {
+    splitTop.classList.add('animate');
+    splitBot.classList.add('animate');
+  }, 50);
+
+  // Fase 3 — Texto emerge línea por línea (desktop: 5.2s en adelante)
   if (content) setTimeout(() => {
     ['hero-eyebrow','hero-title','hero-sub','hero-actions'].forEach(c => {
       const el = content.querySelector('.'+c);
       if (el) el.classList.add('show');
     });
-  }, 500);
+  }, 50);
+
+  // Skip al hacer clic en el hero
+  hero.addEventListener('click', skipHero, { once: true });
+}
+
+function skipHero() {
+  const hero    = document.querySelector('.hero');
+  const heroImg = document.querySelector('.hero-img');
+  const heroOvl = document.querySelector('.hero-overlay');
+  const content = document.getElementById('heroContent');
+  if (!hero) return;
+  hero.classList.add('skipped');
+  if (heroImg) { heroImg.classList.add('reveal'); }
+  if (heroOvl) { heroOvl.classList.add('reveal'); }
+  if (content) {
+    ['hero-eyebrow','hero-title','hero-sub','hero-actions'].forEach(c => {
+      const el = content.querySelector('.'+c);
+      if (el) el.classList.add('show');
+    });
+  }
+  // Después del skip, el clic en el hero no debe bloquear los botones
+  setTimeout(() => {
+    const h = document.querySelector('.hero');
+    if (h) h.style.cursor = 'default';
+  }, 100);
 }
 
 // ── IDIOMA ────────────────────────────────────────────

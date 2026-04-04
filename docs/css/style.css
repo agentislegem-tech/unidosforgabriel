@@ -102,8 +102,11 @@ a { text-decoration: none; color: inherit; }
   text-align: center;
   padding: 120px 24px 80px;
   overflow: hidden;
-  background: #0a1a3e;
+  background: #000;
+  cursor: pointer;
 }
+
+/* Foto — empieza invisible */
 .hero-img {
   position: absolute;
   inset: 0;
@@ -111,31 +114,79 @@ a { text-decoration: none; color: inherit; }
   object-fit: cover;
   object-position: center top;
   image-rendering: -webkit-optimize-contrast;
+  opacity: 0;
+  transition: none;
 }
+.hero-img.reveal {
+  animation: imgReveal 2.5s cubic-bezier(0.4,0,0.2,1) 0.8s forwards;
+}
+
+/* Overlay de color encima de la foto */
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,28,80,0.82) 100%);
-}
-
-/* Split Reveal */
-.split-top, .split-bot {
-  position: absolute; left: 0; right: 0;
-  background: #001040;
-  z-index: 5;
+  opacity: 0;
   transition: none;
 }
-.split-top { top: 0; height: 51%; transform: translateY(0); }
-.split-bot { bottom: 0; height: 51%; transform: translateY(0); }
+.hero-overlay.reveal {
+  animation: overlayReveal 2.5s ease 0.8s forwards;
+}
 
+/* Cortina negra que cubre todo al inicio — encima de todo */
+.split-top, .split-bot {
+  position: absolute; left: 0; right: 0;
+  background: #000;
+  z-index: 10;
+  transition: none;
+}
+.split-top { top: 0; height: 51%; }
+.split-bot { bottom: 0; height: 51%; }
+.split-top.animate { animation: splitOpenTop 1.8s cubic-bezier(0.77,0,0.18,1) 2.8s forwards; }
+.split-bot.animate { animation: splitOpenBot 1.8s cubic-bezier(0.77,0,0.18,1) 2.8s forwards; }
+
+/* Skip hint */
+.hero-skip-hint {
+  position: absolute;
+  bottom: 28px; right: 28px;
+  z-index: 20;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  animation: hintFade 0.8s ease 1.5s forwards;
+}
+.hero.skipped .hero-skip-hint { display: none; }
+
+/* Keyframes */
+@keyframes imgReveal {
+  0%   { opacity: 0; transform: scale(1.04); }
+  60%  { opacity: 0.9; }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes overlayReveal {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes splitOpenTop { 0%{transform:translateY(0)} 100%{transform:translateY(-102%)} }
 @keyframes splitOpenBot { 0%{transform:translateY(0)} 100%{transform:translateY(102%)} }
-@keyframes heroEyebrow  { 0%{opacity:0;letter-spacing:0.5em} 100%{opacity:1;letter-spacing:0.18em} }
-@keyframes heroTitle    { 0%{opacity:0;transform:scale(1.3) translateY(-16px)} 60%{transform:scale(0.98) translateY(2px)} 100%{opacity:1;transform:scale(1) translateY(0)} }
-@keyframes heroSub      { 0%{opacity:0;transform:translateY(20px)} 100%{opacity:1;transform:translateY(0)} }
-@keyframes heroBtns     { 0%{opacity:0;transform:scale(0.8)} 60%{transform:scale(1.04)} 100%{opacity:1;transform:scale(1)} }
+@keyframes hintFade { 0%{opacity:0} 100%{opacity:1} }
 
-.split-top.animate { animation: splitOpenTop 0.9s cubic-bezier(0.77,0,0.18,1) 0.3s forwards; }
-.split-bot.animate { animation: splitOpenBot 0.9s cubic-bezier(0.77,0,0.18,1) 0.3s forwards; }
+@keyframes heroEyebrow { 0%{opacity:0;letter-spacing:0.5em} 100%{opacity:1;letter-spacing:0.18em} }
+@keyframes heroTitle   { 0%{opacity:0;transform:translateY(24px)} 100%{opacity:1;transform:translateY(0)} }
+@keyframes heroSub     { 0%{opacity:0;transform:translateY(16px)} 100%{opacity:1;transform:translateY(0)} }
+@keyframes heroBtns    { 0%{opacity:0;transform:translateY(12px)} 100%{opacity:1;transform:translateY(0)} }
+
+/* Estado skipped — todo visible inmediatamente */
+.hero.skipped .hero-img    { opacity:1 !important; transform:scale(1) !important; animation:none !important; }
+.hero.skipped .hero-overlay { opacity:1 !important; animation:none !important; }
+.hero.skipped .split-top   { transform:translateY(-102%) !important; animation:none !important; }
+.hero.skipped .split-bot   { transform:translateY(102%) !important; animation:none !important; }
+.hero.skipped .hero-eyebrow { opacity:1 !important; letter-spacing:0.18em !important; animation:none !important; }
+.hero.skipped .hero-title   { opacity:1 !important; transform:translateY(0) !important; animation:none !important; }
+.hero.skipped .hero-sub     { opacity:1 !important; transform:translateY(0) !important; animation:none !important; }
+.hero.skipped .hero-actions { opacity:1 !important; transform:translateY(0) !important; animation:none !important; }
 
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow {
@@ -948,4 +999,16 @@ button.explora-tile {
   text-align: center;
   appearance: none;
   -webkit-appearance: none;
+}
+
+/* Hero móvil — secuencia más rápida */
+@media (max-width: 768px) {
+  .hero-img.reveal { animation-duration: 1.8s; animation-delay: 0.4s; }
+  .hero-overlay.reveal { animation-duration: 1.8s; animation-delay: 0.4s; }
+  .split-top.animate { animation-duration: 1.2s; animation-delay: 1.8s; }
+  .split-bot.animate { animation-duration: 1.2s; animation-delay: 1.8s; }
+  .hero-eyebrow.show { animation-duration: 0.7s; animation-delay: 3.4s; }
+  .hero-title.show   { animation-duration: 0.7s; animation-delay: 3.9s; }
+  .hero-sub.show     { animation-duration: 0.6s; animation-delay: 4.4s; }
+  .hero-actions.show { animation-duration: 0.6s; animation-delay: 4.8s; }
 }
