@@ -343,6 +343,17 @@ function copiarLink() {
   });
 }
 
+function abrirCompartir() {
+  const overlay = document.getElementById('compartirModal');
+  if (overlay) { overlay.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+}
+
+function cerrarCompartir(e) {
+  if (e && e.target !== document.getElementById('compartirModal') && !e.target.classList.contains('compartir-modal-close')) return;
+  const overlay = document.getElementById('compartirModal');
+  if (overlay) { overlay.style.display = 'none'; document.body.style.overflow = ''; }
+}
+
 // ── REGISTRO ─────────────────────────────────────────
 const form    = document.getElementById('registroForm');
 const success = document.getElementById('formSuccess');

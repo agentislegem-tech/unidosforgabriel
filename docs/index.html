@@ -449,17 +449,21 @@
   <section class="section bloque-frases" id="frases">
     <div class="container">
       <div class="frases-grid">
-        <div class="frase-card">
+        <div class="frase-card" onclick="abrirFrase(0)" role="button" tabindex="0">
           <span class="frase-texto" data-es="&ldquo;Suicidaron mi retiro.&rdquo;" data-en="&ldquo;They destroyed my retirement.&rdquo;">&ldquo;Suicidaron mi retiro.&rdquo;</span>
+          <span class="frase-ver-mas" data-es="Ver contexto →" data-en="See context →">Ver contexto →</span>
         </div>
-        <div class="frase-card">
+        <div class="frase-card" onclick="abrirFrase(1)" role="button" tabindex="0">
           <span class="frase-texto" data-es="&ldquo;Mi credibilidad es mi propia vida.&rdquo;" data-en="&ldquo;My credibility is my own life.&rdquo;">&ldquo;Mi credibilidad es mi propia vida.&rdquo;</span>
+          <span class="frase-ver-mas" data-es="Ver contexto →" data-en="See context →">Ver contexto →</span>
         </div>
-        <div class="frase-card">
+        <div class="frase-card" onclick="abrirFrase(2)" role="button" tabindex="0">
           <span class="frase-texto" data-es="&ldquo;No cobré un centavo.&rdquo;" data-en="&ldquo;I didn't collect a cent.&rdquo;">&ldquo;No cobré un centavo.&rdquo;</span>
+          <span class="frase-ver-mas" data-es="Ver contexto →" data-en="See context →">Ver contexto →</span>
         </div>
-        <div class="frase-card">
+        <div class="frase-card" onclick="abrirFrase(3)" role="button" tabindex="0">
           <span class="frase-texto" data-es="&ldquo;Sigo aquí.&rdquo;" data-en="&ldquo;I'm still here.&rdquo;">&ldquo;Sigo aquí.&rdquo;</span>
+          <span class="frase-ver-mas" data-es="Ver contexto →" data-en="See context →">Ver contexto →</span>
         </div>
       </div>
     </div>
@@ -501,7 +505,7 @@
       <p class="section-desc light" data-es="No lo dejemos solo ahora." data-en="Let's not leave him alone now.">No lo dejemos solo ahora.</p>
       <div class="urgencia-btns">
         <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="btn-donate" data-es="Donar ahora" data-en="Donate Now">Donar ahora</a>
-        <a href="https://unidosporgabriel.org" class="btn-secondary" data-es="Compartir esta historia" data-en="Share this story">Compartir esta historia</a>
+        <button onclick="abrirCompartir()" class="btn-secondary" data-es="Compartir esta historia" data-en="Share this story">Compartir esta historia</button>
       </div>
     </div>
   </section>
@@ -737,6 +741,19 @@
 
   </div>
 
+
+  <div class="frase-modal-overlay" id="compartirModal" onclick="cerrarCompartir(event)" style="display:none;">
+    <div class="frase-modal-inner" style="text-align:center;">
+      <button class="frase-modal-close compartir-modal-close" onclick="cerrarCompartir()" aria-label="Cerrar">✕</button>
+      <h3 class="frase-modal-titulo" data-es="Comparte esta historia" data-en="Share this story">Comparte esta historia</h3>
+      <p class="frase-modal-contexto" data-es="Cada persona que comparte lleva la historia más lejos." data-en="Every share takes the story further.">Cada persona que comparte lleva la historia más lejos.</p>
+      <div class="share-btns" style="justify-content:center;margin-top:20px;">
+        <button class="share-btn share-wa" onclick="compartirWA()" data-es="📱 WhatsApp" data-en="📱 WhatsApp">📱 WhatsApp</button>
+        <button class="share-btn share-fb" onclick="compartirFB()" data-es="📘 Facebook" data-en="📘 Facebook">📘 Facebook</button>
+        <button class="share-btn share-copy" onclick="copiarLink()" id="btnCopyModal" data-es="🔗 Copiar enlace" data-en="🔗 Copy link">🔗 Copiar enlace</button>
+      </div>
+    </div>
+  </div>
 
   <div class="frase-modal-overlay" id="fraseModal" onclick="cerrarFrase(event)" style="display:none;">
     <div class="frase-modal-inner">
