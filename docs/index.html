@@ -178,6 +178,80 @@
   .impacto-grid { grid-template-columns: 1fr 1fr; }
   .frase-texto { font-size: 1.1rem; }
 }
+
+/* ── VISITANTES BADGE ──────────────────────── */
+.visitas-badge {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+/* ── TIMELINE ──────────────────────────────── */
+.timeline-section { background: var(--blanco); }
+.timeline { position: relative; max-width: 720px; margin: 48px auto 0; padding-left: 32px; }
+.timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background: var(--gris-borde); }
+.tl-item { position:relative; margin-bottom: 0; cursor:pointer; }
+.tl-dot { position:absolute; left:-26px; top:18px; width:12px; height:12px; border-radius:50%; background: var(--gris-borde); border:2px solid var(--blanco); transition: background 0.2s; }
+.tl-dot-key { background: var(--azul-pr); }
+.tl-dot-now { background: var(--rojo-pr); }
+.tl-item:hover .tl-dot { background: var(--azul-pr); }
+.tl-year { font-size: 0.75rem; font-weight: 700; color: var(--azul-pr); text-transform: uppercase; letter-spacing: 0.1em; padding: 18px 0 4px; }
+.tl-title { font-size: 1rem; font-weight: 700; color: var(--negro); padding-bottom: 0; }
+.tl-title::after { content: ' ↓'; font-size: 0.8rem; color: var(--gris-texto); }
+.tl-item.open .tl-title::after { content: ' ↑'; }
+.tl-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.tl-body p { font-size: 0.95rem; line-height: 1.75; color: var(--gris-texto); padding: 10px 0 18px; border-bottom: 1px solid var(--gris-borde); margin:0; }
+.tl-item.open .tl-body { max-height: 300px; }
+.tl-item-now .tl-year { color: var(--rojo-pr); }
+
+/* ── MURO NUEVO ────────────────────────────── */
+.muro-compositor { display:grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 48px; align-items: start; }
+.muro-tabs { display:flex; gap:8px; margin-bottom:16px; }
+.muro-tab { background: none; border: 1px solid var(--gris-borde); border-radius: 8px; padding: 8px 16px; font-size:0.875rem; cursor:pointer; color: var(--gris-texto); transition: all 0.15s; }
+.muro-tab.active { background: var(--azul-pr); color: var(--blanco); border-color: var(--azul-pr); }
+.form-group-muro { margin-bottom: 12px; position: relative; }
+.form-group-muro input,
+.form-group-muro select,
+.form-group-muro textarea { width:100%; box-sizing:border-box; }
+.char-count { position:absolute; bottom:8px; right:10px; font-size:0.75rem; color: var(--gris-texto); pointer-events:none; }
+.muro-nota { font-size:0.8rem; color: var(--gris-texto); margin-top:10px; line-height:1.5; }
+.muro-error { font-size:0.875rem; color: var(--rojo-pr); margin-top:8px; padding: 10px; background: #fff0f0; border-radius:8px; }
+.muro-preview-label { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color: var(--gris-texto); margin-bottom:12px; }
+
+/* Tarjeta */
+.wall-card { border-radius: 12px; border: 1px solid var(--gris-borde); background: var(--blanco); overflow:hidden; transition: transform 0.15s; }
+.wall-card:hover { transform: translateY(-3px); }
+.wall-card-preview { max-width: 240px; }
+.card-accent-bar { height:4px; }
+.card-header { padding:12px 14px 8px; display:flex; align-items:center; gap:8px; border-bottom: 1px solid var(--gris-borde); }
+.card-flag { font-size:24px; line-height:1; }
+.card-symbol { font-size:16px; }
+.card-place { font-size:12px; font-weight:700; color: var(--negro); }
+.card-body { padding:12px 14px; min-height:52px; }
+.card-msg { font-size:11.5px; color: var(--gris-texto); line-height:1.55; font-style:italic; }
+.card-footer { padding:8px 14px 10px; border-top: 1px solid var(--gris-borde); font-size:11px; color: var(--gris-texto); }
+
+/* Tarjeta anónima */
+.wall-card-anon .card-header { background: var(--gris-claro); }
+
+/* Grid del muro */
+.muro-wall-wrap { margin-top:16px; }
+.muro-wall-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.muro-count-label { font-size:0.85rem; color: var(--gris-texto); }
+.muro-cards-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap:14px; }
+
+/* Disclaimer */
+.disclaimer-tip { font-size:0.82rem; color: rgba(255,255,255,0.65); margin-top:8px; line-height:1.6; max-width:520px; font-style:italic; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .muro-compositor { grid-template-columns:1fr; }
+  .timeline { padding-left: 24px; }
+  .wall-card-preview { max-width:100%; }
+}
+
 </style>
 </head>
 <body>
@@ -185,7 +259,7 @@
   <nav class="nav">
     <img src="assets/images/logo_campaign.png" alt="Unidos por Gabriel" class="nav-logo" />
     <div class="nav-right">
-      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+      <span class="visitas-badge" id="visitasBadge" title="Visitantes">— visitas</span><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
       <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate nav-donate" data-es="Donar Ahora" data-en="Donate Now">Donar Ahora</a>
     </div>
   </nav>
@@ -399,6 +473,97 @@
     </div>
   </section>
 
+  <section class="section timeline-section" id="timeline">
+    <div class="container">
+      <div class="section-label" data-es="Su trayectoria" data-en="His journey">Su trayectoria</div>
+      <h2 class="section-title" data-es="Una línea de tiempo que habla sola" data-en="A timeline that speaks for itself">Una línea de tiempo que habla sola</h2>
+      <div class="timeline">
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1999</div>
+          <div class="tl-title" data-es="Entra a la Policía de Puerto Rico" data-en="Joins the Puerto Rico Police">Entra a la Policía de Puerto Rico</div>
+          <div class="tl-body">
+            <p data-es="Placa 27365. Cabo Rojo, Puerto Rico. Comienza un servicio de 20 años dedicado a la seguridad pública de la isla." data-en="Badge 27365. Cabo Rojo, Puerto Rico. Begins 20 years of service dedicated to public safety on the island.">Placa 27365. Cabo Rojo, Puerto Rico. Comienza un servicio de 20 años dedicado a la seguridad pública de la isla.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2013</div>
+          <div class="tl-title" data-es="La Ley 3 recorta el retiro" data-en="Law 3 cuts retirement benefits">La Ley 3 recorta el retiro</div>
+          <div class="tl-body">
+            <p data-es="La Ley 3 de 2013 recorta más del 35% de los beneficios de retiro de los servidores públicos. La Ley 106 de 2017 declarará el sistema insolvente. Los policías de PR no cotizaban al Seguro Social federal hasta 2019." data-en="Law 3 of 2013 cuts over 35% of public servant retirement benefits. Law 106 of 2017 will declare the system insolvent. PR officers did not contribute to federal Social Security until 2019.">La Ley 3 de 2013 recorta más del 35% de los beneficios de retiro de los servidores públicos. La Ley 106 de 2017 declarará el sistema insolvente. Los policías de PR no cotizaban al Seguro Social federal hasta 2019.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2019</div>
+          <div class="tl-title" data-es="Se retira — pensión: $487.81/mes" data-en="Retires — pension: $487.81/month">Se retira — pensión: $487.81/mes</div>
+          <div class="tl-body">
+            <p data-es="Después de 20 años de servicio, se retira con una pensión de $487.81 al mes — que no puede recibir hasta los 65 años. Emigra a los Estados Unidos. Sigue trabajando por necesidad." data-en="After 20 years of service, retires with a pension of $487.81 per month — which he cannot receive until age 65. Emigrates to the United States. Continues working out of necessity.">Después de 20 años de servicio, se retira con una pensión de $487.81 al mes — que no puede recibir hasta los 65 años. Emigra a los Estados Unidos. Sigue trabajando por necesidad.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot tl-dot-key"></div>
+          <div class="tl-year">Oct 2021</div>
+          <div class="tl-title" data-es="Comienza a hablar — solo, desde su teléfono" data-en="Begins to speak — alone, from his phone">Comienza a hablar — solo, desde su teléfono</div>
+          <div class="tl-body">
+            <p data-es="El 19 de octubre de 2021, sin organización ni presupuesto, empieza a denunciar en redes sociales la crisis del retiro policial. Miles lo escuchan." data-en="On October 19, 2021, without any organization or budget, he begins denouncing the police retirement crisis on social media. Thousands listen.">El 19 de octubre de 2021, sin organización ni presupuesto, empieza a denunciar en redes sociales la crisis del retiro policial. Miles lo escuchan.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot tl-dot-key"></div>
+          <div class="tl-year">Mar 2022</div>
+          <div class="tl-title" data-es="Funda APUL — $1,550M en 117 días" data-en="Founds APUL — $1.55B in 117 days">Funda APUL — $1,550M en 117 días</div>
+          <div class="tl-body">
+            <p data-es="Funda la Asociación de Policías Unidos Luchando (APUL). En 117 días negocia con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico $1,550 millones en beneficios: $850M para el fondo de retiro y $700M para el Plan Vital. Documentado en registros oficiales de la AAFAF." data-en="Founds the Asociación de Policías Unidos Luchando (APUL). In 117 days negotiates $1.55 billion with the Fiscal Oversight Board and the Government of Puerto Rico: $850M for the retirement fund and $700M for Plan Vital. Documented in official AAFAF records.">Funda la Asociación de Policías Unidos Luchando (APUL). En 117 días negocia con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico $1,550 millones en beneficios: $850M para el fondo de retiro y $700M para el Plan Vital. Documentado en registros oficiales de la AAFAF.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot"></div>
+          <div class="tl-year">May 2022</div>
+          <div class="tl-title" data-es="Testifica ante la Cámara de PR" data-en="Testifies before the PR House">Testifica ante la Cámara de PR</div>
+          <div class="tl-body">
+            <p data-es='"Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes." — Vista pública, mayo 2022' data-en='"I had to leave the Police because they destroyed my retirement. Today I still work because my Puerto Rico Police pension will be $487.00 a month." — Public hearing, May 2022'>"Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes." — Vista pública, mayo 2022</p>
+          </div>
+        </div>
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Mar 2023</div>
+          <div class="tl-title" data-es="Washington D.C. — Congreso de EE.UU." data-en="Washington D.C. — U.S. Congress">Washington D.C. — Congreso de EE.UU.</div>
+          <div class="tl-body">
+            <p data-es="Citado oficialmente al Congreso. Primera organización de policías puertorriqueños en lograrlo. Se reúne con la entonces Comisionada Residente. No hubo acción posterior." data-en="Officially summoned to Congress. First Puerto Rican police organization to achieve this. Meets with the then-Resident Commissioner. No subsequent action.">Citado oficialmente al Congreso. Primera organización de policías puertorriqueños en lograrlo. Se reúne con la entonces Comisionada Residente. No hubo acción posterior.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" onclick="toggleTL(this)">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2025</div>
+          <div class="tl-title" data-es="Sigue en la calle — 8 años sin aumento" data-en="Still fighting — 8 years without a raise">Sigue en la calle — 8 años sin aumento</div>
+          <div class="tl-body">
+            <p data-es="Manifestaciones frente a la JSF. Documenta $132M en horas compensatorias sin pagar. Solo 5,700 de 10,200 efectivos activos. Alerta sobre agotamiento mental de la fuerza. En diciembre, la gobernadora promete aumento salarial — sin fecha ni cifra oficial." data-en="Protests outside the JSF. Documents $132M in unpaid overtime. Only 5,700 of 10,200 authorized officers active. Alerts about mental exhaustion of the force. In December, the governor promises a salary increase — no date, no official figure.">Manifestaciones frente a la JSF. Documenta $132M en horas compensatorias sin pagar. Solo 5,700 de 10,200 efectivos activos. Alerta sobre agotamiento mental de la fuerza. En diciembre, la gobernadora promete aumento salarial — sin fecha ni cifra oficial.</p>
+          </div>
+        </div>
+
+        <div class="tl-item tl-item-now" onclick="toggleTL(this)">
+          <div class="tl-dot tl-dot-now"></div>
+          <div class="tl-year" data-es="2026 — Ahora" data-en="2026 — Now">2026 — Ahora</div>
+          <div class="tl-title" data-es="Cirugía de alto riesgo. La diáspora responde." data-en="High-risk surgery. The diaspora responds.">Cirugía de alto riesgo. La diáspora responde.</div>
+          <div class="tl-body">
+            <p data-es="Mientras seguía activo en su lucha, su salud requirió intervención quirúrgica de alto riesgo. La recuperación es costosa. Su pensión sigue siendo $487.81 — sin poder recibirla aún. La diáspora puertorriqueña en Estados Unidos responde." data-en="While still active in his fight, his health required high-risk surgery. Recovery is costly. His pension remains $487.81 — still unable to receive it. The Puerto Rican diaspora in the United States responds.">Mientras seguía activo en su lucha, su salud requirió intervención quirúrgica de alto riesgo. La recuperación es costosa. Su pensión sigue siendo $487.81 — sin poder recibirla aún. La diáspora puertorriqueña en Estados Unidos responde.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="section videos" id="videos">
     <div class="container">
       <div class="section-label" data-es="Su voz" data-en="His Voice">Su voz</div>
@@ -432,18 +597,104 @@
 
   <section class="section muro" id="muro">
     <div class="container">
-      <div class="section-label" data-es="Mensajes de apoyo" data-en="Messages of Support">Mensajes de apoyo</div>
-      <h2 class="section-title" data-es="Deja tu mensaje para Gabriel" data-en="Leave a Message for Gabriel">Deja tu mensaje para Gabriel</h2>
-      <p class="section-desc" data-es="Gabriel puede leer tu mensaje desde su recuperación. Hazle saber que no está solo." data-en="Gabriel can read your message during his recovery. Let him know he is not alone.">Gabriel puede leer tu mensaje desde su recuperación. Hazle saber que no está solo.</p>
-      <form class="muro-form" id="muroForm" data-endpoint="https://okfngn48kc.execute-api.us-east-1.amazonaws.com/prod/mensaje">
-        <div class="form-row">
-          <input type="text" id="muroNombre" placeholder="Tu nombre / Your name" maxlength="60" required />
-          <input type="text" id="muroLugar" placeholder="Ciudad, Estado / City, State" maxlength="60" />
+      <div class="section-label" data-es="Muro de apoyo" data-en="Wall of support">Muro de apoyo</div>
+      <h2 class="section-title" data-es="Deja tu tarjeta para Gabriel" data-en="Leave your card for Gabriel">Deja tu tarjeta para Gabriel</h2>
+      <p class="section-desc" data-es="Gabriel puede leer cada mensaje desde su recuperación. Tu tarjeta queda en el muro para que todos la vean." data-en="Gabriel can read every message during his recovery. Your card stays on the wall for everyone to see.">Gabriel puede leer cada mensaje desde su recuperación. Tu tarjeta queda en el muro para que todos la vean.</p>
+
+      <div class="muro-compositor">
+        <div class="muro-form-wrap">
+
+          <div class="muro-tabs">
+            <button class="muro-tab active" id="tabAnonimo" onclick="setTab('anonimo')" data-es="Mensaje rápido" data-en="Quick message">Mensaje rápido</button>
+            <button class="muro-tab" id="tabRegistrado" onclick="setTab('registrado')" data-es="Con mi lugar 🌍" data-en="With my location 🌍">Con mi lugar 🌍</button>
+          </div>
+
+          <div id="panelAnonimo">
+            <div class="form-group-muro">
+              <input type="text" id="muroNombreA" placeholder="Tu nombre / Your name" maxlength="60" />
+            </div>
+            <div class="form-group-muro">
+              <textarea id="muroMensajeA" placeholder="Tu mensaje para Gabriel... (máx. 300 caracteres)" maxlength="300" rows="3"></textarea>
+              <span class="char-count" id="charCountA">300</span>
+            </div>
+            <button class="btn-donate btn-full" onclick="enviarMensaje(false)" data-es="Publicar en el muro" data-en="Post to the wall">Publicar en el muro</button>
+          </div>
+
+          <div id="panelRegistrado" style="display:none;">
+            <div class="form-group-muro">
+              <input type="text" id="muroNombreR" placeholder="Tu nombre / Your name" maxlength="60" />
+            </div>
+            <div class="form-group-muro">
+              <select id="muroLugarKey">
+                <option value="">— Escoge tu lugar —</option>
+                <optgroup label="Estados Unidos">
+                  <option value="texas">Texas</option>
+                  <option value="newyork">New York</option>
+                  <option value="florida">Florida</option>
+                  <option value="newjersey">New Jersey</option>
+                  <option value="pennsylvania">Pennsylvania</option>
+                  <option value="illinois">Illinois</option>
+                  <option value="massachusetts">Massachusetts</option>
+                  <option value="connecticut">Connecticut</option>
+                  <option value="california">California</option>
+                  <option value="georgia">Georgia</option>
+                  <option value="ohio">Ohio</option>
+                  <option value="virginia">Virginia</option>
+                  <option value="northcarolina">North Carolina</option>
+                  <option value="arizona">Arizona</option>
+                  <option value="colorado">Colorado</option>
+                  <option value="washington">Washington</option>
+                </optgroup>
+                <optgroup label="Territorios">
+                  <option value="puertorico">Puerto Rico</option>
+                </optgroup>
+                <optgroup label="Internacional">
+                  <option value="spain">España</option>
+                  <option value="mexico">México</option>
+                  <option value="colombia">Colombia</option>
+                  <option value="dominicanrepublic">República Dominicana</option>
+                  <option value="canada">Canadá</option>
+                  <option value="other">Otro país</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group-muro">
+              <textarea id="muroMensajeR" placeholder="Tu mensaje para Gabriel... (máx. 300 caracteres)" maxlength="300" rows="3"></textarea>
+              <span class="char-count" id="charCountR">300</span>
+            </div>
+            <button class="btn-donate btn-full" onclick="enviarMensaje(true)" data-es="Publicar mi tarjeta" data-en="Post my card">Publicar mi tarjeta</button>
+          </div>
+
+          <p class="muro-nota" data-es="Los mensajes son moderados automáticamente. Contenido inapropiado es bloqueado." data-en="Messages are automatically moderated. Inappropriate content is blocked.">Los mensajes son moderados automáticamente. Contenido inapropiado es bloqueado.</p>
+          <p id="muroError" class="muro-error" style="display:none;"></p>
         </div>
-        <textarea id="muroMensaje" placeholder="Escribe tu mensaje para Gabriel... / Write your message for Gabriel..." maxlength="300" rows="3" required></textarea>
-        <button type="submit" class="btn-donate btn-full" data-es="Enviar mensaje 🇵🇷" data-en="Send message 🇵🇷">Enviar mensaje 🇵🇷</button>
-      </form>
-      <div class="muro-wall" id="muroWall"></div>
+
+        <div class="muro-preview-wrap">
+          <p class="muro-preview-label" data-es="Vista previa de tu tarjeta" data-en="Preview of your card">Vista previa de tu tarjeta</p>
+          <div id="cardPreview" class="wall-card wall-card-preview">
+            <div class="card-accent-bar" id="previewBar" style="background:#ccc;"></div>
+            <div class="card-header">
+              <div class="card-flag" id="previewFlag">🌍</div>
+              <div class="card-symbol" id="previewSymbol"></div>
+              <div>
+                <div class="card-place" id="previewPlace" data-es="Tu lugar" data-en="Your location">Tu lugar</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-msg" id="previewMsg" data-es="Tu mensaje aparecerá aquí..." data-en="Your message will appear here...">Tu mensaje aparecerá aquí...</div>
+            </div>
+            <div class="card-footer" id="previewName" data-es="Tu nombre" data-en="Your name">Tu nombre</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="muro-wall-wrap">
+        <div class="muro-wall-header">
+          <span class="muro-count-label" id="muroCountLabel">Cargando mensajes...</span>
+        </div>
+        <div class="muro-cards-grid" id="muroCardsGrid"></div>
+      </div>
+
     </div>
   </section>
 
@@ -474,6 +725,7 @@
         <div class="section-label light" data-es="Apoya la causa" data-en="Support the Cause">Apoya la causa</div>
         <h2 class="section-title light" data-es="Cada donación cuenta" data-en="Every Donation Counts">Cada donación cuenta</h2>
         <p class="section-desc light" data-es="El 100% de las donaciones va directamente a través de JustGiving para el apoyo de Gabriel y su familia." data-en="100% of donations go directly through JustGiving to support Gabriel and his family.">El 100% de las donaciones va directamente a través de JustGiving para el apoyo de Gabriel y su familia.</p>
+        <p class="disclaimer-tip" data-es="JustGiving añade una propina opcional por defecto. Para que Gabriel reciba el máximo posible, te invitamos a reducirla a cero antes de confirmar tu donación." data-en="JustGiving adds an optional tip by default. To ensure Gabriel receives the maximum possible, we invite you to reduce it to zero before confirming your donation.">JustGiving añade una propina opcional por defecto. Para que Gabriel reciba el máximo posible, te invitamos a reducirla a cero antes de confirmar tu donación.</p>
       </div>
       <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" class="btn-donate btn-white" data-es="Donar en JustGiving" data-en="Donate on JustGiving">Donar en JustGiving</a>
     </div>
