@@ -46,17 +46,30 @@ function initHero() {
   const content  = document.getElementById('heroContent');
   if (!hero) return;
 
-  // Fase 1 — Foto y overlay emergen (desktop: 0.8s delay, 2.5s duración)
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    // En móvil — skip inmediato, sin animación de cortinas que bloquea
+    hero.style.cursor = 'default';
+    if (heroImg) { heroImg.style.opacity='1'; heroImg.style.animation='none'; }
+    if (heroOvl) { heroOvl.style.opacity='1'; heroOvl.style.animation='none'; }
+    if (splitTop) { splitTop.style.transform='translateY(-102%)'; splitTop.style.animation='none'; }
+    if (splitBot) { splitBot.style.transform='translateY(102%)'; splitBot.style.animation='none'; }
+    if (content) {
+      setTimeout(() => {
+        ['hero-eyebrow','hero-title','hero-sub','hero-actions'].forEach(c => {
+          const el = content.querySelector('.'+c);
+          if (el) { el.style.opacity='1'; el.style.animation='none'; el.classList.add('show'); }
+        });
+      }, 300);
+    }
+    return;
+  }
+
+  // Desktop — secuencia cinematográfica completa
   if (heroImg) setTimeout(() => heroImg.classList.add('reveal'), 50);
   if (heroOvl) setTimeout(() => heroOvl.classList.add('reveal'), 50);
-
-  // Fase 2 — Cortinas se abren (desktop: 2.8s)
-  if (splitTop) setTimeout(() => {
-    splitTop.classList.add('animate');
-    splitBot.classList.add('animate');
-  }, 50);
-
-  // Fase 3 — Texto emerge línea por línea (desktop: 5.2s en adelante)
+  if (splitTop) setTimeout(() => { splitTop.classList.add('animate'); splitBot.classList.add('animate'); }, 50);
   if (content) setTimeout(() => {
     ['hero-eyebrow','hero-title','hero-sub','hero-actions'].forEach(c => {
       const el = content.querySelector('.'+c);
@@ -64,7 +77,7 @@ function initHero() {
     });
   }, 50);
 
-  // Skip al hacer clic en el hero
+  // Skip al hacer clic — solo desktop
   hero.addEventListener('click', skipHero, { once: true });
 }
 
@@ -175,16 +188,26 @@ function cerrarFrase(e) {
 function showPanel(name) {
   const panels = ['historia','timeline','sabiasque','prensa'];
   const explora = document.getElementById('explora');
+
   panels.forEach(p => {
     const el = document.getElementById('panel-'+p);
-    if (el) el.classList.toggle('active', p === name);
+    if (el) {
+      if (p === name) { el.style.display='block'; el.classList.add('active'); }
+      else { el.style.display='none'; el.classList.remove('active'); }
+    }
   });
+
   if (name) {
     if (explora) explora.classList.add('panel-open');
-    setTimeout(() => { if (explora) explora.scrollIntoView({behavior:'smooth',block:'start'}); }, 50);
   } else {
     if (explora) explora.classList.remove('panel-open');
-    setTimeout(() => { if (explora) explora.scrollIntoView({behavior:'smooth',block:'start'}); }, 50);
+  }
+
+  // Scroll robusto — funciona en iOS y Android
+  if (explora) {
+    const top = explora.getBoundingClientRect().top + window.pageYOffset - 60;
+    try { window.scrollTo({ top: top, behavior: 'smooth' }); }
+    catch(e) { window.scrollTo(0, top); }
   }
 }
 

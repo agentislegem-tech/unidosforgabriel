@@ -1620,3 +1620,53 @@ html, body {
   .respaldo-card:hover { transform: none; }
   .wall-card:hover { transform: none; }
 }
+
+/* ── HERO MÓVIL — sin cortinas que bloquen ─────────── */
+@media (max-width: 768px) {
+  .split-top, .split-bot {
+    display: none !important;
+  }
+  .hero {
+    cursor: default !important;
+  }
+  .hero-img {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .hero-overlay {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .hero-eyebrow,
+  .hero-title,
+  .hero-sub,
+  .hero-actions {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .hero-skip-hint { display: none !important; }
+
+  /* Asegurar que los tiles y botones son clickeables */
+  .explora-tile,
+  .volver-btn,
+  .btn-donate,
+  .btn-secondary,
+  .muro-tab,
+  .tl-tab,
+  .frase-card,
+  .prensa-card,
+  .wall-card,
+  .share-btn {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto !important;
+  }
+
+  /* El panel activo debe estar por encima de todo */
+  .content-panel.active {
+    position: relative;
+    z-index: 2;
+  }
+}
