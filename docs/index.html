@@ -19,6 +19,166 @@
   <meta name="twitter:title" content="Unidos por Gabriel" />
   <meta name="twitter:description" content="Negoció $1,550 millones para los policías de Puerto Rico. Su pensión: $487.81/mes. Ayúdalo hoy." />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"DonateAction","name":"Unidos por Gabriel","description":"Campaña humanitaria en apoyo a Gabriel Hernández Ramos, oficial retirado de la Policía de Puerto Rico y fundador de APUL.","url":"https://unidosporgabriel.org","recipient":{"@type":"Person","name":"Gabriel Hernández Ramos","jobTitle":"Fundador y Presidente APUL"}}</script>
+<style>
+/* ── HISTORIA SUBTÍTULOS ─────────────────────── */
+.historia-subtitulo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--azul-pr);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 36px 0 12px;
+}
+.cta-inline {
+  margin: 40px 0 8px;
+}
+
+/* ── BLOQUE LOGROS ───────────────────────────── */
+.bloque-logros { background: var(--azul-pr); }
+.bloque-logros .section-label { color: rgba(255,255,255,0.65); }
+.bloque-logros .section-title { color: var(--blanco); }
+.logros-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 48px 0 24px;
+}
+.logro-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 32px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.logro-num {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--blanco);
+  line-height: 1;
+}
+.logro-label {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+}
+.logros-nota {
+  text-align: center;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* ── BLOQUE EMOCIONAL ────────────────────────── */
+.bloque-emocional { background: var(--blanco); }
+.emocional-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 48px;
+}
+.emocional-text p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 20px;
+  color: var(--negro);
+}
+.emocional-cta {
+  text-align: center;
+}
+.emocional-pregunta {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--azul-pr);
+  margin-bottom: 28px;
+  line-height: 1.3;
+}
+.emocional-share {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+}
+
+/* ── BLOQUE FRASES ───────────────────────────── */
+.bloque-frases { background: var(--gris-claro); }
+.frases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.frase-card {
+  background: var(--blanco);
+  border-left: 5px solid var(--rojo-pr);
+  border-radius: 0 12px 12px 0;
+  padding: 32px 28px;
+  display: flex;
+  align-items: center;
+}
+.frase-texto {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--negro);
+  line-height: 1.3;
+  font-style: italic;
+}
+
+/* ── BLOQUE IMPACTO ──────────────────────────── */
+.bloque-impacto { background: var(--blanco); }
+.impacto-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 48px 0 40px;
+}
+.impacto-card {
+  background: var(--gris-claro);
+  border-radius: 16px;
+  padding: 32px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.impacto-icon { font-size: 2.2rem; }
+.impacto-label {
+  font-size: 0.9rem;
+  color: var(--negro);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.impacto-cta { text-align: center; }
+
+/* ── BLOQUE URGENCIA ─────────────────────────── */
+.bloque-urgencia {
+  background: var(--rojo-pr);
+  text-align: center;
+}
+.urgencia-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+/* ── RESPONSIVE NUEVOS BLOQUES ───────────────── */
+@media (max-width: 768px) {
+  .logros-grid { grid-template-columns: 1fr 1fr; }
+  .emocional-grid { grid-template-columns: 1fr; gap: 36px; }
+  .frases-grid { grid-template-columns: 1fr; }
+  .impacto-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .logros-grid { grid-template-columns: 1fr 1fr; }
+  .impacto-grid { grid-template-columns: 1fr 1fr; }
+  .frase-texto { font-size: 1.1rem; }
+}
+</style>
 </head>
 <body>
 
@@ -52,16 +212,66 @@
       <h2 class="section-title" data-es="Quién es Gabriel Hernández Ramos" data-en="Who is Gabriel Hernández Ramos">Quién es Gabriel Hernández Ramos</h2>
       <div class="historia-grid">
         <div class="historia-text">
-          <p data-es="Gabriel Hernández Ramos nació en <strong>Cabo Rojo, Puerto Rico</strong>. En 1999 entró a la Policía de Puerto Rico (PPR). Veinte años después, se retiró." data-en="Gabriel Hernández Ramos was born in <strong>Cabo Rojo, Puerto Rico</strong>. In 1999 he joined the Puerto Rico Police (PPR). Twenty years later, he retired.">Gabriel Hernández Ramos nació en <strong>Cabo Rojo, Puerto Rico</strong>. En 1999 entró a la Policía de Puerto Rico (PPR). Veinte años después, se retiró.</p>
-          <p data-es="Como tantos puertorriqueños, emigró a Estados Unidos buscando un mejor futuro para su familia. No era político. No era abogado. Era un exagente, padre de familia, con una cuenta de Facebook y una convicción." data-en="Like so many Puerto Ricans, he emigrated to the United States seeking a better future for his family. He was not a politician. Not a lawyer. He was a retired officer, a family man, with a Facebook account and a conviction.">Como tantos puertorriqueños, emigró a Estados Unidos buscando un mejor futuro para su familia. No era político. No era abogado. Era un exagente, padre de familia, con una cuenta de Facebook y una convicción.</p>
-          <p data-es="El <strong>19 de octubre de 2021</strong>, comenzó a hablar. Sin gremio. Sin organización. Desde su teléfono, denunció en vivo lo que le estaba pasando a los policías de Puerto Rico — hombres y mujeres que habían entregado su vida al servicio y se enfrentaban a un retiro que no alcanzaba para vivir. Miles lo escucharon." data-en="On <strong>October 19, 2021</strong>, he began to speak. No union. No organization. From his phone, he went live to denounce what was happening to Puerto Rico's officers — men and women who had given their lives to service and faced a retirement that was not enough to live on. Thousands listened.">El <strong>19 de octubre de 2021</strong>, comenzó a hablar. Sin gremio. Sin organización. Desde su teléfono, denunció en vivo lo que le estaba pasando a los policías de Puerto Rico — hombres y mujeres que habían entregado su vida al servicio y se enfrentaban a un retiro que no alcanzaba para vivir. Miles lo escucharon.</p>
-          <p data-es="Cinco meses después nació formalmente <strong>APUL — Asociación Policías Unidos Luchando</strong>. Y en <strong>117 días</strong>, Gabriel negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico <strong>$1,550 millones en beneficios</strong> para los policías: $850 millones para el fondo de retiro y $700 millones para el Plan Vital." data-en="Five months later, <strong>APUL — Asociación Policías Unidos Luchando</strong> was formally established. And in <strong>117 days</strong>, Gabriel negotiated with the Fiscal Oversight Board and the Government of Puerto Rico <strong>$1.55 billion in benefits</strong>: $850 million for the retirement fund and $700 million for Plan Vital.">Cinco meses después nació formalmente <strong>APUL — Asociación Policías Unidos Luchando</strong>. Y en <strong>117 días</strong>, Gabriel negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico <strong>$1,550 millones en beneficios</strong> para los policías: $850 millones para el fondo de retiro y $700 millones para el Plan Vital.</p>
-          <p data-es="Testificó ante la Cámara de Representantes de Puerto Rico. Viajó a Washington y se reunió con la entonces Comisionada Residente ante el Congreso de los Estados Unidos. Hizo todo lo que se supone que se debe hacer." data-en="He testified before the Puerto Rico House of Representatives. He traveled to Washington and met with the then-Resident Commissioner to the U.S. Congress. He did everything that was supposed to be done.">Testificó ante la Cámara de Representantes de Puerto Rico. Viajó a Washington y se reunió con la entonces Comisionada Residente ante el Congreso de los Estados Unidos. Hizo todo lo que se supone que se debe hacer.</p>
-          <p data-es="Hoy Gabriel tiene 47 años. Su pensión — el resultado de dos décadas sirviendo al pueblo de Puerto Rico — es de <strong>$487.81 al mes</strong>. No puede tocarla hasta los 65. Mientras tanto, sigue trabajando. Semanas antes de su cirugía, todavía estaba en los medios alertando sobre el agotamiento de los policías activos." data-en="Today Gabriel is 47 years old. His pension — the result of two decades serving Puerto Rico — is <strong>$487.81 per month</strong>. He cannot touch it until age 65. Meanwhile, he keeps working. Weeks before his surgery, he was still in the media alerting about the exhaustion of active officers.">Hoy Gabriel tiene 47 años. Su pensión — el resultado de dos décadas sirviendo al pueblo de Puerto Rico — es de <strong>$487.81 al mes</strong>. No puede tocarla hasta los 65. Mientras tanto, sigue trabajando. Semanas antes de su cirugía, todavía estaba en los medios alertando sobre el agotamiento de los policías activos.</p>
+
+          <p data-es="Hay hombres que sirven en silencio. Y hay hombres que, cuando el silencio ya no es una opción, deciden hablar. <strong>Gabriel Hernández Ramos es uno de ellos.</strong>" data-en="There are men who serve in silence. And there are men who, when silence is no longer an option, choose to speak. <strong>Gabriel Hernández Ramos is one of them.</strong>">Hay hombres que sirven en silencio. Y hay hombres que, cuando el silencio ya no es una opción, deciden hablar. <strong>Gabriel Hernández Ramos es uno de ellos.</strong></p>
+
+          <p data-es="Nació en Cabo Rojo, Puerto Rico. En 1999, con 21 años, juramentó como policía con la placa <strong>27365</strong>. Durante dos décadas hizo el trabajo que la mayoría evita: responder llamadas que nadie quiere recibir, entrar donde otros dudan, sostener el orden en medio del caos." data-en="Born in Cabo Rojo, Puerto Rico. In 1999, at 21 years old, he was sworn in as an officer with badge <strong>27365</strong>. For two decades he did the work most avoid: answering calls no one wants to take, entering where others hesitate, holding order in the middle of chaos.">Nació en Cabo Rojo, Puerto Rico. En 1999, con 21 años, juramentó como policía con la placa <strong>27365</strong>. Durante dos décadas hizo el trabajo que la mayoría evita: responder llamadas que nadie quiere recibir, entrar donde otros dudan, sostener el orden en medio del caos.</p>
+
+          <p data-es="Lo hizo sin buscar reconocimiento. Lo hizo con convicción. Lo hizo bien. Se retiró en 2019. Nadie lo mencionó." data-en="He did it without seeking recognition. He did it with conviction. He did it well. He retired in 2019. No one mentioned it.">Lo hizo sin buscar reconocimiento. Lo hizo con convicción. Lo hizo bien.<br>Se retiró en 2019. Nadie lo mencionó.</p>
+
+          <h3 class="historia-subtitulo" data-es="Lo que encontró al salir" data-en="What he found upon leaving">Lo que encontró al salir</h3>
+
+          <p data-es="Mientras Gabriel patrullaba las calles, el sistema que debía sostenerlo al retirarse se desmoronaba en silencio. La <strong>Ley 3 de 2013</strong> recortó más del 35% de los beneficios de retiro. La <strong>Ley 106 de 2017</strong> declaró el sistema insolvente. Y hasta 2019, los policías de Puerto Rico <strong>no cotizaban al Seguro Social federal</strong>." data-en="While Gabriel patrolled the streets, the system that was supposed to support him in retirement was crumbling in silence. <strong>Law 3 of 2013</strong> cut more than 35% of retirement benefits. <strong>Law 106 of 2017</strong> declared the system insolvent. And until 2019, Puerto Rico police officers <strong>did not contribute to federal Social Security</strong>.">Mientras Gabriel patrullaba las calles, el sistema que debía sostenerlo al retirarse se desmoronaba en silencio. La <strong>Ley 3 de 2013</strong> recortó más del 35% de los beneficios de retiro. La <strong>Ley 106 de 2017</strong> declaró el sistema insolvente. Y hasta 2019, los policías de Puerto Rico <strong>no cotizaban al Seguro Social federal</strong>.</p>
+
+          <p data-es="El resultado fue devastador: una generación completa de oficiales quedó prácticamente sin red de seguridad. Gabriel lo resume sin rodeos:" data-en="The result was devastating: an entire generation of officers was left with virtually no safety net. Gabriel sums it up plainly:">El resultado fue devastador: una generación completa de oficiales quedó prácticamente sin red de seguridad. Gabriel lo resume sin rodeos:</p>
+
           <blockquote class="quote-inline">
-            <span data-es='"Me tuve que ir de la Policía porque suicidaron mi retiro... Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."' data-en='"I had to leave the Police because they destroyed my retirement... Today I still work because my Puerto Rico Police pension will be $487.00 a month."'>"Me tuve que ir de la Policía porque suicidaron mi retiro... Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes."</span>
-            <cite data-es="— Gabriel Hernández Ramos, vista pública Cámara de Puerto Rico" data-en="— Gabriel Hernández Ramos, Puerto Rico House of Representatives public hearing">— Gabriel Hernández Ramos, vista pública Cámara de Puerto Rico</cite>
+            <span data-es="&ldquo;Suicidaron mi retiro.&rdquo;" data-en="&ldquo;They destroyed my retirement.&rdquo;">&ldquo;Suicidaron mi retiro.&rdquo;</span>
           </blockquote>
+
+          <p data-es="Se vio obligado a emigrar a Estados Unidos. Siguió trabajando. No por ambición — por necesidad. Su pensión: <strong>$487.81 al mes</strong>. No puede recibirla hasta los 65. Hoy tiene <strong>48 años</strong>." data-en="He was forced to emigrate to the United States. He kept working. Not by ambition — by necessity. His pension: <strong>$487.81 per month</strong>. He cannot receive it until age 65. Today he is <strong>48 years old</strong>.">Se vio obligado a emigrar a Estados Unidos. Siguió trabajando. No por ambición — por necesidad. Su pensión: <strong>$487.81 al mes</strong>. No puede recibirla hasta los 65. Hoy tiene <strong>48 años</strong>.</p>
+
+          <h3 class="historia-subtitulo" data-es="Lo que decidió hacer con esa realidad" data-en="What he chose to do with that reality">Lo que decidió hacer con esa realidad</h3>
+
+          <p data-es="La mayoría en su posición guarda silencio. No por falta de valor, sino por desgaste. Existe algo documentado en la profesión policial: agotamiento crónico, burnout, &ldquo;presentismo&rdquo; — estar, pero no poder más. Muchos lo viven. Pocos lo nombran. <strong>Gabriel decidió nombrarlo.</strong>" data-en="Most in his position stay silent. Not for lack of courage, but from exhaustion. There is something documented in the police profession: chronic fatigue, burnout, &ldquo;presenteeism&rdquo; — showing up, but unable to give more. Many live it. Few name it. <strong>Gabriel chose to name it.</strong>">La mayoría en su posición guarda silencio. No por falta de valor, sino por desgaste. Existe algo documentado en la profesión policial: agotamiento crónico, burnout, &ldquo;presentismo&rdquo; — estar, pero no poder más. Muchos lo viven. Pocos lo nombran. <strong>Gabriel decidió nombrarlo.</strong></p>
+
+          <p data-es="El 19 de octubre de 2021, con nada más que un teléfono y su historia, comenzó a hablar en redes. Sin presupuesto. Sin estructura. Sin respaldo. Solo con algo más poderoso: <strong>credibilidad real.</strong>" data-en="On October 19, 2021, with nothing more than a phone and his story, he began speaking on social media. No budget. No structure. No backing. Only something more powerful: <strong>real credibility.</strong>">El 19 de octubre de 2021, con nada más que un teléfono y su historia, comenzó a hablar en redes. Sin presupuesto. Sin estructura. Sin respaldo. Solo con algo más poderoso: <strong>credibilidad real.</strong></p>
+
+          <h3 class="historia-subtitulo" data-es="Lo que construyó desde cero" data-en="What he built from nothing">Lo que construyó desde cero</h3>
+
+          <p data-es="En marzo de 2022 fundó <strong>APUL — Asociación de Policías Unidos Luchando</strong>. En apenas <strong>117 días</strong>, logró algo que parecía improbable: negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico la asignación de <strong>$1,550 millones de dólares</strong> para los policías — $850 millones para el sistema de retiro y $700 millones para el Plan Vital. Documentado en registros oficiales de la AAFAF." data-en="In March 2022 he founded <strong>APUL — Asociación de Policías Unidos Luchando</strong>. In just <strong>117 days</strong>, he accomplished something that seemed improbable: he negotiated with the Fiscal Oversight Board and the Government of Puerto Rico the allocation of <strong>$1.55 billion</strong> for officers — $850 million for the retirement fund and $700 million for Plan Vital. Documented in official AAFAF records.">En marzo de 2022 fundó <strong>APUL — Asociación de Policías Unidos Luchando</strong>. En apenas <strong>117 días</strong>, logró algo que parecía improbable: negoció con la Junta de Supervisión Fiscal y el Gobierno de Puerto Rico la asignación de <strong>$1,550 millones de dólares</strong> para los policías — $850 millones para el sistema de retiro y $700 millones para el Plan Vital. Documentado en registros oficiales de la AAFAF.</p>
+
+          <p data-es="<strong>No cobró un solo centavo.</strong>" data-en="<strong>He did not collect a single cent.</strong>"><strong>No cobró un solo centavo.</strong></p>
+
+          <h3 class="historia-subtitulo" data-es="Cuando tuvo que dar la cara" data-en="When he had to show up">Cuando tuvo que dar la cara</h3>
+
+          <p data-es="En mayo de 2022 compareció ante la Cámara de Representantes de Puerto Rico. No llevó abogados. No llevó asesores. Llevó su verdad." data-en="In May 2022 he appeared before the Puerto Rico House of Representatives. No lawyers. No advisors. He brought his truth.">En mayo de 2022 compareció ante la Cámara de Representantes de Puerto Rico. No llevó abogados. No llevó asesores. Llevó su verdad.</p>
+
+          <blockquote class="quote-inline">
+            <span data-es="&ldquo;Yo no estoy aquí porque esto me lo inventé… estoy aquí porque lo viví en carne propia. Mi credibilidad es mi propia persona que se encuentra aquí ante ustedes. Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes.&rdquo;" data-en="&ldquo;I am not here because I made this up… I am here because I lived it firsthand. My credibility is my own person standing before you. I had to leave the Police because they destroyed my retirement. Today I still work because my Puerto Rico Police pension will be $487.00 a month.&rdquo;">&ldquo;Yo no estoy aquí porque esto me lo inventé… estoy aquí porque lo viví en carne propia. Mi credibilidad es mi propia persona que se encuentra aquí ante ustedes. Me tuve que ir de la Policía porque suicidaron mi retiro. Hoy día sigo trabajando porque mi pensión de la Policía de Puerto Rico será de $487.00 al mes.&rdquo;</span>
+            <cite data-es="— Vista pública, Cámara de Representantes de Puerto Rico, mayo 2022" data-en="— Public hearing, Puerto Rico House of Representatives, May 2022">— Vista pública, Cámara de Representantes de Puerto Rico, mayo 2022</cite>
+          </blockquote>
+
+          <p data-es="En marzo de 2023 fue citado al Congreso en Washington D.C. — la primera vez que una organización de policías puertorriqueños lograba ese espacio. Habló. Expuso. Pidió acción. <strong>No hubo acción.</strong> Y aun así, no se detuvo." data-en="In March 2023 he was summoned to Congress in Washington D.C. — the first time a Puerto Rican police organization achieved that space. He spoke. He presented. He asked for action. <strong>There was no action.</strong> And yet, he did not stop.">En marzo de 2023 fue citado al Congreso en Washington D.C. — la primera vez que una organización de policías puertorriqueños lograba ese espacio. Habló. Expuso. Pidió acción. <strong>No hubo acción.</strong> Y aun así, no se detuvo.</p>
+
+          <h3 class="historia-subtitulo" data-es="Lo que sigue enfrentando la fuerza policial" data-en="What the police force continues to face">Lo que sigue enfrentando la fuerza policial</h3>
+
+          <p data-es="Gabriel entiende algo que la mayoría prefiere ignorar: detrás de cada policía hay una familia que también carga el uniforme. Los datos que él ayudó a visibilizar son contundentes: más de <strong>8 años sin aumentos salariales</strong>, más de <strong>$132 millones en horas extras sin pagar</strong>, y de los ~10,200 oficiales autorizados, solo ~<strong>5,700 activos</strong>. Niveles críticos de agotamiento físico y mental." data-en="Gabriel understands something most prefer to ignore: behind every officer is a family that also carries the uniform. The data he helped surface is stark: more than <strong>8 years without salary increases</strong>, over <strong>$132 million in unpaid overtime</strong>, and of the ~10,200 authorized officers, only ~<strong>5,700 active</strong>. Critical levels of physical and mental exhaustion.">Gabriel entiende algo que la mayoría prefiere ignorar: detrás de cada policía hay una familia que también carga el uniforme. Los datos que él ayudó a visibilizar son contundentes: más de <strong>8 años sin aumentos salariales</strong>, más de <strong>$132 millones en horas extras sin pagar</strong>, y de los ~10,200 oficiales autorizados, solo ~<strong>5,700 activos</strong>. Niveles críticos de agotamiento físico y mental.</p>
+
+          <p data-es="En diciembre de 2025 se prometió un aumento salarial. A la fecha, <strong>no hay implementación ni cifras oficiales</strong>. Gabriel sigue allí. Micrófono en mano. Presente." data-en="In December 2025 a salary increase was promised. To date, <strong>there is no implementation or official figures</strong>. Gabriel is still there. Microphone in hand. Present.">En diciembre de 2025 se prometió un aumento salarial. A la fecha, <strong>no hay implementación ni cifras oficiales</strong>. Gabriel sigue allí. Micrófono en mano. Presente.</p>
+
+          <h3 class="historia-subtitulo" data-es="Quién es cuando nadie está mirando" data-en="Who he is when no one is watching">Quién es cuando nadie está mirando</h3>
+
+          <p data-es="Gabriel es ministro certificado de las Asambleas de Dios, padre, esposo. Su hija tiene necesidades especiales y requiere cuidado constante. Su familia vive esa realidad todos los días. Para él, el servicio no es una profesión. Es una forma de vivir." data-en="Gabriel is a certified minister of the Assemblies of God, a father, a husband. His daughter has special needs and requires constant care. His family lives that reality every day. For him, service is not a profession. It is a way of life.">Gabriel es ministro certificado de las Asambleas de Dios, padre, esposo. Su hija tiene necesidades especiales y requiere cuidado constante. Su familia vive esa realidad todos los días. Para él, el servicio no es una profesión. Es una forma de vivir.</p>
+
+          <h3 class="historia-subtitulo" data-es="Lo que está enfrentando ahora" data-en="What he is facing now">Lo que está enfrentando ahora</h3>
+
+          <p data-es="En 2026, en medio de su lucha por otros, su salud se quebró. Requirió una cirugía de alto riesgo. La recuperación implica tratamientos, medicamentos, seguimiento médico y meses sin poder trabajar plenamente. Su pensión sigue siendo $487.81. Y sigue sin poder recibirla." data-en="In 2026, in the midst of his fight for others, his health broke down. He required high-risk surgery. Recovery means treatments, medications, ongoing medical care, and months unable to work fully. His pension is still $487.81. And he still cannot receive it.">En 2026, en medio de su lucha por otros, su salud se quebró. Requirió una cirugía de alto riesgo. La recuperación implica tratamientos, medicamentos, seguimiento médico y meses sin poder trabajar plenamente. Su pensión sigue siendo $487.81. Y sigue sin poder recibirla.</p>
+
+          <div class="cta-inline">
+            <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="btn-donate" data-es="Donar ahora" data-en="Donate Now">Donar ahora</a>
+          </div>
+
         </div>
         <div class="historia-stats">
           <div class="stat-card"><span class="stat-num">20+</span><span class="stat-label" data-es="Años de servicio" data-en="Years of service">Años de servicio</span></div>
@@ -69,6 +279,115 @@
           <div class="stat-card"><span class="stat-num">117</span><span class="stat-label" data-es="Días que tomó lograrlo" data-en="Days it took to achieve it">Días que tomó lograrlo</span></div>
           <div class="stat-card"><span class="stat-num">$487</span><span class="stat-label" data-es="Su pensión mensual" data-en="His monthly pension">Su pensión mensual</span></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOQUE 1: LOGROS -->
+  <section class="section bloque-logros" id="logros">
+    <div class="container">
+      <div class="section-label" data-es="Lo que logró" data-en="What he achieved">Lo que logró</div>
+      <h2 class="section-title" data-es="Sin poder para hacerlo. Y lo hizo." data-en="No power to do it. He did it anyway.">Sin poder para hacerlo. Y lo hizo.</h2>
+      <div class="logros-grid">
+        <div class="logro-card">
+          <span class="logro-num">$1,550M</span>
+          <span class="logro-label" data-es="Asignados para policías de PR" data-en="Allocated for PR police officers">Asignados para policías de PR</span>
+        </div>
+        <div class="logro-card">
+          <span class="logro-num">117</span>
+          <span class="logro-label" data-es="Días para lograrlo" data-en="Days to achieve it">Días para lograrlo</span>
+        </div>
+        <div class="logro-card">
+          <span class="logro-num">2</span>
+          <span class="logro-label" data-es="Comparecencias: Cámara PR + Congreso EE.UU." data-en="Appearances: PR House + U.S. Congress">Comparecencias: Cámara PR + Congreso EE.UU.</span>
+        </div>
+        <div class="logro-card">
+          <span class="logro-num">$0</span>
+          <span class="logro-label" data-es="Beneficio personal de todo lo negociado" data-en="Personal benefit from everything negotiated">Beneficio personal de todo lo negociado</span>
+        </div>
+      </div>
+      <p class="logros-nota" data-es="Sin salario. Sin contrato. Sin beneficio personal." data-en="No salary. No contract. No personal benefit.">Sin salario. Sin contrato. Sin beneficio personal.</p>
+    </div>
+  </section>
+
+  <!-- BLOQUE 2: HISTORIA EXTENDIDA -->
+  <section class="section bloque-emocional" id="historia-extendida">
+    <div class="container">
+      <div class="section-label" data-es="Lo que no se ve" data-en="What you don't see">Lo que no se ve</div>
+      <h2 class="section-title" data-es="Alguien que no se rinde" data-en="Someone who doesn't give up">Alguien que no se rinde</h2>
+      <div class="emocional-grid">
+        <div class="emocional-text">
+          <p data-es="Mientras hablaba en público, también sostenía su vida privada. Una familia. Una hija con necesidades especiales que requiere atención constante. Una transición fuera de Puerto Rico sin red institucional. Las secuelas físicas y mentales de 20 años de servicio uniformado." data-en="While speaking publicly, he was also holding together his private life. A family. A daughter with special needs who requires constant attention. A transition out of Puerto Rico with no institutional safety net. The physical and mental aftermath of 20 years in uniform.">Mientras hablaba en público, también sostenía su vida privada. Una familia. Una hija con necesidades especiales que requiere atención constante. Una transición fuera de Puerto Rico sin red institucional. Las secuelas físicas y mentales de 20 años de servicio uniformado.</p>
+          <p data-es="Luego vino la cirugía. Luego vino la recuperación. Y nunca se fue." data-en="Then came the surgery. Then came the recovery. And he never left.">Luego vino la cirugía. Luego vino la recuperación. <strong>Y nunca se fue.</strong></p>
+          <p data-es="La recuperación de una cirugía de alto riesgo puede ser más costosa que la propia operación: controles médicos, medicamentos, meses sin ingresos plenos. Gabriel lo enfrenta sin pensión disponible, sin salario, con una familia que depende de él." data-en="Recovery from high-risk surgery can cost more than the operation itself: medical checkups, medications, months without full income. Gabriel faces this with no available pension, no salary, a family that depends on him.">La recuperación de una cirugía de alto riesgo puede ser más costosa que la propia operación: controles médicos, medicamentos, meses sin ingresos plenos. Gabriel lo enfrenta sin pensión disponible, sin salario, con una familia que depende de él.</p>
+        </div>
+        <div class="emocional-cta">
+          <p class="emocional-pregunta" data-es="¿Qué vamos a hacer nosotros con eso?" data-en="What are we going to do about it?">¿Qué vamos a hacer nosotros con eso?</p>
+          <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="btn-donate btn-full" data-es="Donar ahora" data-en="Donate Now">Donar ahora</a>
+          <p class="emocional-share" data-es="o comparte esta historia" data-en="or share this story">o comparte esta historia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 3: FRASES DESTACADAS -->
+  <section class="section bloque-frases" id="frases">
+    <div class="container">
+      <div class="frases-grid">
+        <div class="frase-card">
+          <span class="frase-texto" data-es="&ldquo;Suicidaron mi retiro.&rdquo;" data-en="&ldquo;They destroyed my retirement.&rdquo;">&ldquo;Suicidaron mi retiro.&rdquo;</span>
+        </div>
+        <div class="frase-card">
+          <span class="frase-texto" data-es="&ldquo;Mi credibilidad es mi propia vida.&rdquo;" data-en="&ldquo;My credibility is my own life.&rdquo;">&ldquo;Mi credibilidad es mi propia vida.&rdquo;</span>
+        </div>
+        <div class="frase-card">
+          <span class="frase-texto" data-es="&ldquo;No cobré un centavo.&rdquo;" data-en="&ldquo;I didn't collect a cent.&rdquo;">&ldquo;No cobré un centavo.&rdquo;</span>
+        </div>
+        <div class="frase-card">
+          <span class="frase-texto" data-es="&ldquo;Sigo aquí.&rdquo;" data-en="&ldquo;I'm still here.&rdquo;">&ldquo;Sigo aquí.&rdquo;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 4: IMPACTO DIRECTO -->
+  <section class="section bloque-impacto" id="impacto">
+    <div class="container">
+      <div class="section-label" data-es="Tu apoyo hace posible" data-en="Your support makes possible">Tu apoyo hace posible</div>
+      <h2 class="section-title" data-es="Lo que tu donación cubre" data-en="What your donation covers">Lo que tu donación cubre</h2>
+      <div class="impacto-grid">
+        <div class="impacto-card">
+          <span class="impacto-icon">🏥</span>
+          <span class="impacto-label" data-es="Tratamientos médicos continuos" data-en="Ongoing medical treatments">Tratamientos médicos continuos</span>
+        </div>
+        <div class="impacto-card">
+          <span class="impacto-icon">👨‍👩‍👧</span>
+          <span class="impacto-label" data-es="Estabilidad familiar" data-en="Family stability">Estabilidad familiar</span>
+        </div>
+        <div class="impacto-card">
+          <span class="impacto-icon">📢</span>
+          <span class="impacto-label" data-es="Continuidad de su trabajo público por los policías" data-en="Continuity of his public work for officers">Continuidad de su trabajo público por los policías</span>
+        </div>
+        <div class="impacto-card">
+          <span class="impacto-icon">🛡️</span>
+          <span class="impacto-label" data-es="Protección de alguien que ya protegió a otros" data-en="Protection for someone who already protected others">Protección de alguien que ya protegió a otros</span>
+        </div>
+      </div>
+      <div class="impacto-cta">
+        <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="btn-donate" data-es="Donar ahora" data-en="Donate Now">Donar ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 5: URGENCIA -->
+  <section class="section bloque-urgencia" id="urgencia">
+    <div class="container">
+      <h2 class="section-title light" data-es="Gabriel no dejó de estar cuando más difícil era." data-en="Gabriel didn't leave when it was hardest.">Gabriel no dejó de estar cuando más difícil era.</h2>
+      <p class="section-desc light" data-es="No lo dejemos solo ahora." data-en="Let's not leave him alone now.">No lo dejemos solo ahora.</p>
+      <div class="urgencia-btns">
+        <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="btn-donate" data-es="Donar ahora" data-en="Donate Now">Donar ahora</a>
+        <a href="https://unidosporgabriel.org" class="btn-secondary" data-es="Compartir esta historia" data-en="Share this story">Compartir esta historia</a>
       </div>
     </div>
   </section>
