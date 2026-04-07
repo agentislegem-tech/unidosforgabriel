@@ -179,6 +179,83 @@
   .frase-texto { font-size: 1.1rem; }
 }
 
+/* ── SECCIÓN MENSAJE COORDINADOR ─────────────── */
+.seccion-mensaje-coordinador {
+  position: relative;
+  padding: 72px 24px;
+  text-align: center;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.mc-scheme-1 { background: #0a0a0a; --mc-text: #ffffff; --mc-btn-bg: #002868; --mc-btn-text: #ffffff; --mc-title-color: #a8c4ff; }
+.mc-scheme-2 { background: #001a3d; --mc-text: #ffffff; --mc-btn-bg: #bf0a30; --mc-btn-text: #ffffff; --mc-title-color: #ffffff; }
+.mc-scheme-3 { background: #6b0000; --mc-text: #ffffff; --mc-btn-bg: #ffffff; --mc-btn-text: #6b0000; --mc-title-color: #ffcccc; }
+.mc-scheme-4 { background: #1a1a1a; --mc-text: #ffffff; --mc-btn-bg: #002868; --mc-btn-text: #ffffff; --mc-title-color: #a8c4ff; }
+.mc-scheme-5 { background: #002868; --mc-text: #ffffff; --mc-btn-bg: #bf0a30; --mc-btn-text: #ffffff; --mc-title-color: #ffffff; }
+
+.mc-titulo-fijo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+  font-weight: 700;
+  color: var(--mc-title-color, #ffffff);
+  max-width: 700px;
+  margin: 0 auto 44px;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding-bottom: 28px;
+}
+.mc-cuerpo {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.mc-texto {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  color: var(--mc-text, #ffffff);
+  line-height: 1.95;
+  margin-bottom: 40px;
+  text-align: left;
+}
+.mc-texto p { margin: 0 0 14px; }
+.mc-texto p:last-child { margin-bottom: 0; }
+.mc-btn-dona {
+  display: inline-block;
+  background: var(--mc-btn-bg, #002868);
+  color: var(--mc-btn-text, #ffffff) !important;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 15px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+.mc-btn-dona:hover { opacity: 0.85; transform: translateY(-2px); }
+
+@media (min-width: 769px) {
+  .mc-titulo-fijo { animation: mcPulse 1s ease-out forwards; }
+  .mc-texto       { animation: mcFadeUp 0.65s ease-out 0.25s both; }
+  .mc-btn-dona    { animation: mcFadeUp 0.55s ease-out 0.55s both; }
+  @keyframes mcPulse {
+    0%   { opacity: 0; transform: scale(0.97); }
+    65%  { opacity: 1; transform: scale(1.01); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes mcFadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+@media (max-width: 768px) {
+  .seccion-mensaje-coordinador { padding: 48px 20px; }
+  .mc-titulo-fijo { margin-bottom: 28px; font-size: 1rem; }
+  .mc-texto { font-size: 0.97rem; }
+}
+
 /* ── VISITANTES BADGE ──────────────────────── */
 .visitas-badge {
   font-size: 0.75rem;
@@ -280,6 +357,15 @@
     </div>
   </section>
 
+
+  <!-- SECCIÓN: MENSAJE DEL COORDINADOR -->
+  <section class="seccion-mensaje-coordinador" id="mensaje-coordinador">
+    <div class="mc-titulo-fijo">Si llevas placa en Puerto Rico, este mensaje es para ti.</div>
+    <div class="mc-cuerpo">
+      <div class="mc-texto" id="mcTexto"></div>
+      <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="mc-btn-dona" id="mcBtnDona">Dona ahora</a>
+    </div>
+  </section>
 
   <section class="explora-section" id="explora">
     <div class="container">
@@ -1040,6 +1126,46 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+  <script>
+  // ── MENSAJE COORDINADOR — ROTACIÓN DIARIA ────────────────────────────────
+  (function() {
+    var mensajes = [
+      ["Compañero.", "Gabriel estuvo ahí cuando nadie más estaba. Sin cobrar. Sin pedir. Sin esperar nada de ti.", "Ahora él necesita ayuda. Y estamos mirando a ver quién responde.", "No te estamos pidiendo que hagas lo que él hizo por ti.", "Te estamos pidiendo que dones.", "Eso es todo. Una donación. Del policía que benefició a los tuyos.", "Si puedes ignorar eso y seguir con tu día — hazlo.", "Pero si te queda aunque sea un poco de conciencia de lo que significa ser compañero — ya sabes dónde está el botón.", "La ola llegó. No llegues tarde."],
+      ["Compañero.", "Uno de los tuyos está transmitiendo un 10-50.", "No es un extraño. No es alguien que nunca hizo nada por ti.", "Es Gabriel. Y tú sabes exactamente quién es Gabriel.", "¿Cuántas veces respondiste un 10-50 sin pensarlo dos veces? ¿Cuántas veces dijiste \"voy\" antes de saber qué había al otro lado?", "Ahora el radio está sonando. Y es él.", "No hay excusa. No hay \"más tarde\". No hay \"cuando pueda\".", "Un compañero necesita respuesta ahora.", "¿Vas a contestar o vas a dejar que suene?"],
+      ["Compañero.", "¿Recuerdas cuando nadie daba un peso por ustedes?", "Gabriel sí. Fue. Peleó. Ganó.", "Ahora está solo.", "Y nosotros estamos aquí, mirando a ver cuántos de los que se beneficiaron tienen memoria.", "Demuestra que la tienes."],
+      ["Compañero.", "Él no te pidió permiso para pelear por ti.", "Simplemente lo hizo.", "Ahora te estamos pidiendo permiso para nada. Te estamos pidiendo que dones.", "Si eso es mucho pedir — algo está mal. Y tú lo sabes."],
+      ["Compañero.", "La diáspora se enteró antes que tú.", "Gente que lleva años fuera de la isla, que no lo conoce en persona, que nunca recibió un centavo de lo que él negoció — ya donó.", "¿Y tú?"],
+      ["Compañero.", "Hay dos tipos de policías.", "El que habla de compañerismo. Y el que lo demuestra.", "Gabriel lo demostró. Sin público. Sin cámaras. Sin paga.", "Ahora el mundo está mirando.", "¿Qué tipo eres tú?"],
+      ["Compañero.", "No te vamos a dejar tranquilo.", "Porque Gabriel no descansó hasta que lo logró por ti.", "Dona. Hoy. Ahora mismo."],
+      ["Compañero.", "Veinte años de servicio. Cero quejas. Cero excusas.", "Gabriel lo dio todo y se fue sin cobrarle nada a nadie.", "Eso se llama honor.", "¿Lo reconoces o lo dejas pasar?"],
+      ["Compañero.", "Cuando Gabriel peleó por ti, no sabía si ibas a agradecer.", "Lo hizo igual.", "Ahora tú sabes exactamente lo que está pasando.", "No hay excusa de ignorancia. No hay excusa de nada."],
+      ["Compañero.", "Este mensaje lo está leyendo gente en Texas, en Nueva York, en Florida, en Chicago.", "Puertorriqueños que nunca llevaron placa — donando por un hombre que nunca conocieron.", "Y tú, que lo conoces. Que sabes lo que hizo. Que lo viviste.", "Todavía pensando."],
+      ["Compañero.", "No te estamos pidiendo que vayas a Washington.", "No te estamos pidiendo 117 días de tu vida.", "No te estamos pidiendo que peles con nadie.", "Solo que dones.", "Eso es literalmente lo mínimo que puedes hacer."],
+      ["Compañero.", "El que pelea solo por su propio beneficio — eso abunda.", "El que pelea por los demás sin esperar nada — eso es escaso.", "Gabriel fue escaso.", "¿Lo vas a dejar solo ahora?"],
+      ["Compañero.", "Un día alguien va a preguntarle a tus hijos qué hiciste cuando Gabriel necesitó ayuda.", "¿Qué vas a querer que respondan?"],
+      ["Compañero.", "No importa cuánto. Importa que aparezcas.", "Gabriel nunca contó cuánto le costaba. Solo apareció.", "Ahora te toca a ti."],
+      ["Compañero.", "Este es el último mensaje que te vamos a mandar.", "No porque nos vamos a rendir. Sino porque ya dijimos todo lo que había que decir.", "Tú sabes quién es Gabriel. Tú sabes lo que hizo. Tú sabes lo que necesita.", "Y tú sabes lo que tienes que hacer."]
+    ];
+
+    var esquemas = ['mc-scheme-1','mc-scheme-2','mc-scheme-3','mc-scheme-4','mc-scheme-5'];
+    var idx = Math.floor(Date.now() / 86400000) % mensajes.length;
+    var esquema = esquemas[idx % esquemas.length];
+
+    var seccion = document.getElementById('mensaje-coordinador');
+    var textoEl = document.getElementById('mcTexto');
+
+    if (seccion && textoEl) {
+      seccion.classList.add(esquema);
+      var html = '';
+      var lineas = mensajes[idx];
+      for (var i = 0; i < lineas.length; i++) {
+        html += '<p>' + lineas[i] + '</p>';
+      }
+      textoEl.innerHTML = html;
+    }
+  })();
+  </script>
 
   <div class="notif-flotante" id="notifFlotante" style="display:none;">
     <span class="notif-icon">💙</span>
