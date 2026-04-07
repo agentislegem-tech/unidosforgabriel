@@ -351,6 +351,29 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.mc-modal-footer-audio {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+.mc-audio-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.65);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+.mc-audio-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.mc-audio-btn.playing { border-color: rgba(255,255,255,0.5); color: #fff; }
+
 @media (max-width: 600px) {
   .mc-modal { padding: 44px 24px 36px; }
   .mc-trigger { bottom: 18px; right: 18px; padding: 11px 16px 11px 13px; font-size: 0.8rem; }
@@ -1206,6 +1229,11 @@
     </div>
   </section>
 
+  <!-- AUDIO MENSAJE COORDINADOR -->
+  <audio id="mcAudio" loop preload="none">
+    <source src="assets/audio/mensaje.wav" type="audio/wav">
+  </audio>
+
   <!-- BOTÓN FLOTANTE + POPUP MENSAJE COORDINADOR -->
   <button class="mc-trigger" id="mcTrigger" onclick="mcAbrir()" aria-label="Mensaje para policías de Puerto Rico">
     <span class="mc-trigger-icon">🛡️</span>
@@ -1221,6 +1249,12 @@
       <div class="mc-modal-footer">
         <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="mc-modal-dona" data-es="Dona ahora" data-en="Donate Now">Dona ahora</a>
         <button class="mc-modal-next" onclick="mcSiguiente()" data-es="Siguiente mensaje →" data-en="Next message →">Siguiente mensaje →</button>
+      </div>
+      <div class="mc-modal-footer-audio">
+        <button class="mc-audio-btn" id="mcAudioBtn" onclick="mcToggleAudio()" aria-label="Play/Pause música">
+          <span id="mcAudioIcon">🔊</span>
+          <span id="mcAudioLabel" data-es="Música" data-en="Music">Música</span>
+        </button>
       </div>
       <div class="mc-modal-counter" id="mcCounter"></div>
     </div>
@@ -1326,11 +1360,13 @@
     document.getElementById('mcOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
     mcRenderizar();
+    mcIniciarAudio();
   }
 
   function mcCerrar() {
     document.getElementById('mcOverlay').classList.remove('open');
     document.body.style.overflow = '';
+    mcDetenerAudio();
     MC.idx = (MC.idx + 1) % 15;
     document.getElementById('mcBadge').textContent = MC.idx + 1;
   }
@@ -1342,6 +1378,50 @@
 
   function mcCerrarOverlay(e) {
     if (e.target === document.getElementById('mcOverlay')) mcCerrar();
+  }
+
+  function mcIniciarAudio() {
+    var audio = document.getElementById('mcAudio');
+    var btn = document.getElementById('mcAudioBtn');
+    var icon = document.getElementById('mcAudioIcon');
+    audio.volume = 0.55;
+    var promise = audio.play();
+    if (promise !== undefined) {
+      promise.then(function() {
+        btn.classList.add('playing');
+        icon.textContent = '🔊';
+      }).catch(function() {
+        // Autoplay bloqueado — mostrar botón para activar manualmente
+        btn.classList.remove('playing');
+        icon.textContent = '🔇';
+      });
+    }
+  }
+
+  function mcDetenerAudio() {
+    var audio = document.getElementById('mcAudio');
+    audio.pause();
+    audio.currentTime = 0;
+    var btn = document.getElementById('mcAudioBtn');
+    var icon = document.getElementById('mcAudioIcon');
+    btn.classList.remove('playing');
+    icon.textContent = '🔇';
+  }
+
+  function mcToggleAudio() {
+    var audio = document.getElementById('mcAudio');
+    var btn = document.getElementById('mcAudioBtn');
+    var icon = document.getElementById('mcAudioIcon');
+    if (audio.paused) {
+      audio.volume = 0.55;
+      audio.play();
+      btn.classList.add('playing');
+      icon.textContent = '🔊';
+    } else {
+      audio.pause();
+      btn.classList.remove('playing');
+      icon.textContent = '🔇';
+    }
   }
 
   document.addEventListener('keydown', function(e) {
