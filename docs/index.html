@@ -179,81 +179,183 @@
   .frase-texto { font-size: 1.1rem; }
 }
 
-/* ── SECCIÓN MENSAJE COORDINADOR ─────────────── */
-.seccion-mensaje-coordinador {
-  position: relative;
-  padding: 72px 24px;
-  text-align: center;
-  overflow: hidden;
-  transition: background 0.3s;
-}
-.mc-scheme-1 { background: #0a0a0a; --mc-text: #ffffff; --mc-btn-bg: #002868; --mc-btn-text: #ffffff; --mc-title-color: #a8c4ff; }
-.mc-scheme-2 { background: #001a3d; --mc-text: #ffffff; --mc-btn-bg: #bf0a30; --mc-btn-text: #ffffff; --mc-title-color: #ffffff; }
-.mc-scheme-3 { background: #6b0000; --mc-text: #ffffff; --mc-btn-bg: #ffffff; --mc-btn-text: #6b0000; --mc-title-color: #ffcccc; }
-.mc-scheme-4 { background: #1a1a1a; --mc-text: #ffffff; --mc-btn-bg: #002868; --mc-btn-text: #ffffff; --mc-title-color: #a8c4ff; }
-.mc-scheme-5 { background: #002868; --mc-text: #ffffff; --mc-btn-bg: #bf0a30; --mc-btn-text: #ffffff; --mc-title-color: #ffffff; }
-
-.mc-titulo-fijo {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.05rem, 2.4vw, 1.55rem);
-  font-weight: 700;
-  color: var(--mc-title-color, #ffffff);
-  max-width: 700px;
-  margin: 0 auto 44px;
-  letter-spacing: 0.03em;
-  line-height: 1.4;
-  border-bottom: 1px solid rgba(255,255,255,0.18);
-  padding-bottom: 28px;
-}
-.mc-cuerpo {
-  max-width: 620px;
-  margin: 0 auto;
-}
-.mc-texto {
+/* ── POPUP MENSAJE COORDINADOR ───────────────── */
+.mc-trigger {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #bf0a30;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 20px 13px 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.45);
   font-family: 'Source Sans 3', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.12rem);
-  color: var(--mc-text, #ffffff);
-  line-height: 1.95;
-  margin-bottom: 40px;
-  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  animation: mcTriggerPulse 2.8s ease-in-out infinite;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-.mc-texto p { margin: 0 0 14px; }
-.mc-texto p:last-child { margin-bottom: 0; }
-.mc-btn-dona {
+.mc-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.55);
+  animation: none;
+}
+.mc-trigger-icon { font-size: 1.2rem; line-height: 1; }
+.mc-trigger-label { white-space: nowrap; }
+.mc-trigger-badge {
+  background: #ffffff;
+  color: #bf0a30;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+@keyframes mcTriggerPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(191,10,48,0.5); }
+  50% { box-shadow: 0 4px 32px rgba(191,10,48,0.85), 0 0 0 8px rgba(191,10,48,0.12); }
+}
+
+/* Modal overlay */
+.mc-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.82);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.mc-overlay.open { display: flex; }
+
+/* Modal box */
+.mc-modal {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 52px 48px 44px;
+  text-align: left;
+  overflow: hidden;
+}
+.mc-scheme-1 { background: #0a0a0a; --mc-text:#fff; --mc-title:#a8c4ff; --mc-btn-bg:#002868; --mc-btn-text:#fff; }
+.mc-scheme-2 { background: #001a3d; --mc-text:#fff; --mc-title:#ffffff; --mc-btn-bg:#bf0a30; --mc-btn-text:#fff; }
+.mc-scheme-3 { background: #6b0000; --mc-text:#fff; --mc-title:#ffcccc; --mc-btn-bg:#ffffff; --mc-btn-text:#6b0000; }
+.mc-scheme-4 { background: #1a1a1a; --mc-text:#fff; --mc-title:#a8c4ff; --mc-btn-bg:#002868; --mc-btn-text:#fff; }
+.mc-scheme-5 { background: #002868; --mc-text:#fff; --mc-title:#ffffff; --mc-btn-bg:#bf0a30; --mc-btn-text:#fff; }
+
+.mc-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.55);
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.15s;
+}
+.mc-modal-close:hover { color: #fff; }
+
+.mc-modal-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 700;
+  color: var(--mc-title, #fff);
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  line-height: 1.4;
+}
+.mc-modal-texto {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: clamp(0.97rem, 1.8vw, 1.07rem);
+  color: var(--mc-text, #fff);
+  line-height: 1.95;
+  margin-bottom: 36px;
+}
+.mc-modal-texto p { margin: 0 0 13px; }
+.mc-modal-texto p:last-child { margin-bottom: 0; }
+.mc-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.mc-modal-dona {
   display: inline-block;
   background: var(--mc-btn-bg, #002868);
-  color: var(--mc-btn-text, #ffffff) !important;
+  color: var(--mc-btn-text, #fff) !important;
   font-family: 'Source Sans 3', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  padding: 15px 40px;
+  padding: 13px 32px;
   border-radius: 8px;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
-  border: 2px solid rgba(255,255,255,0.25);
+  border: 2px solid rgba(255,255,255,0.2);
+  transition: opacity 0.15s;
 }
-.mc-btn-dona:hover { opacity: 0.85; transform: translateY(-2px); }
+.mc-modal-dona:hover { opacity: 0.85; }
+.mc-modal-next {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.75);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.mc-modal-next:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+.mc-modal-counter {
+  width: 100%;
+  text-align: right;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 12px;
+  letter-spacing: 0.05em;
+}
 
-@media (min-width: 769px) {
-  .mc-titulo-fijo { animation: mcPulse 1s ease-out forwards; }
-  .mc-texto       { animation: mcFadeUp 0.65s ease-out 0.25s both; }
-  .mc-btn-dona    { animation: mcFadeUp 0.55s ease-out 0.55s both; }
-  @keyframes mcPulse {
-    0%   { opacity: 0; transform: scale(0.97); }
-    65%  { opacity: 1; transform: scale(1.01); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-  @keyframes mcFadeUp {
-    from { opacity: 0; transform: translateY(22px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+/* Modal open animation */
+.mc-modal { animation: mcModalIn 0.3s ease-out both; }
+@keyframes mcModalIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
-@media (max-width: 768px) {
-  .seccion-mensaje-coordinador { padding: 48px 20px; }
-  .mc-titulo-fijo { margin-bottom: 28px; font-size: 1rem; }
-  .mc-texto { font-size: 0.97rem; }
+.mc-modal-titulo { animation: mcFadeUp 0.4s ease-out 0.1s both; }
+.mc-modal-texto  { animation: mcFadeUp 0.4s ease-out 0.2s both; }
+.mc-modal-footer { animation: mcFadeUp 0.4s ease-out 0.3s both; }
+@keyframes mcFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .mc-modal { padding: 44px 24px 36px; }
+  .mc-trigger { bottom: 18px; right: 18px; padding: 11px 16px 11px 13px; font-size: 0.8rem; }
+  .mc-modal-footer { flex-direction: column; align-items: stretch; text-align: center; }
+  .mc-modal-dona, .mc-modal-next { text-align: center; }
 }
 
 /* ── VISITANTES BADGE ──────────────────────── */
@@ -357,15 +459,6 @@
     </div>
   </section>
 
-
-  <!-- SECCIÓN: MENSAJE DEL COORDINADOR -->
-  <section class="seccion-mensaje-coordinador" id="mensaje-coordinador">
-    <div class="mc-titulo-fijo">Si llevas placa en Puerto Rico, este mensaje es para ti.</div>
-    <div class="mc-cuerpo">
-      <div class="mc-texto" id="mcTexto"></div>
-      <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="mc-btn-dona" id="mcBtnDona">Dona ahora</a>
-    </div>
-  </section>
 
   <section class="explora-section" id="explora">
     <div class="container">
@@ -1113,6 +1206,26 @@
     </div>
   </section>
 
+  <!-- BOTÓN FLOTANTE + POPUP MENSAJE COORDINADOR -->
+  <button class="mc-trigger" id="mcTrigger" onclick="mcAbrir()" aria-label="Mensaje para policías de Puerto Rico">
+    <span class="mc-trigger-icon">🛡️</span>
+    <span class="mc-trigger-label" data-es="Mensaje directo" data-en="Direct message">Mensaje directo</span>
+    <span class="mc-trigger-badge" id="mcBadge">1</span>
+  </button>
+
+  <div class="mc-overlay" id="mcOverlay" onclick="mcCerrarOverlay(event)">
+    <div class="mc-modal mc-scheme-1" id="mcModal">
+      <button class="mc-modal-close" onclick="mcCerrar()" aria-label="Cerrar">✕</button>
+      <div class="mc-modal-titulo" id="mcTitulo"></div>
+      <div class="mc-modal-texto" id="mcTexto"></div>
+      <div class="mc-modal-footer">
+        <a href="https://justgiving.com/campaign/unidosforgabriel" target="_blank" rel="noopener" class="mc-modal-dona" data-es="Dona ahora" data-en="Donate Now">Dona ahora</a>
+        <button class="mc-modal-next" onclick="mcSiguiente()" data-es="Siguiente mensaje →" data-en="Next message →">Siguiente mensaje →</button>
+      </div>
+      <div class="mc-modal-counter" id="mcCounter"></div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container footer-inner">
       <img src="assets/images/logo_campaign.png" alt="Unidos por Gabriel" class="footer-logo" />
@@ -1128,43 +1241,112 @@
   <script src="js/main.js"></script>
 
   <script>
-  // ── MENSAJE COORDINADOR — ROTACIÓN DIARIA ────────────────────────────────
-  (function() {
-    var mensajes = [
-      ["Compañero.", "Gabriel estuvo ahí cuando nadie más estaba. Sin cobrar. Sin pedir. Sin esperar nada de ti.", "Ahora él necesita ayuda. Y estamos mirando a ver quién responde.", "No te estamos pidiendo que hagas lo que él hizo por ti.", "Te estamos pidiendo que dones.", "Eso es todo. Una donación. Del policía que benefició a los tuyos.", "Si puedes ignorar eso y seguir con tu día — hazlo.", "Pero si te queda aunque sea un poco de conciencia de lo que significa ser compañero — ya sabes dónde está el botón.", "La ola llegó. No llegues tarde."],
-      ["Compañero.", "Uno de los tuyos está transmitiendo un 10-50.", "No es un extraño. No es alguien que nunca hizo nada por ti.", "Es Gabriel. Y tú sabes exactamente quién es Gabriel.", "¿Cuántas veces respondiste un 10-50 sin pensarlo dos veces? ¿Cuántas veces dijiste \"voy\" antes de saber qué había al otro lado?", "Ahora el radio está sonando. Y es él.", "No hay excusa. No hay \"más tarde\". No hay \"cuando pueda\".", "Un compañero necesita respuesta ahora.", "¿Vas a contestar o vas a dejar que suene?"],
-      ["Compañero.", "¿Recuerdas cuando nadie daba un peso por ustedes?", "Gabriel sí. Fue. Peleó. Ganó.", "Ahora está solo.", "Y nosotros estamos aquí, mirando a ver cuántos de los que se beneficiaron tienen memoria.", "Demuestra que la tienes."],
-      ["Compañero.", "Él no te pidió permiso para pelear por ti.", "Simplemente lo hizo.", "Ahora te estamos pidiendo permiso para nada. Te estamos pidiendo que dones.", "Si eso es mucho pedir — algo está mal. Y tú lo sabes."],
-      ["Compañero.", "La diáspora se enteró antes que tú.", "Gente que lleva años fuera de la isla, que no lo conoce en persona, que nunca recibió un centavo de lo que él negoció — ya donó.", "¿Y tú?"],
-      ["Compañero.", "Hay dos tipos de policías.", "El que habla de compañerismo. Y el que lo demuestra.", "Gabriel lo demostró. Sin público. Sin cámaras. Sin paga.", "Ahora el mundo está mirando.", "¿Qué tipo eres tú?"],
-      ["Compañero.", "No te vamos a dejar tranquilo.", "Porque Gabriel no descansó hasta que lo logró por ti.", "Dona. Hoy. Ahora mismo."],
-      ["Compañero.", "Veinte años de servicio. Cero quejas. Cero excusas.", "Gabriel lo dio todo y se fue sin cobrarle nada a nadie.", "Eso se llama honor.", "¿Lo reconoces o lo dejas pasar?"],
-      ["Compañero.", "Cuando Gabriel peleó por ti, no sabía si ibas a agradecer.", "Lo hizo igual.", "Ahora tú sabes exactamente lo que está pasando.", "No hay excusa de ignorancia. No hay excusa de nada."],
-      ["Compañero.", "Este mensaje lo está leyendo gente en Texas, en Nueva York, en Florida, en Chicago.", "Puertorriqueños que nunca llevaron placa — donando por un hombre que nunca conocieron.", "Y tú, que lo conoces. Que sabes lo que hizo. Que lo viviste.", "Todavía pensando."],
-      ["Compañero.", "No te estamos pidiendo que vayas a Washington.", "No te estamos pidiendo 117 días de tu vida.", "No te estamos pidiendo que peles con nadie.", "Solo que dones.", "Eso es literalmente lo mínimo que puedes hacer."],
-      ["Compañero.", "El que pelea solo por su propio beneficio — eso abunda.", "El que pelea por los demás sin esperar nada — eso es escaso.", "Gabriel fue escaso.", "¿Lo vas a dejar solo ahora?"],
-      ["Compañero.", "Un día alguien va a preguntarle a tus hijos qué hiciste cuando Gabriel necesitó ayuda.", "¿Qué vas a querer que respondan?"],
-      ["Compañero.", "No importa cuánto. Importa que aparezcas.", "Gabriel nunca contó cuánto le costaba. Solo apareció.", "Ahora te toca a ti."],
-      ["Compañero.", "Este es el último mensaje que te vamos a mandar.", "No porque nos vamos a rendir. Sino porque ya dijimos todo lo que había que decir.", "Tú sabes quién es Gabriel. Tú sabes lo que hizo. Tú sabes lo que necesita.", "Y tú sabes lo que tienes que hacer."]
-    ];
-
-    var esquemas = ['mc-scheme-1','mc-scheme-2','mc-scheme-3','mc-scheme-4','mc-scheme-5'];
-    var idx = Math.floor(Date.now() / 86400000) % mensajes.length;
-    var esquema = esquemas[idx % esquemas.length];
-
-    var seccion = document.getElementById('mensaje-coordinador');
-    var textoEl = document.getElementById('mcTexto');
-
-    if (seccion && textoEl) {
-      seccion.classList.add(esquema);
-      var html = '';
-      var lineas = mensajes[idx];
-      for (var i = 0; i < lineas.length; i++) {
-        html += '<p>' + lineas[i] + '</p>';
-      }
-      textoEl.innerHTML = html;
+  // ── POPUP MENSAJE COORDINADOR ────────────────────────────────────────────
+  var MC = {
+    idx: 0,
+    esquemas: ['mc-scheme-1','mc-scheme-2','mc-scheme-3','mc-scheme-4','mc-scheme-5'],
+    mensajes: {
+      es: [
+        ["Compañero.","Gabriel estuvo ahí cuando nadie más estaba. Sin cobrar. Sin pedir. Sin esperar nada de ti.","Ahora él necesita ayuda. Y estamos mirando a ver quién responde.","No te estamos pidiendo que hagas lo que él hizo por ti.","Te estamos pidiendo que dones.","Eso es todo. Una donación. Del policía que benefició a los tuyos.","Si puedes ignorar eso y seguir con tu día — hazlo.","Pero si te queda aunque sea un poco de conciencia de lo que significa ser compañero — ya sabes dónde está el botón.","La ola llegó. No llegues tarde."],
+        ["Compañero.","Uno de los tuyos está transmitiendo un 10-50.","No es un extraño. No es alguien que nunca hizo nada por ti.","Es Gabriel. Y tú sabes exactamente quién es Gabriel.","¿Cuántas veces respondiste un 10-50 sin pensarlo dos veces? ¿Cuántas veces dijiste \"voy\" antes de saber qué había al otro lado?","Ahora el radio está sonando. Y es él.","No hay excusa. No hay \"más tarde\". No hay \"cuando pueda\".","Un compañero necesita respuesta ahora.","¿Vas a contestar o vas a dejar que suene?"],
+        ["Compañero.","¿Recuerdas cuando nadie daba un peso por ustedes?","Gabriel sí. Fue. Peleó. Ganó.","Ahora está solo.","Y nosotros estamos aquí, mirando a ver cuántos de los que se beneficiaron tienen memoria.","Demuestra que la tienes."],
+        ["Compañero.","Él no te pidió permiso para pelear por ti.","Simplemente lo hizo.","Ahora te estamos pidiendo permiso para nada. Te estamos pidiendo que dones.","Si eso es mucho pedir — algo está mal. Y tú lo sabes."],
+        ["Compañero.","La diáspora se enteró antes que tú.","Gente que lleva años fuera de la isla, que no lo conoce en persona, que nunca recibió un centavo de lo que él negoció — ya donó.","¿Y tú?"],
+        ["Compañero.","Hay dos tipos de policías.","El que habla de compañerismo. Y el que lo demuestra.","Gabriel lo demostró. Sin público. Sin cámaras. Sin paga.","Ahora el mundo está mirando.","¿Qué tipo eres tú?"],
+        ["Compañero.","No te vamos a dejar tranquilo.","Porque Gabriel no descansó hasta que lo logró por ti.","Dona. Hoy. Ahora mismo."],
+        ["Compañero.","Veinte años de servicio. Cero quejas. Cero excusas.","Gabriel lo dio todo y se fue sin cobrarle nada a nadie.","Eso se llama honor.","¿Lo reconoces o lo dejas pasar?"],
+        ["Compañero.","Cuando Gabriel peleó por ti, no sabía si ibas a agradecer.","Lo hizo igual.","Ahora tú sabes exactamente lo que está pasando.","No hay excusa de ignorancia. No hay excusa de nada."],
+        ["Compañero.","Este mensaje lo está leyendo gente en Texas, en Nueva York, en Florida, en Chicago.","Puertorriqueños que nunca llevaron placa — donando por un hombre que nunca conocieron.","Y tú, que lo conoces. Que sabes lo que hizo. Que lo viviste.","Todavía pensando."],
+        ["Compañero.","No te estamos pidiendo que vayas a Washington.","No te estamos pidiendo 117 días de tu vida.","No te estamos pidiendo que peles con nadie.","Solo que dones.","Eso es literalmente lo mínimo que puedes hacer."],
+        ["Compañero.","El que pelea solo por su propio beneficio — eso abunda.","El que pelea por los demás sin esperar nada — eso es escaso.","Gabriel fue escaso.","¿Lo vas a dejar solo ahora?"],
+        ["Compañero.","Un día alguien va a preguntarle a tus hijos qué hiciste cuando Gabriel necesitó ayuda.","¿Qué vas a querer que respondan?"],
+        ["Compañero.","No importa cuánto. Importa que aparezcas.","Gabriel nunca contó cuánto le costaba. Solo apareció.","Ahora te toca a ti."],
+        ["Compañero.","Este es el último mensaje que te vamos a mandar.","No porque nos vamos a rendir. Sino porque ya dijimos todo lo que había que decir.","Tú sabes quién es Gabriel. Tú sabes lo que hizo. Tú sabes lo que necesita.","Y tú sabes lo que tienes que hacer."]
+      ],
+      en: [
+        ["Officer.","Gabriel was there when no one else was. No pay. No ask. No expectations.","Now he needs help. And we're watching to see who shows up.","We're not asking you to do what he did for you.","We're asking you to donate.","That's it. One donation. For the officer who fought for yours.","If you can ignore that and go on with your day — go ahead.","But if you have even a shred of what it means to be a brother in blue — you know where the button is.","The wave is here. Don't miss it."],
+        ["Officer.","One of your own is transmitting a 10-50.","Not a stranger. Not someone who never did anything for you.","It's Gabriel. And you know exactly who Gabriel is.","How many times did you respond to a 10-50 without thinking twice? How many times did you say \"copy\" before knowing what was on the other end?","The radio is ringing now. And it's him.","No excuse. No \"later\". No \"when I can\".","A fellow officer needs a response now.","Are you going to answer, or let it ring?"],
+        ["Officer.","Remember when nobody gave a damn about you?","Gabriel did. He went. He fought. He won.","Now he's alone.","And we're here, watching to see how many of those who benefited still have memory.","Prove that you do."],
+        ["Officer.","He didn't ask your permission to fight for you.","He just did it.","Now we're asking you for nothing. We're asking you to donate.","If that's too much to ask — something is wrong. And you know it."],
+        ["Officer.","The diaspora found out before you did.","People who've been off the island for years, who never met him, who never received a cent from what he negotiated — they already donated.","And you?"],
+        ["Officer.","There are two kinds of cops.","The one who talks about brotherhood. And the one who shows it.","Gabriel showed it. No audience. No cameras. No pay.","Now the world is watching.","Which one are you?"],
+        ["Officer.","We're not going to leave you alone.","Because Gabriel didn't rest until he got it done for you.","Donate. Today. Right now."],
+        ["Officer.","Twenty years of service. Zero complaints. Zero excuses.","Gabriel gave everything and left without charging anyone a cent.","That's called honor.","Do you recognize it, or do you let it pass?"],
+        ["Officer.","When Gabriel fought for you, he didn't know if you'd be grateful.","He did it anyway.","Now you know exactly what's happening.","No excuse of ignorance. No excuse at all."],
+        ["Officer.","This message is being read by people in Texas, New York, Florida, Chicago.","Puerto Ricans who never carried a badge — donating for a man they never met.","And you, who knows him. Who knows what he did. Who lived it.","Still thinking."],
+        ["Officer.","We're not asking you to go to Washington.","We're not asking for 117 days of your life.","We're not asking you to fight anyone.","Just donate.","That is literally the least you can do."],
+        ["Officer.","The one who fights only for himself — that's common.","The one who fights for others with no expectation — that's rare.","Gabriel was rare.","Are you going to leave him alone now?"],
+        ["Officer.","One day someone is going to ask your kids what you did when Gabriel needed help.","What do you want them to say?"],
+        ["Officer.","It doesn't matter how much. It matters that you show up.","Gabriel never counted what it cost him. He just showed up.","Now it's your turn."],
+        ["Officer.","This is the last message we're sending you.","Not because we're giving up. But because we've said everything that needed to be said.","You know who Gabriel is. You know what he did. You know what he needs.","And you know what you have to do."]
+      ]
     }
-  })();
+  };
+
+  function mcGetLang() {
+    return (document.documentElement.lang === 'en' || (window.currentLang && window.currentLang === 'en')) ? 'en' : 'es';
+  }
+
+  function mcRenderizar() {
+    var lang = mcGetLang();
+    var lineas = MC.mensajes[lang][MC.idx];
+    var esquema = MC.esquemas[MC.idx % MC.esquemas.length];
+    var modal = document.getElementById('mcModal');
+    var titulo = document.getElementById('mcTitulo');
+    var texto = document.getElementById('mcTexto');
+    var counter = document.getElementById('mcCounter');
+    var badge = document.getElementById('mcBadge');
+
+    // Reset esquema
+    MC.esquemas.forEach(function(e) { modal.classList.remove(e); });
+    modal.classList.add(esquema);
+
+    // Reiniciar animación
+    modal.style.animation = 'none';
+    titulo.style.animation = 'none';
+    texto.style.animation = 'none';
+    void modal.offsetWidth;
+    modal.style.animation = '';
+    titulo.style.animation = '';
+    texto.style.animation = '';
+
+    titulo.textContent = lang === 'es'
+      ? 'Si llevas placa en Puerto Rico, este mensaje es para ti.'
+      : 'If you carry a badge in Puerto Rico, this message is for you.';
+
+    var html = '';
+    for (var i = 0; i < lineas.length; i++) { html += '<p>' + lineas[i] + '</p>'; }
+    texto.innerHTML = html;
+
+    counter.textContent = (MC.idx + 1) + ' / ' + MC.mensajes[lang].length;
+    badge.textContent = MC.idx + 1;
+  }
+
+  function mcAbrir() {
+    document.getElementById('mcOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    mcRenderizar();
+  }
+
+  function mcCerrar() {
+    document.getElementById('mcOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    MC.idx = (MC.idx + 1) % 15;
+    document.getElementById('mcBadge').textContent = MC.idx + 1;
+  }
+
+  function mcSiguiente() {
+    MC.idx = (MC.idx + 1) % 15;
+    mcRenderizar();
+  }
+
+  function mcCerrarOverlay(e) {
+    if (e.target === document.getElementById('mcOverlay')) mcCerrar();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') mcCerrar();
+  });
   </script>
 
   <div class="notif-flotante" id="notifFlotante" style="display:none;">
